@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   hooks.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 14:14:15 by jgermany          #+#    #+#             */
-/*   Updated: 2023/06/20 19:16:43 by jgermany         ###   ########.fr       */
+/*   Created: 2023/06/20 19:10:23 by jgermany          #+#    #+#             */
+/*   Updated: 2023/06/20 19:32:23 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
+#ifndef HOOKS_H
 
-# define MAIN_H
+# define HOOKS_H
 
-# include <stdlib.h>
-# include <unistd.h>
 # include <stdio.h>
-# include <stdint.h> // for intptr_t
 
-# include "mlx.h"
-# include "hooks.h"
+int		test_hook(void);
+int		mah_key_hook(int keycode, void *param, void *param2);
+int		mah_mouse_hook(int button, int x, int y, void *params);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 13:11:54 by jgermany          #+#    #+#              #
-#    Updated: 2023/06/20 14:11:41 by jgermany         ###   ########.fr        #
+#    Updated: 2023/06/20 19:18:24 by jgermany         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ MLXFLAGS	:= -lX11 -lXext -lmlx
 MLXFLAGS	+= -L$(MLX_DIR)
 
 SRCS 		:= $(SRCS_DIR)/main.c
+SRCS 		+= $(SRCS_DIR)/hooks.c
+
 OBJS		:= $(SRCS:.c=.o)
 
 MLX			:= $(MLX_DIR)/libmmlx.a

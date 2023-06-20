@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:04:50 by jgermany          #+#    #+#             */
-/*   Updated: 2023/06/20 15:01:21 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/06/20 19:33:17 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,14 @@ int	main(void)
 	win_ptr = mlx_new_window(mlx_ptr, 640, 480, "Half Life");
 	if (!win_ptr)
 		return (1);
-	// while (1) // A LOOP? // int	mlx_loop (void *mlx_ptr)
-	// 	;
-	
+
+	// How can I see the events?
+	mlx_key_hook(win_ptr, mah_key_hook, (int []){19, 62, 36, 0});
+	mlx_mouse_hook(win_ptr, mah_mouse_hook, NULL);
+	// mlx_loop_hook(win_ptr, test, NULL);
+
+	mlx_loop(mlx_ptr);
+
 	mlx_destroy_window(mlx_ptr, win_ptr);
 	// free(win_ptr);
 	mlx_destroy_display(mlx_ptr);

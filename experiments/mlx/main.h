@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/16 14:15:53 by jgermany          #+#    #+#             */
-/*   Updated: 2023/06/20 13:00:44 by jgermany         ###   ########.fr       */
+/*   Created: 2023/06/20 14:14:15 by jgermany          #+#    #+#             */
+/*   Updated: 2023/06/20 14:54:56 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_dprintf/ft_dprintf.h"
+#ifndef MAIN_H
 
-int	main(int argc, char **argv)
-{
-	ft_dprintf(1,
-		"Welcome to %s!\n\tYou added %i arguments.\n",
-		*argv,
-		argc - 1
-	);
-}
+# define MAIN_H
+
+# include <stdlib.h>
+
+# include "mlx.h"
+
+#endif

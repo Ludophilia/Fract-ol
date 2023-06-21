@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 19:09:27 by jgermany          #+#    #+#             */
-/*   Updated: 2023/06/21 14:11:52 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/06/21 14:56:04 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,19 @@
 
 #define ESC_KEY 65307 
 
-// int	test0_hook(void)
-// {
-// 	printf("Event:\n");
-// 	return (0);
-// }
+int	test_loop_hook(void *params) // void *param;
+{
+	(void)params;
+	printf("Loop event fired.\n");
+	return (0);
+}
 
-int	test_key_hook(int keycode, void *param)
+int	test_key_hook(int keycode, void *params)
 {
 	printf("[keycode : %i]\n", keycode);
 	if (keycode == ESC_KEY)
 	{
-		mlx_loop_end(((t_mlx *)param)->mlx_ptr);
+		mlx_loop_end(((t_mlx *)params)->mlx_ptr);
 		return (0);
 	}
 	return (0);

@@ -6,11 +6,11 @@
 #    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 13:11:54 by jgermany          #+#    #+#              #
-#    Updated: 2023/06/21 13:13:14 by jgermany         ###   ########.fr        #
+#    Updated: 2023/06/21 14:54:53 by jgermany         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 		:= mlx_test
+NAME 		:= mlx_expr
 
 MLX_DIR		:= ../../minilibx-linux
 

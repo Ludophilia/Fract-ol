@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 13:08:03 by jgermany          #+#    #+#             */
-/*   Updated: 2023/06/21 14:02:34 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/06/21 14:58:25 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,16 @@ int	init_scene(t_mlx *mlx_data)
 	return (0);
 }
 
-// 20/06 - How can I see the events?
 // 21/06 - Simple Goal:
-//	- How to close the window via ESC and the X button?
-//	- 
+//	- How to close the window via the X button?
 void	register_events(t_mlx *mlx_data)
 {
 	mlx_key_hook(
 		mlx_data->win_ptr, test_key_hook, mlx_data);
 	mlx_mouse_hook(
-		mlx_data->win_ptr, test_mouse_hook, NULL); // Array died bc "on stack"
-	// mlx_loop_hook(win_ptr, test, NULL);
+		mlx_data->win_ptr, test_mouse_hook, NULL);
+	mlx_loop_hook(
+		mlx_data->win_ptr, test_loop_hook, NULL); // What's for?
 }
 
 void	wait_for_events(t_mlx *mlx_data)

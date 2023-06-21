@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.h                                            :+:      :+:    :+:   */
+/*   mlx_common.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 19:10:23 by jgermany          #+#    #+#             */
-/*   Updated: 2023/06/21 14:11:45 by jgermany         ###   ########.fr       */
+/*   Created: 2023/06/21 12:26:36 by jgermany          #+#    #+#             */
+/*   Updated: 2023/06/21 13:13:48 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOOKS_H
+#ifndef MLX_COMMONS_H
 
-# define HOOKS_H
+# define MLX_COMMONS_H
 
-# include "mlx_common.h"
-# include "scenemgr.h"
+# include "mlx.h"
+# include <stdio.h>
+# include <stdlib.h>
 
-int		test_mouse_hook(int button, int x, int y, void *params);
-int		test_key_hook(int keycode, void *param);
-// int	test0_hook(void);
+typedef struct s_mlx
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+}	t_mlx;
 
 #endif

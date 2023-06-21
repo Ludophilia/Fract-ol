@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.h                                            :+:      :+:    :+:   */
+/*   scenemgr.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 19:10:23 by jgermany          #+#    #+#             */
-/*   Updated: 2023/06/21 14:11:45 by jgermany         ###   ########.fr       */
+/*   Created: 2023/06/21 13:08:47 by jgermany          #+#    #+#             */
+/*   Updated: 2023/06/21 13:50:17 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOOKS_H
+#ifndef SCENEMGR_H
 
-# define HOOKS_H
+# define SCENEMGR_H
+
+# include <unistd.h>
 
 # include "mlx_common.h"
-# include "scenemgr.h"
+# include "hooks.h"
 
-int		test_mouse_hook(int button, int x, int y, void *params);
-int		test_key_hook(int keycode, void *param);
-// int	test0_hook(void);
+int		init_scene(t_mlx *mlx_data);
+void	destroy_scene(t_mlx *mlx_data);
+void	register_events(t_mlx *mlx_data);
+void	wait_for_events(t_mlx *mlx_data);
 
 #endif

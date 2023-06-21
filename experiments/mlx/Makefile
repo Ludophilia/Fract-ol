@@ -6,14 +6,13 @@
 #    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 13:11:54 by jgermany          #+#    #+#              #
-#    Updated: 2023/06/20 19:18:24 by jgermany         ###   ########.fr        #
+#    Updated: 2023/06/21 13:13:14 by jgermany         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		:= mlx_test
 
-MLX_DIR		:= ../minilibx-linux
-SRCS_DIR	:= mlx
+MLX_DIR		:= ../../minilibx-linux
 
 CC 			:= cc
 CFLAGS		:= -Wall -Wextra -Werror
@@ -22,8 +21,9 @@ CFLAGS		+= -I$(MLX_DIR)
 MLXFLAGS	:= -lX11 -lXext -lmlx
 MLXFLAGS	+= -L$(MLX_DIR)
 
-SRCS 		:= $(SRCS_DIR)/main.c
-SRCS 		+= $(SRCS_DIR)/hooks.c
+SRCS 		:= main.c
+SRCS 		+= hooks.c
+SRCS 		+= scenemgr.c
 
 OBJS		:= $(SRCS:.c=.o)
 

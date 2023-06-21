@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:14:15 by jgermany          #+#    #+#             */
-/*   Updated: 2023/06/20 19:16:43 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/06/21 13:50:08 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 
 # define MAIN_H
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <stdint.h> // for intptr_t
-
-# include "mlx.h"
-# include "hooks.h"
+# include "mlx_common.h"
+# include "scenemgr.h"
 
 #endif

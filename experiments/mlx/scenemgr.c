@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 13:08:03 by jgermany          #+#    #+#             */
-/*   Updated: 2023/06/21 14:58:25 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/06/21 19:37:17 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,34 @@ int	init_scene(t_mlx *mlx_data)
 	if (mlx_data->mlx_ptr == NULL)
 		return (-1);
 	mlx_data->win_ptr = mlx_new_window(
-		mlx_data->mlx_ptr, 640, 480, "Half Life");
+		mlx_data->mlx_ptr, WINDOW_X, WINDOW_Y, "Half Life");
 	if (!mlx_data->win_ptr)
 		return (-1);
 	return (0);
 }
 
-// 21/06 - Simple Goal:
-//	- How to close the window via the X button?
 void	register_events(t_mlx *mlx_data)
 {
 	mlx_key_hook(
 		mlx_data->win_ptr, test_key_hook, mlx_data);
 	mlx_mouse_hook(
-		mlx_data->win_ptr, test_mouse_hook, NULL);
+		mlx_data->win_ptr, test_mouse_hook, mlx_data);
 	mlx_loop_hook(
 		mlx_data->win_ptr, test_loop_hook, NULL); // What's for?
+}
+
+void	draw_on_scene(t_mlx *mlx_data)
+{
+	t_mtx	mtx;
+	
+	mtx.y = -1;
+	while (++mtx.y < WINDOW_Y)
+	{
+		mtx.x = -1;
+		while (++mtx.x < WINDOW_X)
+			mlx_pixel_put(mlx_data->mlx_ptr, mlx_data->win_ptr,
+			mtx.x, mtx.y, BACK_COLOR);
+	}
 }
 
 void	wait_for_events(t_mlx *mlx_data)

@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 13:08:47 by jgermany          #+#    #+#             */
-/*   Updated: 2023/06/21 19:09:35 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/06/22 19:35:21 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 
 # define WINDOW_X 640
 # define WINDOW_Y 480
-# define BACK_COLOR 0xf57f03
+# define BACK_COLOR 0x000000 //0xf57f03
+# define SCENENAME "Not MacPaint"
 
 # include <unistd.h>
 

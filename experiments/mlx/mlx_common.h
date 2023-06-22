@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:26:36 by jgermany          #+#    #+#             */
-/*   Updated: 2023/06/21 13:13:48 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/06/22 18:07:54 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 # define MLX_COMMONS_H
 
 # include "mlx.h"
+
 # include <stdio.h>
 # include <stdlib.h>
+# include <X11/X.h>
 
 typedef struct s_mlx
 {

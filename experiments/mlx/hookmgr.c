@@ -6,12 +6,33 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 19:09:27 by jgermany          #+#    #+#             */
-/*   Updated: 2023/06/21 19:37:53 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/06/22 19:39:01 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hookmgr.h"
 
+int	test_motion_hook(int x, int y, t_mlx *mlx_data)
+{
+	int		offx;
+	int		offy;
+
+	offy = -1;
+	while (++offy < 10) 
+	{
+		offx = -1;
+		while (++offx < 10)
+			mlx_pixel_put(mlx_data->mlx_ptr, mlx_data->win_ptr,
+			offx + x, offy + y, FORE_COLOR);
+	}
+	return (0);
+}
+
+int	test_destroy_hook(void *params)
+{
+	mlx_loop_end(((t_mlx *)params)->mlx_ptr);
+	return (0);
+}
 
 int	test_loop_hook(void) // (void *param)
 {

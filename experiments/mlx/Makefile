@@ -6,7 +6,7 @@
 #    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 13:11:54 by jgermany          #+#    #+#              #
-#    Updated: 2023/06/21 18:16:52 by jgermany         ###   ########.fr        #
+#    Updated: 2023/06/22 19:45:23 by jgermany         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ $(NAME):	$(OBJS) | $(MLX)
 $(MLX):
 	@make -C $(MLX_DIR) all
 
-%.o:		%.h
+%.o:		%.h mlx_common.h
 
 clean:
 	make -C $(MLX_DIR) clean

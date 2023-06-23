@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:26:36 by jgermany          #+#    #+#             */
-/*   Updated: 2023/06/22 18:07:54 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/06/23 14:14:43 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_mlx
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	int		loopcount;
 }	t_mlx;
 
 #endif

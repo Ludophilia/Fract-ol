@@ -11,7 +11,7 @@
 	- [o] Try the MiniLibX via a small experiment that
 	may grow throughout the project...
 	- [ ] Maths functions?
-- [ ] Restructure libft: move ft_dprintf/ into libft/
+- [x] Restructure libft: move ft_dprintf/ into libft/
 - [ ] Write and build Makefile (with a small window open)
 
 # Tests

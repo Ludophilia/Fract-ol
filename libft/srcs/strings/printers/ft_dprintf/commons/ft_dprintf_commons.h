@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   commons.h                                          :+:      :+:    :+:   */
+/*   ft_dprintf_commons.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 18:34:45 by jgermany          #+#    #+#             */
-/*   Updated: 2023/05/13 16:07:14 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/06/27 19:01:24 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMONS_H
+#ifndef FT_DPRINTF_COMMONS_H
 
-# define COMMONS_H
+# define FT_DPRINTF_COMMONS_H
 
 # include <stdarg.h>
 # include <stdlib.h>
 # include <stdbool.h>
 # include <errno.h>
 
-# include "../../libft/libft.h"
+# include "libft.h"
 
 # define B10 "0123456789"
 # define B16U "0123456789ABCDEF"

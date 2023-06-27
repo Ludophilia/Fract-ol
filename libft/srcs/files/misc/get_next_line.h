@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/11 14:17:39 by jgermany          #+#    #+#             */
-/*   Updated: 2022/12/29 14:56:13 by jgermany         ###   ########.fr       */
+/*   Created: 2023/01/02 16:28:31 by jgermany          #+#    #+#             */
+/*   Updated: 2023/06/27 14:28:36 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
-{
-	if (!lst)
-		return ;
-	if (del)
-		del(lst->content);
-	free(lst);
-}
+# define GET_NEXT_LINE_H
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5
+# endif
+
+# include "libft.h"
+
+ssize_t	update_stash(int fd, char **stash);
+char	*extract_line(char **stash);
+char	**free_stash(char **stash);
+
+#endif

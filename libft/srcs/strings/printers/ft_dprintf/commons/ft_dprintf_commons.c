@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dprintf.h                                       :+:      :+:    :+:   */
+/*   ft_dprintf_commons.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 21:49:43 by jgermany          #+#    #+#             */
-/*   Updated: 2023/05/08 17:29:07 by jgermany         ###   ########.fr       */
+/*   Created: 2023/03/29 14:23:44 by jgermany          #+#    #+#             */
+/*   Updated: 2023/06/27 18:17:13 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_DPRINTF_H
+#include "ft_dprintf_commons.h"
 
-# define FT_DPRINTF_H
+void	putchar_cc(char c, t_meta *meta)
+{
+	ft_putchar_fd(c, meta->fd);
+	meta->count += 1;
+}
 
-# include "commons/commons.h"
-# include "printer/printer.h"
-# include "parser/parser.h"
-
-int	ft_dprintf(int fd, const char *format, ...);
-
-#endif
+void	putstr_cc(char *s, t_meta *meta)
+{
+	ft_putstr_fd(s, meta->fd);
+	meta->count += ft_strlen(s);
+}

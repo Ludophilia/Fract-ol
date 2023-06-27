@@ -6,11 +6,21 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:16:33 by jgermany          #+#    #+#             */
-/*   Updated: 2023/06/10 18:56:38 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/06/27 13:21:51 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char	**free_stash(char **stash)
+{
+	if (!*stash)
+	{
+		free(stash);
+		return (0);
+	}
+	return (stash);
+}
 
 static char	**write_stash(char **stash, ssize_t bytesread, char *buffer)
 {
@@ -38,29 +48,6 @@ static char	**write_stash(char **stash, ssize_t bytesread, char *buffer)
 	return (stash);
 }
 
-int	ft_strchr_sp(const char *s, int c)
-{
-	int	i;
-
-	if (!s)
-		return (-1);
-	i = -1;
-	while (s[++i])
-		if (s[i] == (char)c)
-			return (i);
-	return (-1);
-}
-
-char	**free_stash(char **stash)
-{
-	if (!*stash)
-	{
-		free(stash);
-		return (0);
-	}
-	return (stash);
-}
-
 ssize_t	update_stash(int fd, char **stash)
 {
 	ssize_t		bytesread;
@@ -83,7 +70,10 @@ char	*extract_line(char **stash)
 	int		newline_pos;
 	size_t	stash_size;
 
-	newline_pos = ft_strchr_sp(*stash, '\n');
+	if (stash == NULL)
+		newline_pos = -1;
+	else
+		newline_pos = ft_strchr(*stash, '\n') - *stash;
 	stash_size = ft_strlen(*stash) - (newline_pos + 1);
 	if (newline_pos >= 0 && stash_size)
 	{

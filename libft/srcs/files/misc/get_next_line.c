@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 16:20:29 by jgermany          #+#    #+#             */
-/*   Updated: 2023/06/10 18:37:52 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/06/27 15:00:03 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*get_next_line(int fd)
 		return (0);
 	}
 	bytesread = update_stash(fd, stash);
-	while (bytesread > 0 && ft_strchr_sp(*stash, '\n') == -1)
+	while (bytesread > 0 && ft_strchr(*stash, '\n') == NULL)
 		bytesread = update_stash(fd, stash);
 	if ((bytesread == 0 && !*stash) || bytesread == -1)
 	{

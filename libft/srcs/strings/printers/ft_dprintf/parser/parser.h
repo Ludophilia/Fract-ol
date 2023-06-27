@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   commons.c                                          :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/29 14:23:44 by jgermany          #+#    #+#             */
-/*   Updated: 2023/05/08 17:01:47 by jgermany         ###   ########.fr       */
+/*   Created: 2023/03/11 14:13:27 by jgermany          #+#    #+#             */
+/*   Updated: 2023/06/27 18:17:53 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "commons.h"
+#ifndef PARSER_H
 
-void	putchar_cc(char c, t_meta *meta)
-{
-	ft_putchar_fd(c, meta->fd);
-	meta->count += 1;
-}
+# define PARSER_H
 
-void	putstr_cc(char *s, t_meta *meta)
-{
-	ft_putstr_fd(s, meta->fd);
-	meta->count += ft_strlen(s);
-}
+# include <stdint.h>
+
+# include "../commons/ft_dprintf_commons.h"
+# include "../printer/printer.h"
+
+int	proc_specif(char *spec, va_list *args, t_meta *meta);
+
+#endif

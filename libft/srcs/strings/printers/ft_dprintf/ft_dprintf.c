@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:28:28 by jgermany          #+#    #+#             */
-/*   Updated: 2023/05/08 17:31:42 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/06/27 19:22:24 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,25 @@ int	ft_dprintf(int fd, const char *format, ...)
 		return (-1);
 	}
 	meta.fd = fd;
+	meta.count = 0;
+	va_start(args, format);
+	if (process_format(format, &args, &meta) == -1)
+		return (-1);
+	va_end(args);
+	return (meta.count);
+}
+
+int	ft_printf(const char *format, ...)
+{
+	t_meta		meta;
+	va_list		args;
+
+	if (!format)
+	{
+		errno = EINVAL;
+		return (-1);
+	}
+	meta.fd = 1;
 	meta.count = 0;
 	va_start(args, format);
 	if (process_format(format, &args, &meta) == -1)

@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_dprintf.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/10 17:01:07 by jgermany          #+#    #+#             */
-/*   Updated: 2022/12/29 14:51:53 by jgermany         ###   ########.fr       */
+/*   Created: 2023/02/27 21:49:43 by jgermany          #+#    #+#             */
+/*   Updated: 2023/06/27 19:23:37 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FT_DPRINTF_H
 
-void	ft_putstr_fd(char *s, int fd)
-{
-	if (s == (char *)0 || fd < 0)
-		return ;
-	write(fd, s, ft_strlen(s));
-}
+# define FT_DPRINTF_H
+
+# include "commons/ft_dprintf_commons.h"
+# include "printer/printer.h"
+# include "parser/parser.h"
+
+int	ft_dprintf(int fd, const char *format, ...);
+int	ft_printf(const char *format, ...);
+
+#endif

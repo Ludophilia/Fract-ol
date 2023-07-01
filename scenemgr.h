@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   scenemgr.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 13:04:50 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/01 23:10:30 by jgermany         ###   ########.fr       */
+/*   Created: 2023/06/21 13:08:47 by jgermany          #+#    #+#             */
+/*   Updated: 2023/07/01 23:04:05 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#ifndef SCENEMGR_H
 
-int	main(void)
-{
-	t_mlx	mlx_data;
+# define SCENEMGR_H
 
-	if (init_scene(&mlx_data) == -1)
-		return (1);
-	register_events(&mlx_data);
-	wait_for_events(&mlx_data);
-	destroy_scene(&mlx_data);
-	return (0);
-}
+# define WINDOW_X 640
+# define WINDOW_Y 480
+
+# define SCENENAME "Fractol"
+
+# include "fractol_common.h"
+# include "hookmgr.h"
+
+int		init_scene(t_mlx *mlx_data);
+void	register_events(t_mlx *mlx_data);
+void	wait_for_events(t_mlx *mlx_data);
+void	destroy_scene(t_mlx *mlx_data);
+
+#endif

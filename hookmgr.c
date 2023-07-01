@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   hookmgr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 13:04:50 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/01 23:10:30 by jgermany         ###   ########.fr       */
+/*   Created: 2023/06/20 19:09:27 by jgermany          #+#    #+#             */
+/*   Updated: 2023/07/01 23:13:21 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "hookmgr.h"
 
-int	main(void)
+int	manage_key_events(int keycode, t_mlx *mlx_data)
 {
-	t_mlx	mlx_data;
-
-	if (init_scene(&mlx_data) == -1)
-		return (1);
-	register_events(&mlx_data);
-	wait_for_events(&mlx_data);
-	destroy_scene(&mlx_data);
+	if (keycode == XK_Escape)
+		mlx_loop_end(mlx_data->mlx_ptr);
 	return (0);
 }

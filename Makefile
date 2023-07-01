@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/04/29 13:57:02 by jgermany          #+#    #+#              #
-#    Updated: 2023/07/01 17:35:10 by jgermany         ###   ########.fr        #
+#    Created: 2023/07/01 20:24:27 by jgermany          #+#    #+#              #
+#    Updated: 2023/07/01 21:13:14 by jgermany         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,22 +16,27 @@ CC := cc
 CFLAGS := -Wall -Wextra -Werror
 
 FT	:= ./libft
-MLX	:= ./minilibx-linux
+MLX	:= ./mlx
 LIBFLAGS := -lft -L$(FT) -lmlx -L$(MLX) -lX11 -lXext
 
 SRCS_MAN := fractol.c
+SRCS_MAN += scenemgr.c
+SRCS_MAN += hookmgr.c
+
 OBJS_MAN := $(SRCS_MAN:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS_MAN)
 	make -sC $(FT)
-	make -C $(MLX) > /dev/null
+	make -C $(MLX) >/dev/null 2>&1
 	$(CC) $(CFLAGS) -o $@ $^ $(LIBFLAGS)
+
+%.o: %.h fractol_common.h
 
 clean:
 	make -sC $(FT) $@
-	make -C $(MLX) $@ > /dev/null
+	make -C $(MLX) $@ >/dev/null 2>&1
 	rm -f $(OBJS_MAN)
 
 fclean: clean

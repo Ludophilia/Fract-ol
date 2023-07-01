@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   fractol_common.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 13:04:50 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/01 23:10:30 by jgermany         ###   ########.fr       */
+/*   Created: 2023/07/01 20:32:30 by jgermany          #+#    #+#             */
+/*   Updated: 2023/07/01 21:10:48 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#ifndef FRACTOL_COMMON_H
 
-int	main(void)
+# define FRACTOL_COMMON_H
+
+# include "mlx/mlx.h"
+# include <X11/X.h>
+# include <stdlib.h>
+
+typedef struct s_mlx
 {
-	t_mlx	mlx_data;
+	void	*mlx_ptr;
+	void	*win_ptr;
+}	t_mlx;
 
-	if (init_scene(&mlx_data) == -1)
-		return (1);
-	register_events(&mlx_data);
-	wait_for_events(&mlx_data);
-	destroy_scene(&mlx_data);
-	return (0);
-}
+#endif

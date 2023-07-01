@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   hookmgr.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 13:04:50 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/01 23:10:30 by jgermany         ###   ########.fr       */
+/*   Created: 2023/06/20 19:10:23 by jgermany          #+#    #+#             */
+/*   Updated: 2023/07/01 22:45:56 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#ifndef HOOKMGR_H
 
-int	main(void)
-{
-	t_mlx	mlx_data;
+# define HOOKMGR_H
 
-	if (init_scene(&mlx_data) == -1)
-		return (1);
-	register_events(&mlx_data);
-	wait_for_events(&mlx_data);
-	destroy_scene(&mlx_data);
-	return (0);
-}
+# include <X11/keysym.h>
+# include <X11/keysymdef.h>
+
+# include "fractol_common.h"
+
+int	manage_key_events(int keycode, t_mlx *mlx_data);
+
+#endif

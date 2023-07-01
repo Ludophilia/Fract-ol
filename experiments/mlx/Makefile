@@ -6,7 +6,7 @@
 #    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 13:11:54 by jgermany          #+#    #+#              #
-#    Updated: 2023/06/22 19:45:23 by jgermany         ###   ########.fr        #
+#    Updated: 2023/07/01 16:41:37 by jgermany         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CC 			:= cc
 CFLAGS		:= -Wall -Wextra -Werror
 CFLAGS		+= -I$(MLX_DIR)
 
-MLXFLAGS	:= -lX11 -lXext -lmlx
+MLXFLAGS	:= -lmlx -lX11 -lXext 
 MLXFLAGS	+= -L$(MLX_DIR)
 
 SRCS 		:= main.c
@@ -31,11 +31,9 @@ MLX			:= $(MLX_DIR)/libmmlx.a
 
 all:		$(NAME)
 
-$(NAME):	$(OBJS) | $(MLX)
+$(NAME):	$(OBJS)
+	make -C $(MLX_DIR) all
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $(MLXFLAGS)
-
-$(MLX):
-	@make -C $(MLX_DIR) all
 
 %.o:		%.h mlx_common.h
 

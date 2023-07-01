@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 14:15:53 by jgermany          #+#    #+#             */
-/*   Updated: 2023/06/27 21:46:23 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/01 17:00:54 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	ft_printf(1,
+	ft_dprintf(1,
 		"Welcome to %s!\n\tYou added %i arguments.\n",
 		*argv,
 		argc - 1

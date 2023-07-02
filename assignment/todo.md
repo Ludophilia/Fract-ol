@@ -12,7 +12,17 @@
 	may grow throughout the project...
 	- [ ] Maths functions?
 - [x] Restructure libft: move ft_dprintf/ into libft/
-- [ ] Write and build Makefile (with a small window open)
+- [x] Write and build Makefile (with a small window open)
+
+# Startup
+
+- [ ] Manage to draw the mandelbrot/julia set in black and white,
+that is manage to express with a color for every pixel of the window 
+if the sequence zn+1 = zn**2 + c is convergent toward a limit l to be defined 
+or not. Black means convergence, white, divergence. 
+	- [ ] Learn to draw on an mlx image first...
+	- [ ] learn about the maths functions
+	- [ ] ???
 
 # Tests
 

@@ -6,7 +6,7 @@
 #    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/01 20:24:27 by jgermany          #+#    #+#              #
-#    Updated: 2023/07/01 21:13:14 by jgermany         ###   ########.fr        #
+#    Updated: 2023/07/02 20:20:54 by jgermany         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,12 +27,16 @@ OBJS_MAN := $(SRCS_MAN:.c=.o)
 
 all: $(NAME)
 
+bonus:
+	echo "What are you waiting for??"
+
 $(NAME): $(OBJS_MAN)
 	make -sC $(FT)
 	make -C $(MLX) >/dev/null 2>&1
 	$(CC) $(CFLAGS) -o $@ $^ $(LIBFLAGS)
 
-%.o: %.h fractol_common.h
+%.o: %.c fractol_common.h %.h
+	$(CC) $(CFLAGS) -c $<
 
 clean:
 	make -sC $(FT) $@

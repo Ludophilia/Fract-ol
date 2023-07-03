@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:32:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/02 20:20:37 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/03 15:36:54 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 typedef struct s_img
 {
 	void	*img_ptr;
+	char	*addr;
 	int		bpp;
 	int		szl;
 	int		end;

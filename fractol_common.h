@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:32:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/03 15:36:54 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:45:30 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "mlx/mlx.h"
 # include <X11/X.h>
 # include <stdlib.h>
+# include <stdint.h>
 
 # define WINDOW_X 1280
 # define WINDOW_Y 720

@@ -21,8 +21,8 @@ that is manage to express with a color for every pixel of the window
 if the sequence zn+1 = zn**2 + c is convergent toward a limit l to be defined 
 or not. Black means convergence, white, divergence. 
 	- [x] Learn to draw on an mlx image first...
-	- [ ] learn about the maths functions
-	- [ ] Search what kind of plotting algorithm I should implement
+	- [ ] learn about the complex numbers and associated maths functions
+	- [ ] Search what kind of plotting algorithm to implement
 
 # Tests
 

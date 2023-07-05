@@ -6,7 +6,7 @@
 #    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/01 20:24:27 by jgermany          #+#    #+#              #
-#    Updated: 2023/07/02 20:20:54 by jgermany         ###   ########.fr        #
+#    Updated: 2023/07/05 18:20:05 by jgermany         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ LIBFLAGS := -lft -L$(FT) -lmlx -L$(MLX) -lX11 -lXext
 SRCS_MAN := fractol.c
 SRCS_MAN += scenemgr.c
 SRCS_MAN += hookmgr.c
+SRCS_MAN += imgmgr.c
 
 OBJS_MAN := $(SRCS_MAN:.c=.o)
 

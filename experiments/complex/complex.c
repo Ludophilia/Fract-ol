@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:08:14 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/05 17:44:35 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/05 20:22:03 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 int	main(int argc, char **argv)
 {
 	double complex	z1;
-	bool			c11;
+	int			c11;
 	// complex 	z1;
 	// float complex 	z1; // if float, use the float specific functions 
 	// which are built for double by default. Example: crealf for creal.

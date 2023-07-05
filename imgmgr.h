@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   imgmgr.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 13:04:50 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/05 20:23:15 by jgermany         ###   ########.fr       */
+/*   Created: 2023/07/05 17:54:42 by jgermany          #+#    #+#             */
+/*   Updated: 2023/07/05 20:19:21 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
-#include <complex.h>
+#ifndef IMGMGR_H
 
-int	main(void)
-{
-	t_mlx	mlx_data;
+# define IMGMGR_H
 
-	ft_bzero(&mlx_data, sizeof(t_mlx));
-	if (init_scene(&mlx_data) == -1 || init_image(&mlx_data) == -1)
-		return (1);
-	draw_on_scene(&mlx_data, &mlx_data.img_con);
-	register_events(&mlx_data);
-	wait_for_events(&mlx_data);
-	destroy_scene(&mlx_data);
-	return (0);
-}
+# include "fractol_common.h"
+
+int	init_image(t_mlx *mlx_data);
+int	draw_on_scene(t_mlx *mlx_data, t_img *img_con);
+
+#endif

@@ -4,13 +4,13 @@
 # Foundations
 
 - [o] Read the project
-- [ ] Search and understand what you don't know...
+- [x] Search and understand what you don't know...
 	- [x] Fractals? Mandelbrot? Julia?
 	- [x] X11 ? Server? Window Management? Desktop Environment?
 	- [x] MiniLibX?
-	- [o] Try the MiniLibX via a small experiment that
+	- [x] Try the MiniLibX via a small experiment that
 	may grow throughout the project...
-	- [ ] Maths functions?
+	- [x] Maths functions?
 - [x] Restructure libft: move ft_dprintf/ into libft/
 - [x] Write and build Makefile (with a small window open)
 
@@ -21,9 +21,12 @@ that is manage to express with a color for every pixel of the window
 if the sequence zn+1 = zn**2 + c is convergent toward a limit l to be defined 
 or not. Black means convergence, white, divergence. 
 	- [x] Learn to draw on an mlx image first...
-	- [ ] learn about the complex numbers and associated maths functions
-	- [ ] Search what kind of plotting algorithm to implement
+	- [x] learn about the complex numbers and associated maths functions
+	- [ ] Now the meat of the subject: find by yourself a plotting for julian and mandelbrot algorithm. The colouring will be 
+	- [ ] Improve your algorithm. Search what kind of plotting algorithm 
+	to implement
 
 # Tests
 
 - [ ] Mind memory leaks
+- [ ] Mind special cases: ""

@@ -6,7 +6,7 @@
 #    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/04 18:44:43 by jgermany          #+#    #+#              #
-#    Updated: 2023/07/04 18:52:30 by jgermany         ###   ########.fr        #
+#    Updated: 2023/07/05 15:04:36 by jgermany         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,18 @@ SRCS := complex.c
 OBJS := $(SRCS:.c=.o)
 
 all: $(NAME)
-	./$(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $(OBJS)
+
+%.o: %.c
+	@$(CC) $(CFLAGS) -c $<
 
 clean:
 	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
+
+.SILENT: clean fclean
+.PHONY: all re clean fclean

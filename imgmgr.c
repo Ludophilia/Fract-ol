@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:54:38 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/06 22:34:04 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/06 22:35:24 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	test_julia(double x, double y, int max_iter)
 		if (sqrt(z * conj(z)) > MAX_VALUE)
 			return (i);
 		z = (z * z);
-		z += 0.3;//-0.4 + 0.6 * I;
+		z += 0.285;//-0.4 + 0.6 * I;
 	}
 	return (max_iter);
 }

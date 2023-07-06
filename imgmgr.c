@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:54:38 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/06 16:43:53 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/06 21:11:21 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,14 +111,17 @@ int	test_mandelbrot(double x, double y, int max_iter)
 
 	i = -1;
 	// Need a struct or something to store the window and plane info?
-	x = -2 + ((2.0 - -2.0)  / WINDOW_X) * x;
-	y = -1 + ((1.0 - -1.0) / WINDOW_Y) * y;
+	x = -2.0 + ((2.0 - -2.0)  / WINDOW_X) * x;
+	y = 1.0 - ((1.0 - -1.0) / WINDOW_Y) * y;
 	z = 0;
 	while (++i < max_iter) // creal(z) <= 10 && cimg(z) <= 10
 	{
-		if (creal(z) > 100.0 || cimag(z) > 100.0)
+		// creal(z) > 100.0 || cimag(z) > 100.0)
+		// if (sqrt((creal(z) * creal(z)) + (cimag(z) * cimag(z))) > 50.0)
+		if (sqrt(z * conj(z)) > 50.0)
 			return (1); // Goes to infinity
-		z = (z * z) + (x + y * I);
+		z = (z * z);
+		z += (x + y * I);
 	}
 	// printf("zmax(%i, %i) = %.lf + %.lfi\n", x, y, creal(z), cimag(z));
 	return (0); // stable
@@ -132,15 +135,21 @@ int	test_julia(double x, double y, int max_iter)
 	i = -1;
 	// Need a struct or something to store the window and plane info?
 	x = -2 + ((2.0 - -2.0)  / WINDOW_X) * x;
-	y = -1 + ((1.0 - -1.0) / WINDOW_Y) * y;
+	y = 1.0 - ((1.0 - -1.0) / WINDOW_Y) * y;
 	// printf("x = %lf ; y = %lfi\n", x, y);
 	z = (x + y * I);
 	// printf("z = %lf + %lfi\n", creal(z), cimag(z));
 	while (++i < max_iter) // creal(z) <= 10 && cimg(z) <= 10
 	{
-		if (creal(z) > 100.0 || cimag(z) > 100.0)
+		// if (csqrt(cpow(creal(z), 2) + cpow(cimag(z), 2)) > (double complex)1000.0)
+		// if (sqrt((creal(z) * creal(z)) + (cimag(z) * cimag(z))) > 50.0)
+		// if (creal(z) > 50.0 && cimag(z) > 50.0)
+		if (sqrt(z * conj(z)) > 50.0)
 			return (1); // Goes to infinity
-		z = (z * z) + 1;
+		z = (z * z); // Valid values for c:
+		z += -0.25 + 0.646 * I; // 0.3; Can't see it because no black zones. Only color gradients will give me something here.
+		// -1, -1.75, -0.4 + 0.6 * I, -0.2 + 0.7 * I, I
+		// -0.835 - 0.2321 * I, -0.608 + 0.510 * I, -0.25 + 0.646 * I
 	}
 	// printf("zmax(%lf, %lf) = %lf + %lfi\n", x, y, creal(z), cimag(z));
 	return (0); // stable
@@ -159,7 +168,7 @@ int	draw_on_scene(t_mlx *mlx_data, t_img *img_con)
 		x = -1;
 		while (++x < WINDOW_X)
 		{
-			if (test_julia(x, y, 20) == 1)
+			if (test_julia(x, y, 100) == 1)
 				color = WHITE;
 			else
 				color = BLACK;

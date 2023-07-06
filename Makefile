@@ -6,7 +6,7 @@
 #    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/01 20:24:27 by jgermany          #+#    #+#              #
-#    Updated: 2023/07/05 18:20:05 by jgermany         ###   ########.fr        #
+#    Updated: 2023/07/06 18:36:35 by jgermany         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS := -Wall -Wextra -Werror
 
 FT	:= ./libft
 MLX	:= ./mlx
-LIBFLAGS := -lft -L$(FT) -lmlx -L$(MLX) -lX11 -lXext
+LIBFLAGS := -lm -lft -L$(FT) -lmlx -L$(MLX) -lX11 -lXext
 
 SRCS_MAN := fractol.c
 SRCS_MAN += scenemgr.c

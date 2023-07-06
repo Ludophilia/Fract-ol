@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:32:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/06 16:10:20 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:48:34 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <X11/X.h>
 # include <stdlib.h>
 # include <stdint.h>
+# include <math.h>
 # include <complex.h>
 
 # define WINDOW_X 1920

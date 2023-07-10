@@ -6,13 +6,14 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:54:38 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/10 14:02:21 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/10 22:51:17 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "imgmgr.h"
+#include <stdio.h>
 
-#define MAX_VALUE	50.0
+#define MAX_VALUE	4
 #define MAX_ITER	150
 
 // Need a struct or something to store the window and plane info?
@@ -58,6 +59,7 @@ int	test_mandelbrot(double x, double y, int max_iter)
 {
 	double complex 	z;
 	int				i;
+	double 			conj_zsq;
 
 	i = -1;
 	x = -2.0 + ((2.0 - -2.0) / WINDOW_X) * x;
@@ -65,8 +67,13 @@ int	test_mandelbrot(double x, double y, int max_iter)
 	z = 0;
 	while (++i < max_iter)
 	{
-		if ((creal(z) * creal(z) + cimag(z) * cimag(z)) > 4)
+		conj_zsq = creal(z) * creal(z) + cimag(z) * cimag(z);
+		if (conj_zsq > MAX_VALUE)
+		{
+			printf("i = %i; nu = %.4lf\n", i,
+				i + 1 - log2((log(conj_zsq) / log(2)) / log(2)));
 			return (i);
+		}
 		z = (z * z);
 		z += (x + y * I);
 	}
@@ -84,16 +91,26 @@ int	test_julia(double x, double y, int max_iter)
 	z = (x + y * I);
 	while (++i < max_iter)
 	{
-		if ((creal(z) * creal(z) + cimag(z) * cimag(z)) > 4)
+		if ((creal(z) * creal(z) + cimag(z) * cimag(z)) > MAX_VALUE)
 			return (i);
+		// Magical dude.
 		z = (z * z);
 		z += 0.285;
 	}
 	return (max_iter);
 }
 
-// THIS. Give me a palette, maybe try linear interpolation on it. 
+// Give me a palette, maybe try linear interpolation on it. 
 // NO HISTOGRAMS. (too costly)
+
+// linear iterpolation(color1, color2, coeff)... Not that difficult actually...
+
+// julia() or mandelbrot() will return a i with decimals (e.g. 1.25)
+//		- the whole part of i will give us the arr index of the first
+// 		and second color (if possible) to use 
+//		- the decimal part will give us the coefficient to plug to the function
+//		. The closer it is to 1, and the closer it will be to the second color.
+//
 int	colorize_fractal(int iter_max)
 {
 	int	palette[14] = {
@@ -129,7 +146,7 @@ int	draw_on_scene(t_mlx *mlx_data, t_img *img_con)
 		x = -1;
 		while (++x < WINDOW_X)
 		{
-			color = colorize_fractal(test_julia(x, y, MAX_ITER));
+			color = colorize_fractal(test_mandelbrot(x, y, MAX_ITER));
 			colorize_pixel(x, y, img_con, color);
 		}
 	}

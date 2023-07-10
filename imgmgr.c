@@ -6,24 +6,16 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:54:38 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/09 00:02:50 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/10 14:02:21 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "imgmgr.h"
-#include <stdio.h>
-
-#define WHITE		0x00FFFFFF
-#define BLACK		0x00000000
-#define RED			0x00FF0000
-#define GREEN		0x0000FF00
-#define BLUE		0x000000FF
 
 #define MAX_VALUE	50.0
 #define MAX_ITER	150
 
 // Need a struct or something to store the window and plane info?
-
 int	init_image(t_mlx *mlx_data)
 {
 	t_img	*img_con;
@@ -35,8 +27,6 @@ int	init_image(t_mlx *mlx_data)
 		return (-1);
 	img_con->addr = mlx_get_data_addr(img_con->img_ptr, &img_con->bpp,
 		&img_con->szl, &img_con->end);
-	// ft_printf("bpp: %i, szl: %i, end: %i\n", img_con->bpp, img_con->szl,
-		// img_con->end);
 	if (img_con->addr == NULL)
 		return (-1);
 	return (0);
@@ -75,14 +65,13 @@ int	test_mandelbrot(double x, double y, int max_iter)
 	z = 0;
 	while (++i < max_iter)
 	{
-		if (sqrt(z * conj(z)) > MAX_VALUE)
+		if ((creal(z) * creal(z) + cimag(z) * cimag(z)) > 4)
 			return (i);
 		z = (z * z);
 		z += (x + y * I);
 	}
 	return (max_iter);
 }
-
 
 int	test_julia(double x, double y, int max_iter)
 {
@@ -98,63 +87,35 @@ int	test_julia(double x, double y, int max_iter)
 		if ((creal(z) * creal(z) + cimag(z) * cimag(z)) > 4)
 			return (i);
 		z = (z * z);
-		z += -0.4 + 0.6 * I;
+		z += 0.285;
 	}
 	return (max_iter);
 }
-// -1, -1.75, -0.4 + 0.6 * I (*), -0.2 + 0.7 * I, I (*)
-// -0.835 - 0.2321 * I, -0.608 + 0.510 * I, -0.25 + 0.646 * I
-// 0.3; 0.285
 
+// THIS. Give me a palette, maybe try linear interpolation on it. 
+// NO HISTOGRAMS. (too costly)
 int	colorize_fractal(int iter_max)
 {
-	int color;
-
-	// THIS. Give me a palette, maybe try linear interpolation on it. 
-	// NO HISTOGRAMS. The higher the indice, the more time the tested sequence 
-	// takes to escape and the warmer the color...
-	// int	palette[] = {1, 2, 3, 4, 5};
-
-	color = 255 - (int)(iter_max * 255 / MAX_ITER); // Pourcent of a hue
-	// 255 - (255/100) -> 255 - 2 // -> 253 (black) when iter_max == 1.
-	// 255 - (0.75 * 255) -> 255 - 2 // -> 253 (black) when iter_max == 75.
-	// 255 - (100 * 255/100) // -> 0 (black) when iter_max == 100 == MAX_ITER.
-	return (color << 16 | color << 8 | color);
+	int	palette[14] = {
+		0x120272,
+		0x0047aa,
+		0x0081d7,
+		0x44BCFC,
+		0x95d2fd,
+		0xcde8fe,
+		0xFFFFFF,
+		0xffe0b5,
+		0xffc26c,
+		0xFAA502,
+		0xed7f00,
+		0xde5700,
+		0xCB2600,
+		0x000000
+	};
+	return (palette[iter_max * 13 / MAX_ITER]);
 }
-
-// int	colorize_fractal(int iter_max)
-// {
-
-
-// 	if (iter_max == MAX_ITER)
-// 		return BLACK;
-// 	else if (iter_max >= 0 && iter_max < 50)
-// 		return 0x011C40 + 7 * iter_max; // GOOD
-// 	// else if (iter_max >= 33 && iter_max < 66)
-// 	// 	return 0x011C40 + (10 * (iter_max - 30)); // 0x8c0709
-// 	// else if (iter_max >= 66 && iter_max < 99)
-// 	// 	return 0x011C40 + 10 * (iter_max - 60);
-// 	else
-// 		return WHITE;
-// 	// else if ((iter_max / 10) == 1)
-// 	// 	return 0x00022859;
-// 	// else if ((iter_max / 10) == 2)
-// 	// 	return 0x00033E8C;
-// 	// else if ((iter_max / 10) == 3)
-// 	// 	return 0x00034AA6;
-
-
-// 	// else if ((iter_max / 10) == 4)
-// 		// return 0x00FFCC0D; // Yellow
-// 	// else if ((iter_max / 10) == 5)
-// 	// 	return 0x00FF7326;
-// 	// else if ((iter_max / 10) == )
-// 	// 	return 0xBF2669;
-// 	// else if ((iter_max / 10) == 9)
-// 	// 	return 0xFF194D;
-// 	// else
-// 	// 	return WHITE;
-// }
+// color = 255 - (iter_max * 255 / MAX_ITER);
+// return (color << 16 | color << 8 | color);
 
 int	draw_on_scene(t_mlx *mlx_data, t_img *img_con)
 {

@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:32:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/10 22:27:24 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/11 16:24:24 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include <math.h>
 # include <complex.h>
 
-# define WINDOW_X 10
-# define WINDOW_Y 10
+# define WINDOW_X 1920
+# define WINDOW_Y 1080
 
 typedef struct s_img
 {

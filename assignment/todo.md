@@ -28,11 +28,13 @@ or not. Black means convergence, white, divergence.
 
 - [ ] Add colors to the fractals!
 	- [x] Build a first palette
-	- [ ] Mod your julia/mandelbrot function so they return a result that 
+	- [x] Mod your julia/mandelbrot function so they return a result that 
 	could be plugged to color interpolation function
-	- [ ] Implement a function that interpolate colors
-	- [ ] Appreciate the result.
-	- [ ] Clean the mess, optimize, the result should be norm compliant
+	- [x] Implement a function that interpolate colors
+	- [x] Appreciate the result.
+
+- [ ] Clean the mess
+- [ ] Clean the mess, optimize, the result should be norm compliant
 
 - [ ] Add parameters management to your program
 

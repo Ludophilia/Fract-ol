@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:54:38 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/10 22:51:17 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/11 19:47:26 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 
 #define MAX_VALUE	4
-#define MAX_ITER	150
+#define MAX_ITER	150.00
 
 // Need a struct or something to store the window and plane info?
 int	init_image(t_mlx *mlx_data)
@@ -55,84 +55,90 @@ static void	colorize_pixel(int x, int y, t_img *img_con, uint32_t color)
 	}
 }
 
-int	test_mandelbrot(double x, double y, int max_iter)
+double	test_mandelbrot(double x, double y, int max_iter)
 {
 	double complex 	z;
 	int				i;
 	double 			conj_zsq;
 
-	i = -1;
 	x = -2.0 + ((2.0 - -2.0) / WINDOW_X) * x;
-	y = 1.0 - ((1.0 - -1.0) / WINDOW_Y) * y;
+	y = 1.5 - ((1.5 - -1.5) / WINDOW_Y) * y;
 	z = 0;
+	i = -1;
 	while (++i < max_iter)
 	{
 		conj_zsq = creal(z) * creal(z) + cimag(z) * cimag(z);
 		if (conj_zsq > MAX_VALUE)
-		{
-			printf("i = %i; nu = %.4lf\n", i,
-				i + 1 - log2((log(conj_zsq) / log(2)) / log(2)));
-			return (i);
-		}
+			return (i + 1 - log2((log10(conj_zsq) / 2) / log10(2)));
 		z = (z * z);
 		z += (x + y * I);
 	}
 	return (max_iter);
 }
 
-int	test_julia(double x, double y, int max_iter)
+double	test_julia(double x, double y, int max_iter)
 {
 	double complex 	z;
 	int				i;
+	double 			conj_zsq;
 
-	i = -1;
 	x = -2 + ((2.0 - -2.0)  / WINDOW_X) * x;
 	y = 1.5 - ((1.5 - -1.5) / WINDOW_Y) * y;
 	z = (x + y * I);
+	i = -1;
 	while (++i < max_iter)
 	{
-		if ((creal(z) * creal(z) + cimag(z) * cimag(z)) > MAX_VALUE)
-			return (i);
-		// Magical dude.
+		conj_zsq = creal(z) * creal(z) + cimag(z) * cimag(z);
+		if (conj_zsq > MAX_VALUE)
+			return (i + 1 - log2((log10(conj_zsq) / 2) / log10(2)));
 		z = (z * z);
 		z += 0.285;
 	}
 	return (max_iter);
 }
 
-// Give me a palette, maybe try linear interpolation on it. 
-// NO HISTOGRAMS. (too costly)
-
-// linear iterpolation(color1, color2, coeff)... Not that difficult actually...
-
-// julia() or mandelbrot() will return a i with decimals (e.g. 1.25)
-//		- the whole part of i will give us the arr index of the first
-// 		and second color (if possible) to use 
-//		- the decimal part will give us the coefficient to plug to the function
-//		. The closer it is to 1, and the closer it will be to the second color.
-//
-int	colorize_fractal(int iter_max)
+// color1 + (int)((color2 - color1) * coeff)
+int	interpolate_colors(int color1, int color2, double coeff)
 {
-	int	palette[14] = {
+	uint8_t	r;
+	uint8_t	g;
+	uint8_t	b;
+
+	r = (color1 >> 16 & 0xFF) + (int)(((color2 >> 16 & 0xFF)
+		- (color1 >> 16 & 0xFF)) * coeff);
+	g = (color1 >> 8 & 0xFF) + (int)(((color2 >> 8 & 0xFF)
+		- (color1 >> 8 & 0xFF)) * coeff);
+	b = (color1 & 0xFF) + (int)(((color2 & 0xFF)
+		- (color1 & 0xFF)) * coeff);
+	return (r << 16 | g << 8 | b);
+}
+
+# define PAL_LEN 6
+
+int	colorize_fractal(double iter_max)
+	{
+	int color1;
+	int	color2;
+	int	ic1;
+	int	ic2;
+
+	int	palette[6] = {
 		0x120272,
-		0x0047aa,
-		0x0081d7,
 		0x44BCFC,
-		0x95d2fd,
-		0xcde8fe,
 		0xFFFFFF,
-		0xffe0b5,
-		0xffc26c,
 		0xFAA502,
-		0xed7f00,
-		0xde5700,
 		0xCB2600,
 		0x000000
 	};
-	return (palette[iter_max * 13 / MAX_ITER]);
+	if (iter_max == MAX_ITER)
+		return (palette[(int)(iter_max * (PAL_LEN - 1) / MAX_ITER)]);
+	ic1 = (int)(iter_max) % PAL_LEN;
+	ic2 = ((int)(iter_max) + 1) % PAL_LEN;
+	color1 = palette[ic1];
+	color2 = palette[ic2];
+	return (interpolate_colors(color1, color2, 1));
+	return (interpolate_colors(color1, color2, iter_max - (int)iter_max));
 }
-// color = 255 - (iter_max * 255 / MAX_ITER);
-// return (color << 16 | color << 8 | color);
 
 int	draw_on_scene(t_mlx *mlx_data, t_img *img_con)
 {

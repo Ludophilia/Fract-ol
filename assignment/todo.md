@@ -26,15 +26,17 @@ or not. Black means convergence, white, divergence.
 	- [x] Improve your algorithm. Search what kind of plotting algorithm 
 	to implement
 
-- [ ] Add colors to the fractals!
+- [o] Add colors to the fractals!
 	- [x] Build a first palette
 	- [x] Mod your julia/mandelbrot function so they return a result that 
 	could be plugged to color interpolation function
 	- [x] Implement a function that interpolate colors
 	- [x] Appreciate the result.
 
-- [ ] Clean the mess
 - [ ] Clean the mess, optimize, the result should be norm compliant
+- [ ] How to load or manage a color palette?
+	- [ ] Read it from a file ??? But they are hexes...
+	- [ ] 
 
 - [ ] Add parameters management to your program
 

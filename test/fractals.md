@@ -1,5 +1,31 @@
-#
+# Fractol
 
+## Sequences
+
+### Mandelbrot
+
+z is complex number in the form of `x + yi`.
+
+A point `x, y` of the complex plane is in the mandelbrot set if and only if
+the sequence:
+
+`z0 = 0`
+`zn+1 = zn² + c, with c a complex number such as c = x + iy`
+
+remains in the circle C of radius 2.
+
+### Julia
+
+z is complex number in the form of `x + yi`.
+
+A point `x, y` of the complex plane is in the julia set if and only if
+the sequence:
+
+`z0 = x + iy`
+`zn+1 = zn² + c`, with `c` a complex number such as `c = a + ib`,
+`a` and `b` being arbitrary chosen real numbers.
+
+remains in the circle C of radius 2.
 
 ## Remarquable fractals
 
@@ -33,6 +59,10 @@ are larger, multiple small ones (*)
 - `z² -0.10 + 0.75 * I`, 2 fans
 
 ## Palettes
+
+### About interpolation
+
+`interpolated_color = color1 + (int)((color2 - color1) * coeff)`
 
 ### Basic gradient!
 

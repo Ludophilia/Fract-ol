@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:32:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/12 16:24:53 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:43:30 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <X11/X.h>
 # include <stdlib.h>
 # include <stdint.h>
+# include <stdbool.h>
 # include <math.h>
 # include <complex.h>
 
@@ -33,6 +34,12 @@ typedef struct s_img
 	int		szl;
 	int		end;
 }	t_img;
+
+typedef struct s_inp
+{
+	uint8_t	fract;
+	double	zcons[2];
+}	t_inp;
 
 typedef struct s_mlx
 {

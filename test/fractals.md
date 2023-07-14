@@ -47,14 +47,17 @@ are larger, multiple small ones (*)
 - `z² - 0.608 + 0.510 * I`, galaxy of dotted tornados
 
 - `z² + I`, fissure
+- `z² -0.15 0.95`, fissure
 
 - `z² + 0.285`, big curly cloud? A snail? (***)
+- `z² + 0.285 + 0.01i` (***)
 
 - `z² + 0.34 + 0.31 * I`, big hole with angles
 
 - `z² + 0`, circle
 
 - `z² -0.78 - 0.15 * I`, curly cloud with curly holes
+- `z² -0.78 - 0.14 * I`, curly cloud with curly holes
 
 - `z² -0.10 + 0.75 * I`, 2 fans
 

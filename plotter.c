@@ -6,34 +6,19 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:34:12 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/13 00:36:06 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/13 22:02:56 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "plotter.h"
 
-int	interpolate_colors(int color1, int color2, double coeff)
+static double	get_iter_max(double x, double y, t_inp *uinp)
 {
-	uint8_t	r;
-	uint8_t	g;
-	uint8_t	b;
-
-	r = (color1 >> 16 & 0xFF) + (int)(((color2 >> 16 & 0xFF)
-		- (color1 >> 16 & 0xFF)) * coeff);
-	g = (color1 >> 8 & 0xFF) + (int)(((color2 >> 8 & 0xFF)
-		- (color1 >> 8 & 0xFF)) * coeff);
-	b = (color1 & 0xFF) + (int)(((color2 & 0xFF)
-		- (color1 & 0xFF)) * coeff);
-	return (r << 16 | g << 8 | b);
-}
-
-double	get_max_iter(double x, double y, t_inp *uinp)
-{
-	double complex 	z;
-	double 			conjz_sq;
+	double complex	z;
+	double			conjz_sq;
 	int				i;
 
-	x = -2 + ((2.0 - -2.0)  / WINDOW_X) * x;
+	x = -2 + ((2.0 - -2.0) / WINDOW_X) * x;
 	y = 1.5 - ((1.5 - -1.5) / WINDOW_Y) * y;
 	if (uinp->fract == MANDELBROT)
 		z = 0;
@@ -54,12 +39,25 @@ double	get_max_iter(double x, double y, t_inp *uinp)
 	return (MAX_ITER);
 }
 
-// get_color_for_coordinate(double x, double y, t_inp *uinp)
-// This function should include:
-// - get_max_iter()
-// - maybe colorize_fractal()
-int	colorize_fractal(double iter_max)
-	{
+static int	interpolate_colors(int color1, int color2, double coeff)
+{
+	uint8_t	r;
+	uint8_t	g;
+	uint8_t	b;
+
+	r = (color1 >> 16 & 0xFF) + (int)(((color2 >> 16 & 0xFF)
+				- (color1 >> 16 & 0xFF)) * coeff);
+	g = (color1 >> 8 & 0xFF) + (int)(((color2 >> 8 & 0xFF)
+				- (color1 >> 8 & 0xFF)) * coeff);
+	b = (color1 & 0xFF) + (int)(((color2 & 0xFF)
+				- (color1 & 0xFF)) * coeff);
+	return (r << 16 | g << 8 | b);
+}
+
+
+
+int	get_color_for_iter_max(double iter_max)
+{
 	int color1;
 	int	color2;
 	int	ic1;
@@ -92,4 +90,16 @@ int	colorize_fractal(double iter_max)
 	color2 = palette[ic2];
 	// return (interpolate_colors(color1, color2, 1));
 	return (interpolate_colors(color1, color2, iter_max - (int)iter_max));
+}
+
+
+int	get_color_for_coordinates(double x, double y, t_inp *uinp)
+{
+	double	iter_max;
+	int	color;
+
+	iter_max = get_iter_max(x, y, uinp);
+	color = get_color_for_iter_max(iter_max);
+	// Here should be the code for managing colors... get_color_for_iter_max()
+	return (color); // Returns a color (improve this)
 }

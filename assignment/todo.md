@@ -26,7 +26,7 @@ or not. Black means convergence, white, divergence.
 	- [x] Improve your algorithm. Search what kind of plotting algorithm 
 	to implement
 
-- [o] Add colors to the fractals!
+- [x] Add colors to the fractals!
 	- [x] Build a first palette
 	- [x] Mod your julia/mandelbrot function so they return a result that 
 	could be plugged to color interpolation function
@@ -36,17 +36,23 @@ or not. Black means convergence, white, divergence.
 - [ ] Clean the mess, optimize, the result should be norm compliant
 - [ ] How to load or manage a color palette?
 	- [ ] Read it from a file ??? But they are hexes...
-	- [ ] 
+	- [ ] Build a palette computationally via interpolation of two colors?
 
 - [ ] Add parameters management to your program
+-   [x] How to manage float numbers
+- 	[ ] Mind special cases: No parameters, empty parameters ("" "" ""), incorrect parameters... (display usage and stuff)
 
-- [] Manage the zoom
+- [] Manage the zoom, it should follow the pointer?
 
-- [] Manage the view
+- [] Manage the view with the arrow key? (if possible ?)
+
+- [] Add a new fractal?
 
 - [] Manage color shifting with (space bar by example)
+	- [] Build another palette
 
 # Tests
 
 - [ ] Mind memory leaks
 - [ ] Mind special cases: ""
+- [ ] Is everything smooth when window closed, minimized...

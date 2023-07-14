@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:32:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/12 23:43:30 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/15 00:41:34 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_img
 
 typedef struct s_inp
 {
-	uint8_t	fract;
+	int32_t	fract;
 	double	zcons[2];
 }	t_inp;
 
@@ -46,6 +46,7 @@ typedef struct s_mlx
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img_con;
+	t_inp	usr_inp;
 }	t_mlx;
 
 #endif

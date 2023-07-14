@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:54:38 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/13 21:47:44 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/15 00:42:47 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	colorize_pixel(int x, int y, t_img *img_con, uint32_t color)
 	}
 }
 
-int	draw_on_image(t_mlx *mlx_data, t_inp *uinp)
+int	draw_on_image(t_mlx *mlx_data)
 {
 	int	cord[2];
 	int	color;
@@ -61,7 +61,8 @@ int	draw_on_image(t_mlx *mlx_data, t_inp *uinp)
 		cord[0] = -1;
 		while (++cord[0] < WINDOW_X)
 		{
-			color = get_color_for_coordinates(cord[0], cord[1], uinp);
+			color = get_color_for_coordinates(cord[0], cord[1],
+					&mlx_data->usr_inp);
 			colorize_pixel(cord[0], cord[1], &mlx_data->img_con, color);
 		}
 	}

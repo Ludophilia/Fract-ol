@@ -51,8 +51,10 @@ are larger, multiple small ones (*)
 
 - `z² + 0.285`, big curly cloud? A snail? (***)
 - `z² + 0.285 + 0.01i` (***)
+- `z² + 0.4 + 0.1 * I`, 4 clouds
 
 - `z² + 0.34 + 0.31 * I`, big hole with angles
+
 
 - `z² + 0`, circle
 

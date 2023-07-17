@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:32:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/15 00:41:34 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/17 20:25:07 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include "libft/libft.h"
 # include "mlx/mlx.h"
 # include <X11/X.h>
+# include <errno.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <stdint.h>
 # include <stdbool.h>

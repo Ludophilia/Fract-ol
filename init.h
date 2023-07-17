@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 19:46:40 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/15 00:44:29 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/17 21:17:07 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 # include "imgmgr.h"
 # include "scenemgr.h"
 
-int	init_prog(int argc, char **argv, t_mlx *mlx_data);
+int	get_cli_args(int argc, char **argv, t_mlx *mlx_data);
 
 #endif

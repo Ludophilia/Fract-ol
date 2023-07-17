@@ -33,16 +33,16 @@ or not. Black means convergence, white, divergence.
 	- [x] Implement a function that interpolate colors
 	- [x] Appreciate the result.
 
-- [ ] Clean the mess, optimize, the result should be norm compliant
+- [x] Clean the mess, optimize, the result should be norm compliant
+
+- [o] Add parameters management to your program
+-   [x] How to manage float numbers
+- 	[x] Mind special cases: No parameters, empty parameters ("" "" ""), 
+	incorrect parameters... (display usage and stuff)
 
 - [ ] How to load or manage a color palette?
 	- [ ] Read it from a file ??? But they are hexes...
 	- [ ] Build a palette computationally via interpolation of two colors?
-
-- [o] Add parameters management to your program
--   [x] How to manage float numbers
-- 	[o] Mind special cases: No parameters, empty parameters ("" "" ""), 
-	incorrect parameters... (display usage and stuff)
 
 - [] Manage the zoom, it should follow the pointer?
 

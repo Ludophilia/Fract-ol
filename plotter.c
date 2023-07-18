@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:34:12 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/13 22:02:56 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/18 11:13:48 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static double	get_iter_max(double x, double y, t_inp *uinp)
 	int				i;
 
 	x = -2 + ((2.0 - -2.0) / WINDOW_X) * x;
-	y = 1.5 - ((1.5 - -1.5) / WINDOW_Y) * y;
+	y = 2 - ((2.0 - -2.0) / WINDOW_Y) * y;
 	if (uinp->fract == MANDELBROT)
 		z = 0;
 	else
@@ -55,6 +55,7 @@ static int	interpolate_colors(int color1, int color2, double coeff)
 }
 
 
+// So... What to do?
 
 int	get_color_for_iter_max(double iter_max)
 {
@@ -63,7 +64,7 @@ int	get_color_for_iter_max(double iter_max)
 	int	ic1;
 	int	ic2;
 
-	int	palette[110] = { // G
+	int	palette[110] = { // G dragon
 		0x120272, 0x0e0d79, 0x08167f, 0x011e86, 0x00258c, 0x002c92, 0x003398,
 		0x003a9e, 0x0040a4, 0x0047aa, 0x004daf, 0x0054b5, 0x005aba, 0x0061bf,
 		0x0067c4, 0x006ec9, 0x0074ce, 0x007bd2, 0x0081d7, 0x0088db, 0x008ee0,

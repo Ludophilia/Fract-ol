@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 19:40:20 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/17 22:34:11 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/18 12:38:20 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,28 +53,30 @@ static double	ft_atod(const char *nptr)
 	return (s * nb[0] * pow(10, -nb[1]));
 }
 
-static int	is_full_digit(char *str, int is_float)
+static int	is_full_digit(char *str)
 {
 	int	i;
 
 	i = 0;
-	if (str[i] == '+' || str[i] == '-')
+	if (str[i] == '-' || str[i] == '+')
 		i++;
-	if (str[i] == 0)
+	if (ft_isdigit(str[i]) == 0)
 		return (-1);
-	while (str[i])
+	while (ft_isdigit(str[i]))
 	{
-		if (ft_isdigit(str[i]) != 1)
-			return (-1);
-		else if (is_float && (str[i] == '.' || str[i] == ','))
-		{
-			is_float = 0;
-			if (ft_isdigit(str[i + 1]) != 1)
-				return (-1);
-		}
+		if (str[i + 1] == 0)
+			return (0);
 		i++;
 	}
-	return (0);
+	if (str[i] == '.' || str[i] == ',')
+		i++;
+	while (ft_isdigit(str[i]))
+	{
+		if (str[i + 1] == 0)
+			return (0);
+		i++;
+	}
+	return (-1);
 }
 
 static int	check_args(int argc, char **argv)
@@ -83,12 +85,12 @@ static int	check_args(int argc, char **argv)
 
 	if (argc < 2)
 		return (-1);
-	if (is_full_digit(argv[1], 0) == -1)
+	if (is_full_digit(argv[1]) == -1)
 		return (-1);
 	i = 1;
 	while (argv[++i])
 	{
-		if (is_full_digit(argv[i], 1) == -1)
+		if (is_full_digit(argv[i]) == -1)
 			return (-1);
 	}
 	return (0);

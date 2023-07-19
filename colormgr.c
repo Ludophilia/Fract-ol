@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:45:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/19 18:12:40 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/19 19:34:46 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,7 @@ int	interpolate_colors(int color1, int color2, double coeff)
 	return (r << 16 | g << 8 | b);
 }
 
-void	free_palettes(int **palettes)
-{
-	int	i;
-
-	i = -1;
-	while (palettes[++i])
-		free(palettes[i]);
-	free(palettes);
-}
-
-int	*init_palette(int *basecolors, int colors_per_gr)
+static int	*init_palette(int *basecolors, int colors_per_gr)
 {
 	int	*palette;
 	int	size;
@@ -54,7 +44,7 @@ int	*init_palette(int *basecolors, int colors_per_gr)
 	return (palette);
 }
 
-int	*create_palette(int *basecolors, int colors_per_gr)
+static int	*create_palette(int *basecolors, int colors_per_gr)
 {
 	int	*palette;
 	int	ijk[3];
@@ -83,7 +73,7 @@ int	*create_palette(int *basecolors, int colors_per_gr)
 	return (palette);
 }
 
-int	**load_palettes(void)
+int	load_palettes(int colors_per_gradient, t_mlx *mlx_data)
 {
 	int	**palettes;
 	int	i;
@@ -91,12 +81,39 @@ int	**load_palettes(void)
 	i = -1;
 	palettes = ft_calloc(2, sizeof(int *));
 	if (palettes == NULL)
-		return (NULL);
+		return (-1);
 	palettes[0] = create_palette((int [6]){0x120272, 0x44bcfc, 0xffffff,
-			0xfaa502, 0xcb2600, 0x000000}, 3);
+			0xfaa502, 0xcb2600, 0x000000}, colors_per_gradient);
 	palettes[1] = NULL;
 	while (++i < 1)
+	{
 		if (palettes[i] == NULL)
-			return (NULL);
-	return (palettes);
+		{
+			free_palettes(palettes, i - 1);
+			return (-1);
+		}
+	}
+	mlx_data->palettes = palettes;
+	mlx_data->palette = 0;
+	return (0);
+}
+
+void	free_palettes(int **palettes, int from)
+{
+	int	i;
+	int	size;
+
+	if (from < 0)
+		return ;
+	size = -1;
+	while (palettes[++size])
+		;
+	i = from;
+	if (i == 0)
+		while (i < size)
+			free(palettes[i++]);
+	else
+		while (i >= 0)
+			free(palettes[i--]);	
+	free(palettes);
 }

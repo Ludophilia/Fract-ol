@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 13:08:03 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/15 01:02:09 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/19 20:03:14 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,5 @@ void	destroy_scene(t_mlx *mlx_data)
 	mlx_destroy_window(mlx_data->mlx_ptr, mlx_data->win_ptr);
 	mlx_destroy_display(mlx_data->mlx_ptr);
 	free(mlx_data->mlx_ptr);
+	free_palettes(mlx_data->palettes, 0); // is it enough?
 }

@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:54:38 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/15 00:42:47 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/19 18:58:56 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,7 @@ int	draw_on_image(t_mlx *mlx_data)
 		cord[0] = -1;
 		while (++cord[0] < WINDOW_X)
 		{
-			color = get_color_for_coordinates(cord[0], cord[1],
-					&mlx_data->usr_inp);
+			color = get_color_for_coordinates(cord[0], cord[1], mlx_data);
 			colorize_pixel(cord[0], cord[1], &mlx_data->img_con, color);
 		}
 	}

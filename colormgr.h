@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.h                                             :+:      :+:    :+:   */
+/*   colormgr.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/14 19:46:40 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/17 21:17:07 by jgermany         ###   ########.fr       */
+/*   Created: 2023/07/18 17:52:28 by jgermany          #+#    #+#             */
+/*   Updated: 2023/07/18 18:04:10 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INIT_H
+#ifndef COLORMGR_H
 
-# define INIT_H
+# define COLORMGR_H
 
-# include "fractol_common.h"
-# include "imgmgr.h"
-# include "scenemgr.h"
-
-int	get_cli_args(int argc, char **argv, t_mlx *mlx_data);
+#include "fractol_common.h"
 
 #endif

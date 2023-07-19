@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:04:50 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/17 22:16:59 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/18 17:26:34 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int argc, char **argv)
 			"<const_real> <const_imag>)\n");
 		return (1);
 	}
+	// load colors here?
 	if (init_scene(&mlx_data) == -1 || init_image(&mlx_data) == -1)
 	{
 		perror("fractol");

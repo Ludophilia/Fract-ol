@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   clichecker.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/18 17:17:20 by jgermany         ###   ########.fr       */
+/*   Created: 2023/07/14 19:46:40 by jgermany          #+#    #+#             */
+/*   Updated: 2023/07/18 17:15:05 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
+#ifndef CLICHECKER_H
 
-# define FRACTOL_H
+# define CLICHECKER_H
 
 # include "fractol_common.h"
-# include "clichecker.h"
-# include "scenemgr.h"
-# include "hookmgr.h"
 # include "imgmgr.h"
+# include "scenemgr.h"
+
+int	get_cli_args(int argc, char **argv, t_mlx *mlx_data);
 
 #endif

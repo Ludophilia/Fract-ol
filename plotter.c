@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:34:12 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/18 11:13:48 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/18 18:05:13 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,23 @@ static double	get_iter_max(double x, double y, t_inp *uinp)
 	return (MAX_ITER);
 }
 
-static int	interpolate_colors(int color1, int color2, double coeff)
-{
-	uint8_t	r;
-	uint8_t	g;
-	uint8_t	b;
-
-	r = (color1 >> 16 & 0xFF) + (int)(((color2 >> 16 & 0xFF)
-				- (color1 >> 16 & 0xFF)) * coeff);
-	g = (color1 >> 8 & 0xFF) + (int)(((color2 >> 8 & 0xFF)
-				- (color1 >> 8 & 0xFF)) * coeff);
-	b = (color1 & 0xFF) + (int)(((color2 & 0xFF)
-				- (color1 & 0xFF)) * coeff);
-	return (r << 16 | g << 8 | b);
-}
 
 
 // So... What to do?
+// Build a palette computationally via interpolation of two colors?
 
+// How ?
+
+// create a large array (from smaller arrays)?
+//		- ???
+
+// Pick two extreme colors color1 and color2 on an array
+//	iterate on coeff... 0.0 0.1, 0.2, 0.3. Up to 0.9 or 1.0.
+//		- interpolate_colors(int color1, int color2, double coeff) -> a color
+//		- add that color to an array
+
+// Where do I find those colors?
+//	On top level
 int	get_color_for_iter_max(double iter_max)
 {
 	int color1;

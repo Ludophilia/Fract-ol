@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:32:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/18 12:24:44 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/18 17:04:19 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_mlx
 	void	*win_ptr;
 	t_img	img_con;
 	t_inp	usr_inp;
+	int		**palettes;
 }	t_mlx;
 
 #endif

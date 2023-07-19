@@ -69,6 +69,19 @@ are larger, multiple small ones (*)
 
 `interpolated_color = color1 + (int)((color2 - color1) * coeff)`
 
+### How to count colors
+
+C1 X X X C2		// 5 colors = (1 * 5 + (2 - 2) * (5 - 1))
+C2 X X X C3 	// 9 = (1 * 5 + (3 - 2) * (5 - 1))
+C3 X X X C4 	// 13 = (1 * 5 + (4 - 2) * (5 - 1))
+C4 X X X C5 	// 17 = (1 * 5 + (5 - 2) * (5 - 1))
+
+C1 X X C2		// 4 colors = (1 * 4 + (2 - 2) * (4 - 1))
+C2 X X C3 		// 7 = (1 * 4 + (3 - 2) * (4 - 1))
+
+colors = (1 * colors_per_gr + (basecolors - 2) * (colors_per_gr - 1))
+colors += 1 	// for the black
+
 ### Basic gradient!
 
 0x120272 -> 0x44bcfc (dark to light blue)
@@ -81,7 +94,8 @@ int	palette[6] = {
 	0x44bcfc,
 	0xffffff,
 	0xfaa502,
-	0xcb2600, 0x000000
+	0xcb2600,
+	0x000000
 };
 
 ### 4 colors per gradient!
@@ -91,7 +105,8 @@ int	palette[14] = {
 	0x44BCFC, 0x95d2fd, 0xcde8fe,
 	0xFFFFFF, 0xffe0b5, 0xffc26c,
 	0xFAA502, 0xed7f00, 0xde5700,
-	0xCB2600, 0x000000
+	0xCB2600, 
+	0x000000
 };
 
 ### 8 colors per gradient!

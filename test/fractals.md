@@ -71,13 +71,18 @@ are larger, multiple small ones (*)
 
 ### How to count colors
 
+C1 X X X X C2
+C2 X X X X C3
+C3 X X X X C4
+C4 X X X X C5
+
 C1 X X X C2		// 5 colors = (1 * 5 + (2 - 2) * (5 - 1))
 C2 X X X C3 	// 9 = (1 * 5 + (3 - 2) * (5 - 1))
 C3 X X X C4 	// 13 = (1 * 5 + (4 - 2) * (5 - 1))
 C4 X X X C5 	// 17 = (1 * 5 + (5 - 2) * (5 - 1))
 
 C1 X X C2		// 4 colors = (1 * 4 + (2 - 2) * (4 - 1))
-C2 X X C3 		// 7 = (1 * 4 + (3 - 2) * (4 - 1))
+C2 X X C3		// 7 = (1 * 4 + (3 - 2) * (4 - 1))
 
 colors = (1 * colors_per_gr + (basecolors - 2) * (colors_per_gr - 1))
 colors += 1 	// for the black

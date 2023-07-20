@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:32:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/19 20:01:44 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:10:55 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,20 @@ typedef struct s_inp
 	double	zcons[2];
 }	t_inp;
 
+typedef struct s_pal
+{
+	int		**palettes;
+	int		size;
+	int		current;
+}	t_pal;
+
 typedef struct s_mlx
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img_con;
 	t_inp	usr_inp;
-	int		**palettes; // in its struct
-	int		palette; // in its struct (needs palettes size to cycle through)
+	t_pal	pal_con;
 }	t_mlx;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:04:50 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/19 19:52:42 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:13:32 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,23 @@ static int	init_fractol(int argc, char **argv, t_mlx *mlx_data)
 		perror("fractol");
 		ft_dprintf(2, "usage: fractol (0 | 1 "
 			"<const_real> <const_imag>)\n");
-		return (1);
+		return (-1);
 	}
-	if (load_palettes(2, mlx_data) == -1)
+	if (load_palettes(25, mlx_data) == -1)
 	{
 		errno = ENOMEM;
 		perror("fractol");
-		return (1);
+		return (-1);
 	}
 	if (init_scene(mlx_data) == -1 || init_image(mlx_data) == -1)
 	{
 		perror("fractol");
 		ft_dprintf(2, "Something went wrong when initializing"
 			" the MiniLibX Library.\n");
-		free_palettes(mlx_data->palettes, 0);
-		return (1);
+		free_palettes(mlx_data->pal_con.palettes, 0);
+		return (-1);
 	}
+	return (0);
 }
 
 int	main(int argc, char **argv)

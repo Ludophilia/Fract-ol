@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:45:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/19 19:34:46 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/20 12:15:40 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,9 @@ int	load_palettes(int colors_per_gradient, t_mlx *mlx_data)
 			return (-1);
 		}
 	}
-	mlx_data->palettes = palettes;
-	mlx_data->palette = 0;
+	mlx_data->pal_con.palettes = palettes;
+	mlx_data->pal_con.current = 0;
+	mlx_data->pal_con.size = 1;
 	return (0);
 }
 
@@ -114,6 +115,6 @@ void	free_palettes(int **palettes, int from)
 			free(palettes[i++]);
 	else
 		while (i >= 0)
-			free(palettes[i--]);	
+			free(palettes[i--]);
 	free(palettes);
 }

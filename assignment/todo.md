@@ -40,9 +40,9 @@ or not. Black means convergence, white, divergence.
 - 	[x] Mind special cases: No parameters, empty parameters ("" "" ""), 
 	incorrect parameters... (display usage and stuff)
 
-- [x] How to load or manage a color palette?
+- [o] How to load or manage a color palette?
 	- [x] Read it from a file ??? But they are hexes...
-	- [x] Build a palette computationally via interpolation of two colors?
+	- [o] Build a palette computationally via interpolation of two colors?
 
 - [] Manage the zoom, it should follow the pointer?
 

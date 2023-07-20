@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:36:03 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/19 20:03:00 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/20 13:51:05 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 # define PLOTTER_H
 
 # include "fractol_common.h"
+# include "colormgr.h"
 
 # define RADIUS 2
 # define MAX_ITER 300.00
-
-# define PAL_LEN 110
 
 # define MANDELBROT 0
 # define JULIA 1

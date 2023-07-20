@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:34:12 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/19 20:02:55 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:04:24 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,35 +39,22 @@ static double	get_iter_max(double x, double y, t_inp *uinp)
 	return (MAX_ITER);
 }
 
-/// (20/07/23) - So... What to do?
-
-// - Create a structure for palettes (must include palette size)
-// - Improve the functions below, why not merge them?
-
-int	get_color_for_iter_max(double iter_max, t_mlx *mlx_data)
-{
-	int color1;
-	int	color2;
-	int	ic1;
-	int	ic2;
-
-	if (iter_max == MAX_ITER)
-		return (palette[(int)(iter_max * (PAL_LEN - 1) / MAX_ITER)]);
-	ic1 = (int)(iter_max) % PAL_LEN;
-	ic2 = ((int)(iter_max) + 1) % PAL_LEN;
-	color1 = palette[ic1];
-	color2 = palette[ic2];
-	// return (interpolate_colors(color1, color2, 1));
-	return (interpolate_colors(color1, color2, iter_max - (int)iter_max));
-}
-
-
 int	get_color_for_coordinates(double x, double y, t_mlx *mlx_data)
 {
+	int		basecolors[2];
+	int		pal_size;
 	double	iter_max;
-	int	color;
+	int		*palette;
 
-	iter_max = get_iter_max(x, y, mlx_data);
-	color = get_color_for_iter_max(iter_max, mlx_data);
-	return (color);
+	iter_max = get_iter_max(x, y, &mlx_data->usr_inp);
+	palette = mlx_data->pal_con.palettes[mlx_data->pal_con.current];
+	pal_size = -1;
+	while (palette[++pal_size])
+		;
+	if (iter_max == MAX_ITER)
+		return (palette[pal_size]);
+	basecolors[0] = palette[(int)iter_max % pal_size];
+	basecolors[1] = palette[((int)iter_max + 1) % pal_size];
+	return (interpolate_colors(basecolors[0], basecolors[1],
+			iter_max - (int)iter_max));
 }

@@ -35,6 +35,7 @@ remains in the circle C of radius 2.
 
 - `z² - 1`, three holes on real axis
 - `z² - 1.75`, 5 small holes on real axis
+- `z² - 1.49`, 5 small segments and more on real axis
 
 - `z² - 0.4 + 0.6 * I`, 2 big tornados and multiple small ones (***)
 - `z² -0.25 + 0.646 * I`, still 2 big tornardos (***) but

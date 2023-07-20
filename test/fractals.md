@@ -63,6 +63,8 @@ are larger, multiple small ones (*)
 - `z² -0.78 - 0.14 * I`, curly cloud with curly holes
 
 - `z² -0.10 + 0.75 * I`, 2 fans
+- `z² +0.13 + 0.6 * I`, 2 fans turns into a whirlpool
+- `z² +0.132 + 0.62 * I`, 2 fans turns into leaves
 
 ## Palettes
 

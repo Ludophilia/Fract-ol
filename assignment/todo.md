@@ -1,6 +1,5 @@
 # Todo list for Fract-ol
 
-
 # Foundations
 
 - [o] Read the project
@@ -14,7 +13,7 @@
 - [x] Restructure libft: move ft_dprintf/ into libft/
 - [x] Write and build Makefile (with a small window open)
 
-# The project
+# Fractal generation
 
 - [x] Manage to draw the mandelbrot/julia set in black and white,
 that is manage to express with a color for every pixel of the window 
@@ -22,7 +21,8 @@ if the sequence zn+1 = zn**2 + c is convergent toward a limit l to be defined
 or not. Black means convergence, white, divergence. 
 	- [x] Learn to draw on an mlx image first...
 	- [x] learn about the complex numbers and associated maths functions
-	- [x] Now the meat of the subject: find by yourself a plotting for julian and mandelbrot algorithm. The colouring will be 
+	- [x] Now the meat of the subject: find by yourself a plotting for julian 
+	and mandelbrot algorithm.
 	- [x] Improve your algorithm. Search what kind of plotting algorithm 
 	to implement
 
@@ -40,21 +40,27 @@ or not. Black means convergence, white, divergence.
 - 	[x] Mind special cases: No parameters, empty parameters ("" "" ""), 
 	incorrect parameters... (display usage and stuff)
 
-- [o] How to load or manage a color palette?
+- [x] How to load or manage a color palette?
 	- [x] Read it from a file ??? But they are hexes...
-	- [o] Build a palette computationally via interpolation of two colors?
+	- [x] Build a palette computationally via interpolation of two colors?
 
-- [] Manage the zoom, it should follow the pointer?
+# Event management
 
-- [] Manage the view with the arrow key? (if possible ?)
+- [o] Manage the zoom (zoom + <-> scrll_up / zoom - <-> scrll_down)
+with the mouse scrollwheel, bonus: it should follow the pointer?
 
-- [] Add a new fractal?
+- [] Bonus: Manage the view with the arrow key?
 
-- [] Manage color shifting with (space bar by example)
-	- [] Build another palette
+- [] Bonus: Manage color shifting with (the space bar by example)
+	- [] Build another palette for the occasion. Why not greyscale,
+	psychedelic?
+
+# More fractal generation?
+
+- [] Bonus: Add a new fractal?
 
 # Tests
 
 - [ ] Mind memory leaks
-- [ ] Mind special cases: ""
-- [ ] Is everything smooth when window closed, minimized...
+- [ ] Mind special cases for user input
+- [ ] Make sure that everything stays smooth when window is closed, minimized...

@@ -49,15 +49,15 @@ or not. Black means convergence, white, divergence.
 - [o] Manage the zoom (zoom + <-> scrll_up / zoom - <-> scrll_down)
 with the mouse scrollwheel, bonus: it should follow the pointer?
 
-- [] Bonus: Manage the view with the arrow key?
+- [ ] Bonus: Manage the view with the arrow key?
 
-- [] Bonus: Manage color shifting with (the space bar by example)
-	- [] Build another palette for the occasion. Why not greyscale,
+- [ ] Bonus: Manage color shifting with (the space bar by example)
+	- [ ] Build another palette for the occasion. Why not greyscale,
 	psychedelic?
 
 # More fractal generation?
 
-- [] Bonus: Add a new fractal?
+- [ ] Bonus: Add a new fractal?
 
 # Tests
 

@@ -6,19 +6,19 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:54:38 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/19 18:58:56 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:10:46 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "imgmgr.h"
 
-int	init_image(t_mlx *mlx_data)
+int	image_init(t_fra *fra_data)
 {
 	t_img	*img_con;
 
-	img_con = &mlx_data->img_con;
+	img_con = &fra_data->img_con;
 	ft_bzero(img_con, sizeof(t_img));
-	img_con->img_ptr = mlx_new_image(mlx_data->mlx_ptr, WINDOW_X, WINDOW_Y);
+	img_con->img_ptr = mlx_new_image(fra_data->mlx_ptr, WINDOW_X, WINDOW_Y);
 	if (img_con->img_ptr == NULL)
 		return (-1);
 	img_con->addr = mlx_get_data_addr(img_con->img_ptr, &img_con->bpp,
@@ -28,7 +28,7 @@ int	init_image(t_mlx *mlx_data)
 	return (0);
 }
 
-static void	colorize_pixel(int x, int y, t_img *img_con, uint32_t color)
+static void	image_pixel_colorize(int x, int y, t_img *img_con, uint32_t color)
 {
 	int	i;
 	int	start_addr;
@@ -50,7 +50,7 @@ static void	colorize_pixel(int x, int y, t_img *img_con, uint32_t color)
 	}
 }
 
-int	draw_on_image(t_mlx *mlx_data)
+int	image_draw(t_fra *fra_data)
 {
 	int	cord[2];
 	int	color;
@@ -61,11 +61,11 @@ int	draw_on_image(t_mlx *mlx_data)
 		cord[0] = -1;
 		while (++cord[0] < WINDOW_X)
 		{
-			color = get_color_for_coordinates(cord[0], cord[1], mlx_data);
-			colorize_pixel(cord[0], cord[1], &mlx_data->img_con, color);
+			color = plot_coordinates_color_get(cord[0], cord[1], fra_data);
+			image_pixel_colorize(cord[0], cord[1], &fra_data->img_con, color);
 		}
 	}
-	mlx_put_image_to_window(mlx_data->mlx_ptr, mlx_data->win_ptr,
-		mlx_data->img_con.img_ptr, 0, 0);
+	mlx_put_image_to_window(fra_data->mlx_ptr, fra_data->win_ptr,
+		fra_data->img_con.img_ptr, 0, 0);
 	return (0);
 }

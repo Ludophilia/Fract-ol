@@ -6,43 +6,43 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 13:08:03 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/20 12:16:37 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:26:47 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scenemgr.h"
 
-int	init_scene(t_mlx *mlx_data)
+int	scene_init(t_fra *fra_data)
 {
-	mlx_data->mlx_ptr = mlx_init();
-	if (mlx_data->mlx_ptr == NULL)
+	fra_data->mlx_ptr = mlx_init();
+	if (fra_data->mlx_ptr == NULL)
 		return (-1);
-	mlx_data->win_ptr = mlx_new_window(
-			mlx_data->mlx_ptr, WINDOW_X, WINDOW_Y, SCENENAME);
-	if (!mlx_data->win_ptr)
+	fra_data->win_ptr = mlx_new_window(
+			fra_data->mlx_ptr, WINDOW_X, WINDOW_Y, SCENENAME);
+	if (!fra_data->win_ptr)
 		return (-1);
 	return (0);
 }
 
-void	register_events(t_mlx *mlx_data)
+void	scene_events_register(t_fra *fra_data)
 {
 	mlx_key_hook(
-		mlx_data->win_ptr, manage_key_events, mlx_data);
+		fra_data->win_ptr, hook_key_events_manage, fra_data);
 	mlx_hook(
-		mlx_data->win_ptr, DestroyNotify, NoEventMask,
-		mlx_loop_end, mlx_data->mlx_ptr);
+		fra_data->win_ptr, DestroyNotify, NoEventMask,
+		mlx_loop_end, fra_data->mlx_ptr);
 }
 
-void	wait_for_events(t_mlx *mlx_data)
+void	scene_events_wait(t_fra *fra_data)
 {
-	mlx_loop(mlx_data->mlx_ptr);
+	mlx_loop(fra_data->mlx_ptr);
 }
 
-void	destroy_scene(t_mlx *mlx_data)
+void	scene_destroy(t_fra *fra_data)
 {
-	mlx_destroy_image(mlx_data->mlx_ptr, mlx_data->img_con.img_ptr);
-	mlx_destroy_window(mlx_data->mlx_ptr, mlx_data->win_ptr);
-	mlx_destroy_display(mlx_data->mlx_ptr);
-	free(mlx_data->mlx_ptr);
-	free_palettes(mlx_data->pal_con.palettes, 0); // is it enough?
+	mlx_destroy_image(fra_data->mlx_ptr, fra_data->img_con.img_ptr);
+	mlx_destroy_window(fra_data->mlx_ptr, fra_data->win_ptr);
+	mlx_destroy_display(fra_data->mlx_ptr);
+	free(fra_data->mlx_ptr);
+	color_palettes_free(fra_data->pal_con.palettes, 0); // is it enough?
 }

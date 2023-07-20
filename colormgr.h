@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 17:52:28 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/20 14:04:53 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:16:33 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 # include "fractol_common.h"
 
-int		interpolate_colors(int color1, int color2, double coeff);
-int		load_palettes(int colors_per_gradient, t_mlx *mlx_data);
-void	free_palettes(int **palettes, int from);
+int		color_interpolate(int color1, int color2, double coeff);
+int		color_palettes_load(int colors_per_gradient, t_fra *fra_data);
+void	color_palettes_free(int **palettes, int from);
 
 #endif

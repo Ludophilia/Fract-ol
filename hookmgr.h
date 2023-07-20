@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 19:10:23 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/01 22:45:56 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:20:20 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@
 
 # include "fractol_common.h"
 
-int	manage_key_events(int keycode, t_mlx *mlx_data);
+int	hook_key_events_manage(int keycode, t_fra *mlx_data);
 
 #endif

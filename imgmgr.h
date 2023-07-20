@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:54:42 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/15 00:42:37 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:21:11 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 # define IMGMGR_H
 
-# include "fractol_common.h"
 # include "plotter.h"
+# include "fractol_common.h"
 
-int	init_image(t_mlx *mlx_data);
-int	draw_on_image(t_mlx *mlx_data);
+int	image_init(t_fra *fra_data);
+int	image_draw(t_fra *fra_data);
 
 #endif

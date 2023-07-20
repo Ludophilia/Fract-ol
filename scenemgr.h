@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 13:08:47 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/20 13:50:20 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:27:17 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 # include "hookmgr.h"
 # include "colormgr.h"
 
-int		init_scene(t_mlx *mlx_data);
-void	register_events(t_mlx *mlx_data);
-void	wait_for_events(t_mlx *mlx_data);
-void	destroy_scene(t_mlx *mlx_data);
+int		scene_init(t_fra *fra_data);
+void	scene_events_register(t_fra *fra_data);
+void	scene_events_wait(t_fra *fra_data);
+void	scene_destroy(t_fra *fra_data);
 
 #endif

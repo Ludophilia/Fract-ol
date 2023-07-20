@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:36:03 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/20 13:51:05 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:24:23 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@
 # define MANDELBROT 0
 # define JULIA 1
 
-int	get_color_for_coordinates(double x, double y, t_mlx *mlx_data);
+int	plot_coordinates_color_get(double x, double y, t_fra *fra_data);
 
 #endif

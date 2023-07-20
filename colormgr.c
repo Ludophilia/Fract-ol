@@ -6,28 +6,13 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:45:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/20 12:15:40 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:16:13 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "colormgr.h"
 
-int	interpolate_colors(int color1, int color2, double coeff)
-{
-	uint8_t	r;
-	uint8_t	g;
-	uint8_t	b;
-
-	r = (color1 >> 16 & 0xFF) + (int)(((color2 >> 16 & 0xFF)
-				- (color1 >> 16 & 0xFF)) * coeff);
-	g = (color1 >> 8 & 0xFF) + (int)(((color2 >> 8 & 0xFF)
-				- (color1 >> 8 & 0xFF)) * coeff);
-	b = (color1 & 0xFF) + (int)(((color2 & 0xFF)
-				- (color1 & 0xFF)) * coeff);
-	return (r << 16 | g << 8 | b);
-}
-
-static int	*init_palette(int *basecolors, int colors_per_gr)
+static int	*color_palette_init(int *basecolors, int colors_per_gr)
 {
 	int	*palette;
 	int	size;
@@ -44,13 +29,26 @@ static int	*init_palette(int *basecolors, int colors_per_gr)
 	return (palette);
 }
 
-static int	*create_palette(int *basecolors, int colors_per_gr)
+int	color_interpolate(int color1, int color2, double coeff)
+{
+	uint8_t	rgb[3];
+
+	rgb[0] = (color1 >> 16 & 0xFF) + (int)(((color2 >> 16 & 0xFF)
+				- (color1 >> 16 & 0xFF)) * coeff);
+	rgb[1] = (color1 >> 8 & 0xFF) + (int)(((color2 >> 8 & 0xFF)
+				- (color1 >> 8 & 0xFF)) * coeff);
+	rgb[2] = (color1 & 0xFF) + (int)(((color2 & 0xFF)
+				- (color1 & 0xFF)) * coeff);
+	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
+}
+
+static int	*color_palette_create(int *basecolors, int colors_per_gr)
 {
 	int	*palette;
 	int	ijk[3];
 	int	new_color;
 
-	palette = init_palette(basecolors, colors_per_gr);
+	palette = color_palette_init(basecolors, colors_per_gr);
 	if (palette == NULL)
 		return (NULL);
 	ijk[0] = -1;
@@ -60,7 +58,7 @@ static int	*create_palette(int *basecolors, int colors_per_gr)
 		ijk[1] = -1; 
 		while (++ijk[1] < colors_per_gr)
 		{
-			new_color = interpolate_colors(basecolors[ijk[0]],
+			new_color = color_interpolate(basecolors[ijk[0]],
 					basecolors[ijk[0] + 1],
 					(double)ijk[1] / (colors_per_gr - 1));
 			if (ijk[2] == 0)
@@ -73,33 +71,7 @@ static int	*create_palette(int *basecolors, int colors_per_gr)
 	return (palette);
 }
 
-int	load_palettes(int colors_per_gradient, t_mlx *mlx_data)
-{
-	int	**palettes;
-	int	i;
-
-	i = -1;
-	palettes = ft_calloc(2, sizeof(int *));
-	if (palettes == NULL)
-		return (-1);
-	palettes[0] = create_palette((int [6]){0x120272, 0x44bcfc, 0xffffff,
-			0xfaa502, 0xcb2600, 0x000000}, colors_per_gradient);
-	palettes[1] = NULL;
-	while (++i < 1)
-	{
-		if (palettes[i] == NULL)
-		{
-			free_palettes(palettes, i - 1);
-			return (-1);
-		}
-	}
-	mlx_data->pal_con.palettes = palettes;
-	mlx_data->pal_con.current = 0;
-	mlx_data->pal_con.size = 1;
-	return (0);
-}
-
-void	free_palettes(int **palettes, int from)
+void	color_palettes_free(int **palettes, int from)
 {
 	int	i;
 	int	size;
@@ -117,4 +89,30 @@ void	free_palettes(int **palettes, int from)
 		while (i >= 0)
 			free(palettes[i--]);
 	free(palettes);
+}
+
+int	color_palettes_load(int colors_per_gradient, t_fra *fra_data)
+{
+	int	**palettes;
+	int	i;
+
+	i = -1;
+	palettes = ft_calloc(2, sizeof(int *));
+	if (palettes == NULL)
+		return (-1);
+	palettes[0] = color_palette_create((int [6]){0x120272, 0x44bcfc, 0xffffff,
+			0xfaa502, 0xcb2600, 0x000000}, colors_per_gradient);
+	palettes[1] = NULL;
+	while (++i < 1)
+	{
+		if (palettes[i] == NULL)
+		{
+			color_palettes_free(palettes, i - 1);
+			return (-1);
+		}
+	}
+	fra_data->pal_con.palettes = palettes;
+	fra_data->pal_con.current = 0;
+	fra_data->pal_con.size = 1;
+	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 19:40:20 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/18 17:15:59 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:11:57 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "clichecker.h"
 
-static int	pre_process_nb(const char *nptr, int32_t *nb, int8_t *s)
+static int	cli_atod_pre_process(const char *nptr, int32_t *nb, int8_t *s)
 {
 	int32_t	i;
 
@@ -30,13 +30,13 @@ static int	pre_process_nb(const char *nptr, int32_t *nb, int8_t *s)
 	return (i);
 }
 
-static double	ft_atod(const char *nptr)
+static double	cli_atod(const char *nptr)
 {
 	int32_t	nb[2];
 	int8_t	s;
 	int32_t	i;
 
-	i = pre_process_nb(nptr, nb, &s);
+	i = cli_atod_pre_process(nptr, nb, &s);
 	while (ft_isdigit(nptr[i]) || ((nptr[i] == '.' || nptr[i] == ',')
 			&& ft_isdigit(nptr[i + 1])))
 	{
@@ -53,7 +53,7 @@ static double	ft_atod(const char *nptr)
 	return (s * nb[0] * pow(10, -nb[1]));
 }
 
-static int	is_full_digit(char *str)
+static int	cli_is_full_digit(char *str)
 {
 	int	i;
 
@@ -79,33 +79,33 @@ static int	is_full_digit(char *str)
 	return (-1);
 }
 
-static int	check_args(int argc, char **argv)
+static int	cli_args_check(int argc, char **argv)
 {
 	int	i;
 
 	if (argc < 2)
 		return (-1);
-	if (is_full_digit(argv[1]) == -1)
+	if (cli_is_full_digit(argv[1]) == -1)
 		return (-1);
 	i = 1;
 	while (argv[++i])
 	{
-		if (is_full_digit(argv[i]) == -1)
+		if (cli_is_full_digit(argv[i]) == -1)
 			return (-1);
 	}
 	return (0);
 }
 
-int	get_cli_args(int argc, char **argv, t_mlx *mlx_data)
+int	cli_args_get(int argc, char **argv, t_fra *fra_data)
 {
 	int32_t	fract_type;
 
-	if (check_args(argc, argv) == -1)
+	if (cli_args_check(argc, argv) == -1)
 	{
 		errno = EINVAL;
 		return (-1);
 	}
-	ft_bzero(mlx_data, sizeof(t_mlx));
+	ft_bzero(fra_data, sizeof(t_fra));
 	fract_type = ft_atoi(argv[1]);
 	if ((fract_type < 0 || fract_type > 2) || (fract_type == 0 && argc != 2)
 		|| (fract_type == 1 && argc != 4))
@@ -113,11 +113,11 @@ int	get_cli_args(int argc, char **argv, t_mlx *mlx_data)
 		errno = EINVAL;
 		return (-1);
 	}
-	mlx_data->usr_inp.fract = fract_type;
+	fra_data->usr_inp.fract = fract_type;
 	if (fract_type == 1)
 	{
-		mlx_data->usr_inp.zcons[0] = ft_atod(argv[2]);
-		mlx_data->usr_inp.zcons[1] = ft_atod(argv[3]);
+		fra_data->usr_inp.zcons[0] = cli_atod(argv[2]);
+		fra_data->usr_inp.zcons[1] = cli_atod(argv[3]);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:32:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/21 14:15:29 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/21 22:28:13 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,16 @@
 # include <math.h>
 # include <complex.h>
 
-# define WINDOW_X 1500
-# define WINDOW_Y 1500
+# define WINDOW_X 1150
+# define WINDOW_Y 1150
+
+# define RADIUS 2
+# define MAX_ITER 100.00
+
+# define MANDELBROT 0
+# define JULIA 1
+
+#define ZOOM_LEVEL 1.05
 
 typedef struct s_img
 {

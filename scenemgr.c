@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 13:08:03 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/21 14:57:16 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/21 22:30:26 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ void	scene_events_register(t_fra *fra_data)
 {
 	mlx_key_hook(
 		fra_data->win_ptr, hook_key_events_manage, fra_data);
+	mlx_mouse_hook(
+		fra_data->win_ptr, hook_mouse_events_manage, fra_data);
+	mlx_loop_hook(
+		fra_data->mlx_ptr, hook_loop_events_manage, fra_data);
 	mlx_hook(
 		fra_data->win_ptr, DestroyNotify, NoEventMask,
 		mlx_loop_end, fra_data->mlx_ptr);

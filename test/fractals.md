@@ -56,7 +56,6 @@ are larger, multiple small ones (*)
 
 - `z² + 0.34 + 0.31 * I`, big hole with angles
 
-
 - `z² + 0`, circle
 
 - `z² -0.78 - 0.15 * I`, curly cloud with curly holes

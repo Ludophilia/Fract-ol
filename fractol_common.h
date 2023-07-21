@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:32:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/20 18:09:26 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/21 14:15:29 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,14 @@ typedef struct s_pal
 	int		current;
 }	t_pal;
 
+typedef struct s_pln
+{
+	double	x_min;
+	double	x_max;
+	double	y_min;
+	double	y_max;
+}	t_pln;
+
 typedef struct s_fra
 {
 	void	*mlx_ptr;
@@ -57,6 +65,7 @@ typedef struct s_fra
 	t_img	img_con;
 	t_inp	usr_inp;
 	t_pal	pal_con;
+	t_pln	com_pln;
 }	t_fra;
 
 #endif

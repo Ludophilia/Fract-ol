@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:54:38 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/20 18:10:46 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/21 15:30:06 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static void	image_pixel_colorize(int x, int y, t_img *img_con, uint32_t color)
 			color <<= 8;
 		}
 	}
+	return ;
 }
 
 int	image_draw(t_fra *fra_data)
@@ -61,7 +62,7 @@ int	image_draw(t_fra *fra_data)
 		cord[0] = -1;
 		while (++cord[0] < WINDOW_X)
 		{
-			color = plot_coordinates_color_get(cord[0], cord[1], fra_data);
+			color = plot_coords_color_get(cord[0], cord[1], fra_data);
 			image_pixel_colorize(cord[0], cord[1], &fra_data->img_con, color);
 		}
 	}

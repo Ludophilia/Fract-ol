@@ -39,6 +39,9 @@ or not. Black means convergence, white, divergence.
 -   [x] How to manage float numbers
 - 	[x] Mind special cases: No parameters, empty parameters ("" "" ""), 
 	incorrect parameters... (display usage and stuff)
+-   [ ] 🔴 Big numbers like 0.98888888888888888888888 are interpreted as 0... Why?
+-   [ ] 🔴 ./fractol 1 +0.285 0 returns something different
+from ./fractol 1 0.285 0... What does this happen.
 
 - [x] How to load or manage a color palette?
 	- [x] Read it from a file ??? But they are hexes...

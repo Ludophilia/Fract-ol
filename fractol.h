@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/19 18:25:35 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/22 18:29:03 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@
 # include "hookmgr.h"
 # include "imgmgr.h"
 # include "colormgr.h"
+# include "plotter.h"
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:32:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/21 22:28:13 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/22 17:35:23 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define MANDELBROT 0
 # define JULIA 1
 
-#define ZOOM_LEVEL 1.05
+# define ZOOM_LEVEL 1.05
 
 typedef struct s_img
 {
@@ -60,10 +60,8 @@ typedef struct s_pal
 
 typedef struct s_pln
 {
-	double	x_min;
-	double	x_max;
-	double	y_min;
-	double	y_max;
+	double	x_lim[2];
+	double	y_lim[2];
 }	t_pln;
 
 typedef struct s_fra

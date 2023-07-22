@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 19:09:27 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/21 22:29:44 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/22 19:47:37 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,9 @@ int	hook_mouse_events_manage(int button, int x, int y, t_fra *fra_data)
 	(void) y;
 	com_pln = &fra_data->com_pln;
 	if (button == 4)
-	{
-		com_pln->x_min = com_pln->x_min / ZOOM_LEVEL;
-		com_pln->x_max = com_pln->x_max / ZOOM_LEVEL;
-		com_pln->y_min = com_pln->y_min / ZOOM_LEVEL;
-		com_pln->y_max = com_pln->y_max / ZOOM_LEVEL;
-	}
+		plot_change_comp_plane_zoom_level(1, com_pln);
 	else if (button == 5)
-	{
-		com_pln->x_min = com_pln->x_min * ZOOM_LEVEL;
-		com_pln->x_max = com_pln->x_max * ZOOM_LEVEL;
-		com_pln->y_min = com_pln->y_min * ZOOM_LEVEL;
-		com_pln->y_max = com_pln->y_max * ZOOM_LEVEL;
-	}
+		plot_change_comp_plane_zoom_level(0, com_pln);
 	return (0);
 }
 

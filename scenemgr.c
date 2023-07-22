@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 13:08:03 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/21 22:30:26 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/22 18:20:27 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@ int	scene_init(t_fra *fra_data)
 			fra_data->mlx_ptr, WINDOW_X, WINDOW_Y, SCENENAME);
 	if (!fra_data->win_ptr)
 		return (-1);
-	fra_data->com_pln.x_min = -2;
-	fra_data->com_pln.x_max = 2;
-	fra_data->com_pln.y_min = -2;
-	fra_data->com_pln.y_max = 2;
 	return (0);
 }
 

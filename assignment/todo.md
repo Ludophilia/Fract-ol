@@ -26,6 +26,8 @@ or not. Black means convergence, white, divergence.
 	- [x] Improve your algorithm. Search what kind of plotting algorithm 
 	to implement
 
+# Fractal coloring
+
 - [x] Add colors to the fractals!
 	- [x] Build a first palette
 	- [x] Mod your julia/mandelbrot function so they return a result that 
@@ -39,7 +41,8 @@ or not. Black means convergence, white, divergence.
 -   [x] How to manage float numbers
 - 	[x] Mind special cases: No parameters, empty parameters ("" "" ""), 
 	incorrect parameters... (display usage and stuff)
--   [ ] 🔴 Big numbers like 0.98888888888888888888888 are interpreted as 0... Why?
+-   [ ] 🔴 Big numbers like 0.98888888888888888888888 are interpreted as
+0... Why?
 -   [ ] 🔴 ./fractol 1 +0.285 0 returns something different
 from ./fractol 1 0.285 0... What does this happen.
 
@@ -47,10 +50,15 @@ from ./fractol 1 0.285 0... What does this happen.
 	- [x] Read it from a file ??? But they are hexes...
 	- [x] Build a palette computationally via interpolation of two colors?
 
+-   [x] What's going with the colors when I dezoom... Res: it was because 
+
 # Event management
 
-- [o] Manage the zoom (zoom + <-> scrll_up / zoom - <-> scrll_down)
-with the mouse scrollwheel, bonus: it should follow the pointer?
+- [x] Manage the zoom (zoom + <-> scrll_up / zoom - <-> scrll_down) with the mouse scrollwheel
+
+# Bonus: Event management
+
+- [ ] Bonus: Improve the zoom, now it should follow the pointer.
 
 - [ ] Bonus: Manage the view with the arrow key?
 
@@ -58,7 +66,7 @@ with the mouse scrollwheel, bonus: it should follow the pointer?
 	- [ ] Build another palette for the occasion. Why not greyscale,
 	psychedelic?
 
-# More fractal generation?
+# Bonus: Fractal generation?
 
 - [ ] Bonus: Add a new fractal?
 

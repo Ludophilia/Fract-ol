@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 19:10:23 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/21 21:42:29 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/22 18:21:26 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <X11/keysymdef.h>
 
 # include "imgmgr.h"
+# include "plotter.h"
 # include "fractol_common.h"
 
 int	hook_key_events_manage(int keycode, t_fra *fra_data);

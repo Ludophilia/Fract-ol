@@ -1,5 +1,20 @@
 # Fractol, test suite
 
+
+## Happy path series
+
+#### Mandelbrot 
+
+`./fractol 0`
+`./fractol +0`
+`./fractol -0`
+
+#### Julia 
+
+`./fractol 1 0.285 0.01`
+`./fractol +1 +0.285 +0.01`
+`./fractol 1 -0.78 - 0.15`
+
 ## Error series
 
 On those case, error message should be printed
@@ -20,6 +35,7 @@ On those case, error message should be printed
 `./fractol +`
 `./fractol -`
 `./fractol . . .`
+`./fractol -1 0 0`
 
 #### Mandelbrot 
 

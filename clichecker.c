@@ -6,13 +6,13 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 19:40:20 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/20 18:11:57 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/23 14:14:07 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "clichecker.h"
 
-static int	cli_atod_pre_process(const char *nptr, int32_t *nb, int8_t *s)
+static int	cli_atod_pre_process(const char *nptr, int64_t *nb, int8_t *s)
 {
 	int32_t	i;
 
@@ -24,7 +24,8 @@ static int	cli_atod_pre_process(const char *nptr, int32_t *nb, int8_t *s)
 		i++;
 	if (nptr[i] == '+' || nptr[i] == '-')
 	{
-		*s *= -1;
+		if (nptr[i] == '-')
+			*s *= -1;
 		i++;
 	}
 	return (i);
@@ -32,7 +33,7 @@ static int	cli_atod_pre_process(const char *nptr, int32_t *nb, int8_t *s)
 
 static double	cli_atod(const char *nptr)
 {
-	int32_t	nb[2];
+	int64_t	nb[2];
 	int8_t	s;
 	int32_t	i;
 
@@ -41,10 +42,12 @@ static double	cli_atod(const char *nptr)
 			&& ft_isdigit(nptr[i + 1])))
 	{
 		if (ft_isdigit(nptr[i]))
+		{
 			nb[0] = 10 * nb[0] + nptr[i] - '0';
-		if (nb[1] >= 0 && ft_isdigit(nptr[i]))
-			nb[1]++;
-		if (nptr[i] == '.' || nptr[i] == ',')
+			if (nb[1] >= 0)
+				nb[1]++;
+		}
+		else if (nptr[i] == '.' || nptr[i] == ',')
 			nb[1] = 0;
 		i++;
 	}

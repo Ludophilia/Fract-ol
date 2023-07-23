@@ -41,11 +41,14 @@ or not. Black means convergence, white, divergence.
 -   [x] How to manage float numbers
 - 	[x] Mind special cases: No parameters, empty parameters ("" "" ""), 
 	incorrect parameters... (display usage and stuff)
--   [ ] 🔴 Big numbers like 0.98888888888888888888888 are interpreted as
-0... Why?
--   [ ] 🔴 ./fractol 1 +0.285 0 returns something different
-from ./fractol 1 0.285 0... What does this happen.
-
+-   [x] Big numbers like 0.98888888888888888888888 are interpreted as
+0... Why? Rep: in a double precision number coded on 64bits,
+52 bits are used for the significand, 1 for the sign, and 11 for
+the exponent... The max number that could be store in 52 bits is 2**52 -1, a
+15 digits number.
+-   [x] ./fractol 1 +0.285 0 returns something different
+from ./fractol 1 0.285 0... What does this happen. Rep : + sign
+flipped the sign...
 - [x] How to load or manage a color palette?
 	- [x] Read it from a file ??? But they are hexes...
 	- [x] Build a palette computationally via interpolation of two colors?
@@ -72,6 +75,6 @@ from ./fractol 1 0.285 0... What does this happen.
 
 # Tests
 
-- [ ] Mind memory leaks
-- [ ] Mind special cases for user input
-- [ ] Make sure that everything stays smooth when window is closed, minimized...
+- [o] Mind memory leaks
+- [o] Mind special cases for user input
+- [o] Make sure that everything stays smooth when window is closed, minimized...

@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:32:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/22 17:35:23 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/23 14:26:28 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define WINDOW_Y 1150
 
 # define RADIUS 2
-# define MAX_ITER 100.00
+# define MAX_ITER 250.00
 
 # define MANDELBROT 0
 # define JULIA 1

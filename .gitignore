@@ -53,5 +53,5 @@ dkms.conf
 
 # Extra
 .vscode
-mlx
+libs/mlx
 fractol

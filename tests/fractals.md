@@ -65,6 +65,8 @@ are larger, multiple small ones (*)
 - `z² +0.13 + 0.6 * I`, 2 fans turns into a whirlpool
 - `z² +0.132 + 0.62 * I`, 2 fans turns into leaves
 
+- `z² +0.285 + 0.02 * I`, hole with a lot of waves
+
 ## Palettes
 
 ### About interpolation

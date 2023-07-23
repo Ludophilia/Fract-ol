@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   imgmgr.h                                           :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/05 17:54:42 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/20 18:21:11 by jgermany         ###   ########.fr       */
+/*   Created: 2022/12/05 11:44:51 by jgermany          #+#    #+#             */
+/*   Updated: 2023/07/23 20:15:25 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMGMGR_H
+#include "libft.h"
 
-# define IMGMGR_H
+char	*ft_strnstr(const char *big, const char *little, size_t len)
+{
+	size_t	i;
+	size_t	j;
 
-# include "plotter.h"
-# include "fractol_common.h"
-
-int	image_init(t_fra *fra_data);
-int	image_draw(t_fra *fra_data);
-
-#endif
+	if (!*little)
+		return ((char *)big);
+	i = 0;
+	while ((i < len) && big[i])
+	{
+		j = 0;
+		while (((i + j) < len) && (big[i + j] == little[j]))
+		{
+			if (!little[j + 1])
+				return ((char *)big + i);
+			j++;
+		}
+		i++;
+	}
+	return ((char *)0);
+}

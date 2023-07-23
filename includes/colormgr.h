@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   colormgr.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/05 11:44:51 by jgermany          #+#    #+#             */
-/*   Updated: 2022/12/17 01:17:17 by jgermany         ###   ########.fr       */
+/*   Created: 2023/07/18 17:52:28 by jgermany          #+#    #+#             */
+/*   Updated: 2023/07/23 20:36:52 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef COLORMGR_H
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
-{
-	size_t	i;
-	size_t	j;
+# define COLORMGR_H
 
-	if (!*little)
-		return ((char *)big);
-	i = 0;
-	while ((i < len) && big[i])
-	{
-		j = 0;
-		while (((i + j) < len) && (big[i + j] == little[j]))
-		{
-			if (!little[j + 1])
-				return ((char *)big + i);
-			j++;
-		}
-		i++;
-	}		
-	return ((char *)0);
-}
+# include "fractol_common.h"
+
+int		color_interpolate(int color1, int color2, double coeff);
+int		color_palettes_load(int colors_per_gradient, t_fra *fra_data);
+void	color_palettes_free(int **palettes, int from);
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 13:08:05 by jgermany          #+#    #+#             */
-/*   Updated: 2022/12/29 14:26:27 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/23 20:15:58 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static size_t	ft_wordslen(char **strs)
 
 	len = 0;
 	while (strs[len])
-			len++;
+		len++;
 	return (len);
 }
 

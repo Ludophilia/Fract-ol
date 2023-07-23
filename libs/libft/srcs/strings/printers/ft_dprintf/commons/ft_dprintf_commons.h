@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 18:34:45 by jgermany          #+#    #+#             */
-/*   Updated: 2023/06/27 19:01:24 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/23 20:15:01 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,5 @@ typedef struct s_meta
 
 void	putchar_cc(char c, t_meta *meta);
 void	putstr_cc(char *s, t_meta *meta);
- 
+
 #endif

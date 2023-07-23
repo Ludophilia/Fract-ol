@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:32:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/23 14:26:28 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/23 20:36:27 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 # define FRACTOL_COMMON_H
 
-# include "libft/libft.h"
-# include "mlx/mlx.h"
+# include "../libs/libft/libft.h"
+# include "../libs/mlx/mlx.h"
 # include <X11/X.h>
 # include <errno.h>
 # include <stdio.h>
@@ -25,11 +25,13 @@
 # include <math.h>
 # include <complex.h>
 
+# define SCENENAME "Fractol"
+
 # define WINDOW_X 1150
 # define WINDOW_Y 1150
 
 # define RADIUS 2
-# define MAX_ITER 250.00
+# define MAX_ITER 200.00
 
 # define MANDELBROT 0
 # define JULIA 1

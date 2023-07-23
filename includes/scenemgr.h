@@ -6,15 +6,13 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 13:08:47 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/22 18:19:13 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/23 20:43:31 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCENEMGR_H
 
 # define SCENEMGR_H
-
-# define SCENENAME "Fractol"
 
 # include "fractol_common.h"
 # include "hookmgr.h"

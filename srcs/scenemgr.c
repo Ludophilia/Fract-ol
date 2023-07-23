@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 13:08:03 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/22 18:20:27 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/23 20:48:47 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ void	scene_destroy(t_fra *fra_data)
 	mlx_destroy_window(fra_data->mlx_ptr, fra_data->win_ptr);
 	mlx_destroy_display(fra_data->mlx_ptr);
 	free(fra_data->mlx_ptr);
-	color_palettes_free(fra_data->pal_con.palettes, 0); // is it enough?
+	color_palettes_free(fra_data->pal_con.palettes, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:34:12 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/22 20:12:15 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/25 13:43:07 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_pln *com_pln)
 	double	*y_lim;
 
 	x_lim = com_pln->x_lim;
-	y_lim = com_pln->x_lim;
+	y_lim = com_pln->y_lim;
 	*x = x_lim[0] + ((x_lim[1] - x_lim[0]) / WINDOW_X) * *x;
 	*y = y_lim[1] - ((y_lim[1] - y_lim[0]) / WINDOW_Y) * *y;
 	return ;

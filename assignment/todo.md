@@ -61,7 +61,7 @@ flipped the sign...
 
 # Bonus: Event management
 
-- [ ] Bonus: Improve the zoom, now it should follow the pointer.
+- [x] Bonus: Improve the zoom, now it should follow the pointer.
 
 - [ ] Bonus: Manage the view with the arrow key?
 

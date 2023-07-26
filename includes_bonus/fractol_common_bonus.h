@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:32:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/26 15:46:26 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:08:41 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,16 @@
 # include <math.h>
 # include <complex.h>
 
-# define SCENENAME "Fractol bonus"
+# define SCENENAME "Fractol +"
 
 # define WINDOW_X 1150
 # define WINDOW_Y 1150
+
+# define SHIFT_FACTOR 0.05
+# define SHIFT_LEFT (1 << 4)
+# define SHIFT_RIGHT (2 << 4)
+# define SHIFT_UP (3 << 4)
+# define SHIFT_DOWN (4 << 4)
 
 # define RADIUS 2
 # define MAX_ITER 150.00

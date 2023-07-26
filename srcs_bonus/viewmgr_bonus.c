@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:15:56 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/26 16:08:09 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/26 16:48:51 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ t_pln *com_pln)
 	y_lim = com_pln->y_lim;
 	*x = x_lim[0] + ((x_lim[1] - x_lim[0]) / WINDOW_X) * *x;
 	*y = y_lim[1] - ((y_lim[1] - y_lim[0]) / WINDOW_Y) * *y;
-	return ;
 }
 
 void	view_set_complex_plane_limits(double min, double max, t_pln *com_pln)
@@ -40,13 +39,37 @@ void	view_set_complex_plane_limits(double min, double max, t_pln *com_pln)
 		com_pln->x_lim[i] = nb;
 		com_pln->y_lim[i] = nb;
 	}
-	return ;
 }
 
-// Push left: -2;2 on x becomes -2.01;1.99
-// Push right: -2;2 on x becomes -1.99;2.01
-// Push top: -2;2 on y becomes -1.99;2.01
-// Push bottom: -2;2 on y becomes -2.01;1.99
+void	view_shit_comp_plane(uint8_t shift_direction, t_pln *com_pln)
+{
+	double	*x_lim;
+	double	*y_lim;
+
+	x_lim = com_pln->x_lim;
+	y_lim = com_pln->y_lim;
+	if (shift_direction == SHIFT_LEFT)
+	{
+		com_pln->x_lim[0] -= SHIFT_FACTOR * (x_lim[1] - x_lim[0]);
+		com_pln->x_lim[1] -= SHIFT_FACTOR * (x_lim[1] - x_lim[0]);
+	}
+	else if (shift_direction == SHIFT_RIGHT)
+	{
+		com_pln->x_lim[0] += SHIFT_FACTOR * (x_lim[1] - x_lim[0]);
+		com_pln->x_lim[1] += SHIFT_FACTOR * (x_lim[1] - x_lim[0]);
+	}
+	else if (shift_direction == SHIFT_UP)
+	{
+		com_pln->y_lim[0] += SHIFT_FACTOR * (y_lim[1] - y_lim[0]);
+		com_pln->y_lim[1] += SHIFT_FACTOR * (y_lim[1] - y_lim[0]);
+	}
+	else if (shift_direction == SHIFT_DOWN)
+	{
+		com_pln->y_lim[0] -= SHIFT_FACTOR * (y_lim[1] - y_lim[0]);
+		com_pln->y_lim[1] -= SHIFT_FACTOR * (y_lim[1] - y_lim[0]);
+	}
+}
+
 void	view_change_comp_plane_zoom_level(int zoom_in, double x, double y,
 t_pln *com_pln)
 {

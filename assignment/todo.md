@@ -63,7 +63,7 @@ flipped the sign...
 
 - [x] Bonus: Improve the zoom, now it should follow the pointer.
 
-- [ ] Bonus: Manage the view with the arrow key?
+- [x] Bonus: Manage the view with the arrow key?
 
 - [ ] Bonus: Manage color shifting with (the space bar by example)
 	- [ ] Build another palette for the occasion. Why not greyscale,

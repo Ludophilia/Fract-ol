@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 19:09:27 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/25 21:20:26 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/26 16:10:52 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	hook_key_events_manage(int keycode, t_fra *fra_data)
 {
 	if (keycode == XK_Escape)
-		mlx_loop_end(fra_data->mlx_ptr);	
+		mlx_loop_end(fra_data->mlx_ptr);
 	if (keycode == XK_c)
 		view_set_complex_plane_limits(-2, 2, &fra_data->com_pln);
 	return (0);

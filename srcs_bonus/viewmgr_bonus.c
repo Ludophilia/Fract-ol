@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:15:56 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/25 21:45:34 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/26 16:08:09 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,32 +45,32 @@ void	view_set_complex_plane_limits(double min, double max, t_pln *com_pln)
 
 // Push left: -2;2 on x becomes -2.01;1.99
 // Push right: -2;2 on x becomes -1.99;2.01
-
 // Push top: -2;2 on y becomes -1.99;2.01
 // Push bottom: -2;2 on y becomes -2.01;1.99
-
-
 void	view_change_comp_plane_zoom_level(int zoom_in, double x, double y,
 t_pln *com_pln)
 {
 	double	*x_lim;
 	double	*y_lim;
+	double	ratios[2];
 
 	x_lim = com_pln->x_lim;
 	y_lim = com_pln->y_lim;
+	ratios[0] = x / WINDOW_X;
+	ratios[1] = y / WINDOW_Y;
 	view_translate_mlx_coords_to_comp_coords(&x, &y, com_pln);
 	if (zoom_in)
 	{
-		x_lim[0] = x - 0.50 * ((x_lim[1] - x_lim[0]) / ZOOM_LEVEL);
-		x_lim[1] = x + 0.50 * ((x_lim[1] - x_lim[0]) / ZOOM_LEVEL);
-		y_lim[0] = y - 0.50 * ((x_lim[1] - x_lim[0]) / ZOOM_LEVEL);
-		y_lim[1] = y + 0.50 * ((x_lim[1] - x_lim[0]) / ZOOM_LEVEL);
+		x_lim[0] = x - ratios[0] * ((x_lim[1] - x_lim[0]) / ZOOM_LEVEL);
+		x_lim[1] = x + (1. - ratios[0]) * ((x_lim[1] - x_lim[0]) / ZOOM_LEVEL);
+		y_lim[0] = y - (1. - ratios[1]) * ((x_lim[1] - x_lim[0]) / ZOOM_LEVEL);
+		y_lim[1] = y + ratios[1] * ((x_lim[1] - x_lim[0]) / ZOOM_LEVEL);
 	}
 	else
 	{
-		x_lim[0] = x - 0.50 * ((x_lim[1] - x_lim[0]) * ZOOM_LEVEL);
-		x_lim[1] = x + 0.50 * ((x_lim[1] - x_lim[0]) * ZOOM_LEVEL);
-		y_lim[0] = y - 0.50 * ((x_lim[1] - x_lim[0]) * ZOOM_LEVEL);
-		y_lim[1] = y + 0.50 * ((x_lim[1] - x_lim[0]) * ZOOM_LEVEL);
+		x_lim[0] = x - ratios[0] * ((x_lim[1] - x_lim[0]) * ZOOM_LEVEL);
+		x_lim[1] = x + (1. - ratios[0]) * ((x_lim[1] - x_lim[0]) * ZOOM_LEVEL);
+		y_lim[0] = y - (1. - ratios[1]) * ((x_lim[1] - x_lim[0]) * ZOOM_LEVEL);
+		y_lim[1] = y + ratios[1] * ((x_lim[1] - x_lim[0]) * ZOOM_LEVEL);
 	}
 }

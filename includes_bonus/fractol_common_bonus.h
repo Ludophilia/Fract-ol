@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:32:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/25 20:20:46 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:46:26 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 
 # define SCENENAME "Fractol bonus"
 
-# define WINDOW_X 1000
-# define WINDOW_Y 1000
+# define WINDOW_X 1150
+# define WINDOW_Y 1150
 
 # define RADIUS 2
 # define MAX_ITER 150.00

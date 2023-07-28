@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 19:10:23 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/25 21:20:14 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/28 13:46:10 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # include "imgmgr_bonus.h"
 # include "viewmgr_bonus.h"
+# include "colormgr_bonus.h"
 # include "fractol_common_bonus.h"
 
 int	hook_key_events_manage(int keycode, t_fra *fra_data);

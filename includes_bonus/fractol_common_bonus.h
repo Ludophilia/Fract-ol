@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:32:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/26 17:08:41 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:32:56 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,16 @@
 # define WINDOW_X 1150
 # define WINDOW_Y 1150
 
-# define SHIFT_FACTOR 0.05
-# define SHIFT_LEFT (1 << 4)
-# define SHIFT_RIGHT (2 << 4)
-# define SHIFT_UP (3 << 4)
-# define SHIFT_DOWN (4 << 4)
-
 # define RADIUS 2
 # define MAX_ITER 150.00
+
+# define SHIFT_FACTOR 0.05
+# define SHIFT_LEFT 0x10
+# define SHIFT_RIGHT 0x20
+# define SHIFT_UP 0x30
+# define SHIFT_DOWN 0x40
+
+# define PALETTE_SIZE 4
 
 # define MANDELBROT 0
 # define JULIA 1
@@ -64,7 +66,7 @@ typedef struct s_pal
 {
 	int		**palettes;
 	int		size;
-	int		current;
+	uint8_t	current;
 }	t_pal;
 
 typedef struct s_pln

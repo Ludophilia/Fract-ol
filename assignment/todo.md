@@ -57,7 +57,8 @@ flipped the sign...
 
 # Event management
 
-- [x] Manage the zoom (zoom + <-> scrll_up / zoom - <-> scrll_down) with the mouse scrollwheel
+- [x] Manage the zoom (zoom + <-> scrll_up / zoom - <-> scrll_down) with the
+mouse scrollwheel
 
 # Bonus: Event management
 
@@ -65,8 +66,8 @@ flipped the sign...
 
 - [x] Bonus: Manage the view with the arrow key?
 
-- [ ] Bonus: Manage color shifting with (the space bar by example)
-	- [ ] Build another palette for the occasion. Why not greyscale,
+- [x] Bonus: Manage color shifting with (the space bar by example)
+	- [x] Build another palette for the occasion. Why not greyscale,
 	psychedelic?
 
 # Bonus: Fractal generation?

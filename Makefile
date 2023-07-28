@@ -6,7 +6,7 @@
 #    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/01 20:24:27 by jgermany          #+#    #+#              #
-#    Updated: 2023/07/25 21:22:06 by jgermany         ###   ########.fr        #
+#    Updated: 2023/07/28 15:23:07 by jgermany         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRCS_BON 							+= $(SRCS_DIRB)/imgmgr_bonus.c
 SRCS_BON 							+= $(SRCS_DIRB)/plotter_bonus.c
 SRCS_BON 							+= $(SRCS_DIRB)/clichecker_bonus.c
 SRCS_BON 							+= $(SRCS_DIRB)/colormgr_bonus.c
+SRCS_BON 							+= $(SRCS_DIRB)/colormgr_utils_bonus.c
 SRCS_BON 							+= $(SRCS_DIRB)/viewmgr_bonus.c
 
 OBJS_MAN 							:= $(SRCS_MAN:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:45:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/25 17:24:08 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:29:20 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,7 @@ static int	*color_palette_init(int *basecolors, int colors_per_gr)
 	return (palette);
 }
 
-int	color_interpolate(int color1, int color2, double coeff)
-{
-	uint8_t	rgb[3];
-
-	rgb[0] = (color1 >> 16 & 0xFF) + (int)(((color2 >> 16 & 0xFF)
-				- (color1 >> 16 & 0xFF)) * coeff);
-	rgb[1] = (color1 >> 8 & 0xFF) + (int)(((color2 >> 8 & 0xFF)
-				- (color1 >> 8 & 0xFF)) * coeff);
-	rgb[2] = (color1 & 0xFF) + (int)(((color2 & 0xFF)
-				- (color1 & 0xFF)) * coeff);
-	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
-}
-
-static int	*color_palette_create(int *basecolors, int colors_per_gr)
+static int	*color_palette_build(int *basecolors, int colors_per_gr)
 {
 	int	*palette;
 	int	ijk[3];
@@ -71,48 +58,35 @@ static int	*color_palette_create(int *basecolors, int colors_per_gr)
 	return (palette);
 }
 
-void	color_palettes_free(int **palettes, int from)
-{
-	int	i;
-	int	size;
-
-	if (from < 0)
-		return ;
-	size = -1;
-	while (palettes[++size])
-		;
-	i = from;
-	if (i == 0)
-		while (i < size)
-			free(palettes[i++]);
-	else
-		while (i >= 0)
-			free(palettes[i--]);
-	free(palettes);
-}
-
 int	color_palettes_load(int colors_per_gradient, t_fra *fra_data)
 {
 	int	**palettes;
-	int	i;
 
-	i = -1;
-	palettes = ft_calloc(2, sizeof(int *));
+	palettes = ft_calloc(PALETTE_SIZE + 1, sizeof(int *));
 	if (palettes == NULL)
 		return (-1);
-	palettes[0] = color_palette_create((int [6]){0x120272, 0x44bcfc, 0xffffff,
+	palettes[0] = color_palette_build((int [6]){0x120272, 0x44bcfc, 0xffffff,
 			0xfaa502, 0xcb2600, 0x000000}, colors_per_gradient);
-	palettes[1] = NULL;
-	while (++i < 1)
-	{
-		if (palettes[i] == NULL)
-		{
-			color_palettes_free(palettes, i - 1);
-			return (-1);
-		}
-	}
-	fra_data->pal_con.palettes = palettes;
-	fra_data->pal_con.current = 0;
-	fra_data->pal_con.size = 1;
+	palettes[1] = color_palette_build((int [7]){0x8C00FF, 0xFFBF00, 0xFF0000, 
+			0x00F7FF, 0xFF00FF, 0xFBFF00, 0x000000}, colors_per_gradient);
+	palettes[2] = color_palette_build((int [8]){0xFFBF00, 0xFBFF00, 0x00F7FF,
+			0x8C00FF, 0xFF00FF, 0x95FF00, 0xFF0000, 0x000000},
+			colors_per_gradient);
+	palettes[3] = color_palette_build((int [6]){0xffffff, 0xc6c6c6, 0x919191,
+			0x5e5e5f, 0x303031, 0x000000}, colors_per_gradient);
+	palettes[PALETTE_SIZE] = NULL;
+	color_palettes_check(palettes, fra_data);
 	return (0);
+}
+
+void	color_palettes_shift(int straight, t_pal *palette)
+{
+	uint8_t	current;
+
+	current = palette->current;
+	if (straight)
+		current++;
+	else
+		current--;
+	palette->current = current % PALETTE_SIZE;
 }

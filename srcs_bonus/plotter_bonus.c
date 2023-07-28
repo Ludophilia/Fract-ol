@@ -6,21 +6,20 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:34:12 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/25 21:18:05 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/28 20:01:31 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "plotter_bonus.h"
 
 static double	plot_get_iter_max_for_comp_coords(double x, double y,
-t_fra *fra_data)
+int32_t fract_type, double *zconsts)
 {
-	double complex	z;
 	double			conjz2;
+	double complex	z;
 	int				i;
 
-	view_translate_mlx_coords_to_comp_coords(&x, &y, &fra_data->com_pln);
-	if (fra_data->usr_inp.fract == MANDELBROT)
+	if (fract_type == MANDELBROT || fract_type == SHIP)
 		z = 0;
 	else
 		z = x + y * I;
@@ -30,11 +29,15 @@ t_fra *fra_data)
 		conjz2 = creal(z) * creal(z) + cimag(z) * cimag(z);
 		if (conjz2 > RADIUS * RADIUS)
 			return (i + 1 - log2((log10(conjz2) / 2) / log10(RADIUS)));
-		z = (z * z);
-		if (fra_data->usr_inp.fract == MANDELBROT)
+		if (fract_type == SHIP)
+			z = (fabs(creal(z)) - I * fabs(cimag(z)))
+				* (fabs(creal(z)) - I * fabs(cimag(z)));
+		else
+			z = (z * z);
+		if (fract_type == MANDELBROT || fract_type == SHIP)
 			z += (x + y * I);
 		else
-			z += fra_data->usr_inp.zcons[0] + fra_data->usr_inp.zcons[1] * I;
+			z += zconsts[0] + zconsts[1] * I;
 	}
 	return (MAX_ITER);
 }
@@ -46,7 +49,9 @@ int	plot_colorize_mlx_coords(double x, double y, t_fra *fra_data)
 	double	iter_max;
 	int		*palette;
 
-	iter_max = plot_get_iter_max_for_comp_coords(x, y, fra_data);
+	view_translate_mlx_coords_to_comp_coords(&x, &y, &fra_data->com_pln);
+	iter_max = plot_get_iter_max_for_comp_coords(x, y, fra_data->usr_inp.fract,
+			fra_data->usr_inp.zcons);
 	if (iter_max < 0)
 		iter_max = 0.0;
 	palette = fra_data->pal_con.palettes[fra_data->pal_con.current];

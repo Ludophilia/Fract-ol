@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:04:50 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/25 21:45:45 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/28 18:54:25 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	fractol_init(int argc, char **argv, t_fra *fra_data)
 	{
 		perror("fractol");
 		ft_dprintf(2, "usage: fractol (0 | 1 "
-			"<const_real> <const_imag>)\n");
+			"<const_real> <const_imag> | 2)\n");
 		return (-1);
 	}
 	if (color_palettes_load(25, fra_data) == -1)

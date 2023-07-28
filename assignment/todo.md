@@ -72,7 +72,7 @@ mouse scrollwheel
 
 # Bonus: Fractal generation?
 
-- [ ] Bonus: Add a new fractal?
+- [x] Bonus: Add a new fractal?
 
 # Tests
 

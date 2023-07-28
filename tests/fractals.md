@@ -10,7 +10,7 @@ A point `x, y` of the complex plane is in the mandelbrot set if and only if
 the sequence:
 
 `z0 = 0`
-`zn+1 = zn² + c, with c a complex number such as c = x + iy`
+`zn+1 = zn² + c`, with c a complex number such as `c = x + iy`
 
 remains in the circle C of radius 2.
 
@@ -26,6 +26,20 @@ the sequence:
 `a` and `b` being arbitrary chosen real numbers.
 
 remains in the circle C of radius 2.
+
+### Burning ship
+
+z is complex number in the form of `x + yi`.
+
+A point `x, y` of the complex plane is in the julia set if and only if
+the sequence:
+
+`z0 = 0`
+`zn+1 = (|Re(zn)| + i * |Im(zn)|)² + c`, with c a complex number such as 
+`c = x + iy` remains in the circle C of radius 2.
+
+The resulting fractal will be reversed compared to the images of the set
+available online. Use `zn+1 = (|Re(zn)| - i * |Im(zn)|)² + c` instead.
 
 ## Remarquable fractals
 

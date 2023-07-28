@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:32:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/28 15:32:56 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/28 18:56:23 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 
 # define MANDELBROT 0
 # define JULIA 1
+# define SHIP 2
 
 # define ZOOM_LEVEL 1.05
 

@@ -26,16 +26,18 @@ On those case, error message should be printed
 `./fractol`
 `./fractol ""`
 `./fractol "" "" "" ""`
+`./fractol 0 ""`
+`./fractol 1 "" ""`
 `./fractol 1 0 ""`
 
 #### Invalid arguments
 
+`./fractol z`
 `./fractol a b c`
 `./fractol x`
 `./fractol +`
 `./fractol -`
 `./fractol . . .`
-`./fractol -1 0 0`
 
 #### Mandelbrot 
 
@@ -44,11 +46,15 @@ On those case, error message should be printed
 `./fractol 0x`
 `./fractol 0.`
 `./fractol 0 0.1 1.7`
+`./fractol 0 0. 1.`
 `./fractol 0 . .`
 
 #### Julia 
 
 `./fractol 1`
+`./fractol -1`
+`./fractol -1 0 0`
+`./fractol +1`
 `./fractol 1.0`
 `./fractol 1.`
 `./fractol 1 0 1.`

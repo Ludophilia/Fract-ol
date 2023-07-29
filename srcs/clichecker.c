@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 19:40:20 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/23 14:14:07 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/29 14:27:07 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	cli_args_get(int argc, char **argv, t_fra *fra_data)
 	}
 	ft_bzero(fra_data, sizeof(t_fra));
 	fract_type = ft_atoi(argv[1]);
-	if ((fract_type < 0 || fract_type > 2) || (fract_type == 0 && argc != 2)
+	if ((fract_type < 0 || fract_type > 1) || (fract_type == 0 && argc != 2)
 		|| (fract_type == 1 && argc != 4))
 	{
 		errno = EINVAL;

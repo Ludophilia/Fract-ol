@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:34:12 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/22 20:12:15 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/07/29 14:37:57 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_pln *com_pln)
 	double	*y_lim;
 
 	x_lim = com_pln->x_lim;
-	y_lim = com_pln->x_lim;
+	y_lim = com_pln->y_lim;
 	*x = x_lim[0] + ((x_lim[1] - x_lim[0]) / WINDOW_X) * *x;
 	*y = y_lim[1] - ((y_lim[1] - y_lim[0]) / WINDOW_Y) * *y;
 	return ;
@@ -32,7 +32,6 @@ t_fra *fra_data)
 	double			conjz2;
 	int				i;
 
-	plot_translate_mlx_coords_to_comp_coords(&x, &y, &fra_data->com_pln);
 	if (fra_data->usr_inp.fract == MANDELBROT)
 		z = 0;
 	else
@@ -97,6 +96,7 @@ int	plot_colorize_mlx_coords(double x, double y, t_fra *fra_data)
 	double	iter_max;
 	int		*palette;
 
+	plot_translate_mlx_coords_to_comp_coords(&x, &y, &fra_data->com_pln);
 	iter_max = plot_get_iter_max_for_comp_coords(x, y, fra_data);
 	if (iter_max < 0)
 		iter_max = 0.0;

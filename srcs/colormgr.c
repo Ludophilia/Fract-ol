@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:45:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/09/04 20:00:24 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/09/04 20:14:51 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	color_palettes_free(int **palettes, int from)
 	while (palettes[++size])
 		;
 	i = from;
-	while (++i < size)
+	while (i < size)
 	{
 		if (palettes[i] != NULL)
 			free(palettes[i]);

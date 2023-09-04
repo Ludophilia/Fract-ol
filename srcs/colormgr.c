@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:45:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/20 18:16:13 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/09/04 20:00:24 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,41 +76,34 @@ void	color_palettes_free(int **palettes, int from)
 	int	i;
 	int	size;
 
-	if (from < 0)
-		return ;
 	size = -1;
 	while (palettes[++size])
 		;
 	i = from;
-	if (i == 0)
-		while (i < size)
-			free(palettes[i++]);
-	else
-		while (i >= 0)
-			free(palettes[i--]);
+	while (++i < size)
+	{
+		if (palettes[i] != NULL)
+			free(palettes[i]);
+		i++;
+	}
 	free(palettes);
 }
 
 int	color_palettes_load(int colors_per_gradient, t_fra *fra_data)
 {
 	int	**palettes;
-	int	i;
 
-	i = -1;
 	palettes = ft_calloc(2, sizeof(int *));
 	if (palettes == NULL)
 		return (-1);
 	palettes[0] = color_palette_create((int [6]){0x120272, 0x44bcfc, 0xffffff,
 			0xfaa502, 0xcb2600, 0x000000}, colors_per_gradient);
-	palettes[1] = NULL;
-	while (++i < 1)
+	if (palettes[0] == NULL)
 	{
-		if (palettes[i] == NULL)
-		{
-			color_palettes_free(palettes, i - 1);
-			return (-1);
-		}
+		free(palettes);
+		return (-1);
 	}
+	palettes[1] = NULL;
 	fra_data->pal_con.palettes = palettes;
 	fra_data->pal_con.current = 0;
 	fra_data->pal_con.size = 1;

@@ -6,22 +6,36 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 15:15:22 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/28 15:16:38 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/09/04 19:12:02 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "colormgr_bonus.h"
+
+void	color_palettes_free(int **palettes, int from)
+{
+	int	i;
+
+	i = from;
+	while (i < PALETTE_SIZE)
+	{
+		if (palettes[i] != NULL)
+			free(palettes[i]);
+		i++;
+	}
+	free(palettes);
+}
 
 int	color_palettes_check(int **palettes, t_fra *fra_data)
 {
 	int	i;
 
 	i = -1;
-	while (++i < 1)
+	while (++i < PALETTE_SIZE)
 	{
 		if (palettes[i] == NULL)
 		{
-			color_palettes_free(palettes, i - 1);
+			color_palettes_free(palettes, 0);
 			return (-1);
 		}
 	}
@@ -42,24 +56,4 @@ int	color_interpolate(int color1, int color2, double coeff)
 	rgb[2] = (color1 & 0xFF) + (int)(((color2 & 0xFF)
 				- (color1 & 0xFF)) * coeff);
 	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
-}
-
-void	color_palettes_free(int **palettes, int from)
-{
-	int	i;
-	int	size;
-
-	if (from < 0)
-		return ;
-	size = -1;
-	while (palettes[++size])
-		;
-	i = from;
-	if (i == 0)
-		while (i < size)
-			free(palettes[i++]);
-	else
-		while (i >= 0)
-			free(palettes[i--]);
-	free(palettes);
 }

@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:34:12 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/29 14:37:57 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/09/05 10:49:43 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ void	plot_change_comp_plane_zoom_level(int zoom_in, t_pln *com_pln)
 	}
 	else
 	{
-		min *= ZOOM_LEVEL; 
-		max *= ZOOM_LEVEL; 
+		min *= ZOOM_LEVEL;
+		max *= ZOOM_LEVEL;
 	}
 	plot_set_complex_plane_limits(min, max, com_pln);
 }

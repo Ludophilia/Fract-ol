@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:45:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/09/04 20:14:51 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/09/05 10:50:19 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	*color_palette_create(int *basecolors, int colors_per_gr)
 	ijk[2] = 0;
 	while (basecolors[++ijk[0] + 1])
 	{
-		ijk[1] = -1; 
+		ijk[1] = -1;
 		while (++ijk[1] < colors_per_gr)
 		{
 			new_color = color_interpolate(basecolors[ijk[0]],

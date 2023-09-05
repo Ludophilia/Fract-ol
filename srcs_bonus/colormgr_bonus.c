@@ -6,7 +6,7 @@
 /*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:45:30 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/28 15:29:20 by jgermany         ###   ########.fr       */
+/*   Updated: 2023/09/05 10:51:41 by jgermany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	*color_palette_build(int *basecolors, int colors_per_gr)
 	ijk[2] = 0;
 	while (basecolors[++ijk[0] + 1])
 	{
-		ijk[1] = -1; 
+		ijk[1] = -1;
 		while (++ijk[1] < colors_per_gr)
 		{
 			new_color = color_interpolate(basecolors[ijk[0]],
@@ -67,7 +67,7 @@ int	color_palettes_load(int colors_per_gradient, t_fra *fra_data)
 		return (-1);
 	palettes[0] = color_palette_build((int [6]){0x120272, 0x44bcfc, 0xffffff,
 			0xfaa502, 0xcb2600, 0x000000}, colors_per_gradient);
-	palettes[1] = color_palette_build((int [7]){0x8C00FF, 0xFFBF00, 0xFF0000, 
+	palettes[1] = color_palette_build((int [7]){0x8C00FF, 0xFFBF00, 0xFF0000,
 			0x00F7FF, 0xFF00FF, 0xFBFF00, 0x000000}, colors_per_gradient);
 	palettes[2] = color_palette_build((int [8]){0xFFBF00, 0xFBFF00, 0x00F7FF,
 			0x8C00FF, 0xFF00FF, 0x95FF00, 0xFF0000, 0x000000},

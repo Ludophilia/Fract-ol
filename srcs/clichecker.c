@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   clichecker.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
+/*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 19:40:20 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/29 14:27:07 by jgermany         ###   ########.fr       */
+/*   Updated: 2025/03/18 18:03:55 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "clichecker.h"
+#include "fractol.h"
 
 static int	cli_atod_pre_process(const char *nptr, int64_t *nb, int8_t *s)
 {

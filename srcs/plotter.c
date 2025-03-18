@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   plotter.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
+/*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:34:12 by jgermany          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/09/05 10:49:43 by jgermany         ###   ########.fr       */
+=======
+/*   Updated: 2025/03/18 18:03:39 by jegerman         ###   ########.fr       */
+>>>>>>> a0bf469 (V1.5 or 2 development started. Simplified the project by removing extra source header, consolidated them into one.)
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "plotter.h"
+#include "fractol.h"
 
 static void	plot_translate_mlx_coords_to_comp_coords(double *x, double *y,
 t_pln *com_pln)

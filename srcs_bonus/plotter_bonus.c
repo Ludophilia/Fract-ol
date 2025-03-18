@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   plotter_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
+/*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:34:12 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/28 20:01:31 by jgermany         ###   ########.fr       */
+/*   Updated: 2025/03/18 18:27:09 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "plotter_bonus.h"
+#include "fractol_bonus.h"
 
 static double	plot_get_iter_max_for_comp_coords(double x, double y,
 int32_t fract_type, double *zconsts)

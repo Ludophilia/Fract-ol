@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   scenemgr_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
+/*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 13:08:03 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/25 21:00:33 by jgermany         ###   ########.fr       */
+/*   Updated: 2025/03/18 18:27:11 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scenemgr_bonus.h"
+#include "fractol_bonus.h"
 
 int	scene_init(t_fra *fra_data)
 {

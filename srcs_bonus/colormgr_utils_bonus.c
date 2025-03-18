@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   colormgr_utils_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
+/*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 15:15:22 by jgermany          #+#    #+#             */
-/*   Updated: 2023/09/04 19:12:02 by jgermany         ###   ########.fr       */
+/*   Updated: 2025/03/18 18:26:59 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "colormgr_bonus.h"
+#include "fractol_bonus.h"
 
 void	color_palettes_free(int **palettes, int from)
 {

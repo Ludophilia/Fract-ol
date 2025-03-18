@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   hookmgr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
+/*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 19:09:27 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/22 19:47:37 by jgermany         ###   ########.fr       */
+/*   Updated: 2025/03/18 18:03:50 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hookmgr.h"
+#include "fractol.h"
 
 int	hook_key_events_manage(int keycode, t_fra *fra_data)
 {

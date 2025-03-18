@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   viewmgr_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
+/*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:15:56 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/26 16:48:51 by jgermany         ###   ########.fr       */
+/*   Updated: 2025/03/18 18:27:15 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "viewmgr_bonus.h"
+#include "fractol_bonus.h"
 
 void	view_translate_mlx_coords_to_comp_coords(double *x, double *y,
 t_pln *com_pln)

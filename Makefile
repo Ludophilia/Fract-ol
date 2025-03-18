@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
+#    By: jegerman <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/01 20:24:27 by jgermany          #+#    #+#              #
-#    Updated: 2023/07/28 15:23:07 by jgermany         ###   ########.fr        #
+#    Updated: 2025/03/18 17:44:04 by jegerman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,23 +63,9 @@ $(NAME)								:$(OBJS_MAN)
 %.o									:%.c
 									$(CC) $(CFLAGS) -o $@ -c $<
 
-$(OBJS_MAN)							:$(INCL_DIRM)/fractol_common.h
-$(SRCS)/fractol.o					:$(INCL_DIRM)/fractol.h
-$(SRCS)/scenemgr.o					:$(INCL_DIRM)/scenemgr.h
-$(SRCS)/hookmgr.o					:$(INCL_DIRM)/hookmgr.h
-$(SRCS)/imgmgr.o					:$(INCL_DIRM)/imgmgr.h
-$(SRCS)/plotter.o					:$(INCL_DIRM)/plotter.h
-$(SRCS)/clichecker.o				:$(INCL_DIRM)/clichecker.h
-$(SRCS)/colormgr.o					:$(INCL_DIRM)/colormgr.h
+$(OBJS_MAN)							:$(INCL_DIRM)/fractol.h
 
-$(OBJS_BON)							:$(INCL_DIRB)/fractol_common_bonus.h
-$(SRCS_BON)/fractol_bonus.o			:$(INCL_DIRB)/fractol_bonus.h
-$(SRCS_BON)/scenemgr_bonus.o		:$(INCL_DIRB)/scenemgr_bonus.h
-$(SRCS_BON)/hookmgr_bonus.o			:$(INCL_DIRB)/hookmgr_bonus.h
-$(SRCS_BON)/imgmgr_bonus.o			:$(INCL_DIRB)/imgmgr_bonus.h
-$(SRCS_BON)/plotter_bonus.o			:$(INCL_DIRB)/plotter_bonus.h
-$(SRCS_BON)/clichecker_bonus.o		:$(INCL_DIRB)/clichecker_bonus.h
-$(SRCS_BON)/colormgr_bonus.o		:$(INCL_DIRB)/colormgr_bonus.h
+$(OBJS_BON)							:$(INCL_DIRB)/fractol_bonus.h
 
 clean:
 									make -sC $(FT) $@

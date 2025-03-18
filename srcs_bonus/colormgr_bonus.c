@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   colormgr_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
+/*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:45:30 by jgermany          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/09/05 10:51:41 by jgermany         ###   ########.fr       */
+=======
+/*   Updated: 2025/03/18 18:26:55 by jegerman         ###   ########.fr       */
+>>>>>>> a0bf469 (V1.5 or 2 development started. Simplified the project by removing extra source header, consolidated them into one.)
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "colormgr_bonus.h"
+#include "fractol_bonus.h"
 
 static int	*color_palette_init(int *basecolors, int colors_per_gr)
 {

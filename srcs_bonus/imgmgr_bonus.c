@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   imgmgr_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
+/*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:54:38 by jgermany          #+#    #+#             */
-/*   Updated: 2023/07/25 17:42:53 by jgermany         ###   ########.fr       */
+/*   Updated: 2025/03/18 18:27:05 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "imgmgr_bonus.h"
+#include "fractol_bonus.h"
 
 int	image_init(t_fra *fra_data)
 {

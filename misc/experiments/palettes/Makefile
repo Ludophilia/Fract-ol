@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
+#    By: jegerman <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/04 18:44:43 by jgermany          #+#    #+#              #
-#    Updated: 2023/07/18 17:00:51 by jgermany         ###   ########.fr        #
+#    Updated: 2025/03/21 18:21:16 by jegerman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := color
+NAME := palettes
 
 CC := cc
 CFLAGS := -Wall -Wextra -Werror

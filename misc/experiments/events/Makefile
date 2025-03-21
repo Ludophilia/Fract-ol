@@ -3,16 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+         #
+#    By: jegerman <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 13:11:54 by jgermany          #+#    #+#              #
-#    Updated: 2023/07/01 16:41:37 by jgermany         ###   ########.fr        #
+#    Updated: 2025/03/21 18:20:02 by jegerman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 		:= mlx_expr
+NAME 		:= events
 
-MLX_DIR		:= ../../minilibx-linux
+ROOT		:= ../../..
+
+MLX_DIR		:= $(ROOT)/libs/mlx
 
 CC 			:= cc
 CFLAGS		:= -Wall -Wextra -Werror
@@ -23,7 +25,6 @@ MLXFLAGS	+= -L$(MLX_DIR)
 
 SRCS 		:= main.c
 SRCS 		+= hookmgr.c
-SRCS 		+= scenemgr.c
 
 OBJS		:= $(SRCS:.c=.o)
 
@@ -32,21 +33,21 @@ MLX			:= $(MLX_DIR)/libmmlx.a
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-	make -C $(MLX_DIR) all
-	$(CC) $(CFLAGS) -o $@ $(OBJS) $(MLXFLAGS)
+			make -C $(MLX_DIR) all
+			$(CC) $(CFLAGS) -o $@ $(OBJS) $(MLXFLAGS)
 
-%.o:		%.h mlx_common.h
+%.o:		hooks.h
 
 clean:
-	make -C $(MLX_DIR) clean
-	rm -f $(OBJS)
+			make -C $(MLX_DIR) clean
+			rm -f $(OBJS)
 
 fclean:		clean
-	rm -f $(NAME)
+			rm -f $(NAME)
 
 re:
-	make fclean
-	make all
+			make fclean
+			make all
 
 .SILENT: clean fclean $(MLX)
 .PHONY: all clean fclean re

@@ -5,32 +5,40 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jegerman <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/07/04 18:44:43 by jgermany          #+#    #+#              #
-#    Updated: 2025/03/20 18:20:51 by jegerman         ###   ########.fr        #
+#    Created: 2025/03/20 12:50:43 by jegerman          #+#    #+#              #
+#    Updated: 2025/03/20 14:34:24 by jegerman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := complex
+NAME := animations
 
 CC := cc
-CFLAGS := -std=c11 -Wall -Wextra -Werror
 
-SRCS := complex.c
+ROOT := ../../..
+
+MLXD := $(ROOT)/libs/mlx
+
+CFLAGS += -I$(MLXD)
+
+LMLXFL := -lmlx -L$(MLXD)
+LX11FL := -lX11 -lXext
+
+SRCS := mlx_anims.c
+
 OBJS := $(SRCS:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) -lm
-
-%.o: %.c
-	@$(CC) $(CFLAGS) -c $<
+	make -sC$(MLXD) 2> /dev/null 1>&2 
+	$(CC) $(CFLAGS) -o $(NAME) $^ $(LMLXFL) $(LX11FL)
 
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -rf $(NAME)
+
+re: fclean all
 
 .SILENT: clean fclean
-.PHONY: all re clean fclean

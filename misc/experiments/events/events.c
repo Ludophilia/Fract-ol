@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   hookmgr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
+/*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 19:09:27 by jgermany          #+#    #+#             */
-/*   Updated: 2023/06/23 14:34:25 by jgermany         ###   ########.fr       */
+/*   Updated: 2025/03/21 18:19:13 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hookmgr.h"
+#include "hooks.h"
 
 int	test_expose_hook(void)
 {
@@ -20,6 +20,7 @@ int	test_expose_hook(void)
 
 int	test_destroy_hook(void *params)
 {
+	printf("Destroy event happened...\n");
 	mlx_loop_end(((t_mlx *)params)->mlx_ptr);
 	return (0);
 }
@@ -29,6 +30,7 @@ int	test_motion_hook(int x, int y, t_mlx *mlx_data)
 	int		offx;
 	int		offy;
 
+	printf("Motion event happened...\n");
 	offy = -1;
 	while (++offy < 10) 
 	{
@@ -43,7 +45,7 @@ int	test_motion_hook(int x, int y, t_mlx *mlx_data)
 int	test_loop_hook(t_mlx *mlx_data) // (void *params)
 {
 	mlx_data->loopcount++;
-	if ((mlx_data->loopcount % (5 * 200 * 1000)) == 0)
+	if ((mlx_data->loopcount % (2 * 100 * 1000)) == 0)
 		printf("loop #%i\n", mlx_data->loopcount);
 	return (0);
 }

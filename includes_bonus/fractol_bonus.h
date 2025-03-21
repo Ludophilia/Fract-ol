@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/18 18:09:42 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/21 18:25:48 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # include <math.h>
 # include <complex.h>
 
-# define SCENENAME "Fractol +"
+# define SCENENAME "Fractol bonus"
 
 # define WINDOW_X 1150
 # define WINDOW_Y 1150
@@ -89,7 +89,6 @@ typedef struct s_fra
 	t_pal	pal_con;
 	t_pln	com_pln;
 }	t_fra;
-
 
 int		cli_args_get(int argc, char **argv, t_fra *fra_data);
 

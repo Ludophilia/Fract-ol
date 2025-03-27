@@ -6,19 +6,19 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:54:38 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/18 18:03:48 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/27 15:13:24 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	image_init(t_fra *fra_data)
+int	image_init(t_core *core)
 {
 	t_img	*img_con;
 
-	img_con = &fra_data->img_con;
+	img_con = &core->img_con;
 	ft_bzero(img_con, sizeof(t_img));
-	img_con->img_ptr = mlx_new_image(fra_data->mlx_ptr, WINDOW_X, WINDOW_Y);
+	img_con->img_ptr = mlx_new_image(core->mlx_ptr, WINDOW_X, WINDOW_Y);
 	if (img_con->img_ptr == NULL)
 		return (-1);
 	img_con->addr = mlx_get_data_addr(img_con->img_ptr, &img_con->bpp,
@@ -28,7 +28,7 @@ int	image_init(t_fra *fra_data)
 	return (0);
 }
 
-static void	image_pixel_colorize(int x, int y, t_img *img_con, uint32_t color)
+static void	image_pixel_colorize(int x, int y, t_img *img_con, uint color)
 {
 	int	i;
 	int	start_addr;
@@ -51,7 +51,7 @@ static void	image_pixel_colorize(int x, int y, t_img *img_con, uint32_t color)
 	return ;
 }
 
-int	image_draw(t_fra *fra_data)
+int	image_draw(t_core *core)
 {
 	int	cord[2];
 	int	color;
@@ -62,11 +62,11 @@ int	image_draw(t_fra *fra_data)
 		cord[0] = -1;
 		while (++cord[0] < WINDOW_X)
 		{
-			color = plot_colorize_mlx_coords(cord[0], cord[1], fra_data);
-			image_pixel_colorize(cord[0], cord[1], &fra_data->img_con, color);
+			color = plot_colorize_mlx_coords(cord[0], cord[1], core);
+			image_pixel_colorize(cord[0], cord[1], &core->img_con, color);
 		}
 	}
-	mlx_put_image_to_window(fra_data->mlx_ptr, fra_data->win_ptr,
-		fra_data->img_con.img_ptr, 0, 0);
+	mlx_put_image_to_window(core->mlx_ptr, core->win_ptr,
+		core->img_con.img_ptr, 0, 0);
 	return (0);
 }

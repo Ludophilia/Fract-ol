@@ -62,7 +62,7 @@ static int	*color_palette_build(int *basecolors, int colors_per_gr)
 	return (palette);
 }
 
-int	color_palettes_load(int colors_per_gradient, t_fra *fra_data)
+int	color_palettes_load(int colors_per_gradient, t_core *core)
 {
 	int	**palettes;
 
@@ -79,13 +79,13 @@ int	color_palettes_load(int colors_per_gradient, t_fra *fra_data)
 	palettes[3] = color_palette_build((int [6]){0xffffff, 0xc6c6c6, 0x919191,
 			0x5e5e5f, 0x303031, 0x000000}, colors_per_gradient);
 	palettes[PALETTE_SIZE] = NULL;
-	color_palettes_check(palettes, fra_data);
+	color_palettes_check(palettes, core);
 	return (0);
 }
 
 void	color_palettes_shift(int straight, t_pal *palette)
 {
-	uint8_t	current;
+	uchar	current;
 
 	current = palette->current;
 	if (straight)

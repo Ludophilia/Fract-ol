@@ -6,7 +6,7 @@
 #    By: jegerman <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/01 20:24:27 by jgermany          #+#    #+#              #
-#    Updated: 2025/03/18 17:44:04 by jegerman         ###   ########.fr        #
+#    Updated: 2025/03/27 18:19:55 by jegerman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,23 +27,23 @@ bonus: CFLAGS						+= -I$(INCL_DIRB)
 LIBFLAGS 							:= -lm -lft -L$(FT) -lmlx -L$(MLX)
 LIBFLAGS 							+= -lX11 -lXext
 
-SRCS_MAN 							:= $(SRCS_DIRM)/fractol.c
-SRCS_MAN 							+= $(SRCS_DIRM)/scenemgr.c
-SRCS_MAN 							+= $(SRCS_DIRM)/hookmgr.c
-SRCS_MAN 							+= $(SRCS_DIRM)/imgmgr.c
-SRCS_MAN 							+= $(SRCS_DIRM)/plotter.c
-SRCS_MAN 							+= $(SRCS_DIRM)/clichecker.c
-SRCS_MAN 							+= $(SRCS_DIRM)/colormgr.c
+SRCS_MAN 							:= $(SRCS_DIRM)/main.c
+SRCS_MAN 							+= $(SRCS_DIRM)/climgr.c
+# SRCS_MAN 							+= $(SRCS_DIRM)/scenemgr.c
+# SRCS_MAN 							+= $(SRCS_DIRM)/hookmgr.c
+# SRCS_MAN 							+= $(SRCS_DIRM)/imgmgr.c
+# SRCS_MAN 							+= $(SRCS_DIRM)/plotter.c
+# SRCS_MAN 							+= $(SRCS_DIRM)/colormgr.c
 
-SRCS_BON 							:= $(SRCS_DIRB)/fractol_bonus.c
-SRCS_BON 							+= $(SRCS_DIRB)/scenemgr_bonus.c
-SRCS_BON 							+= $(SRCS_DIRB)/hookmgr_bonus.c
-SRCS_BON 							+= $(SRCS_DIRB)/imgmgr_bonus.c
-SRCS_BON 							+= $(SRCS_DIRB)/plotter_bonus.c
-SRCS_BON 							+= $(SRCS_DIRB)/clichecker_bonus.c
-SRCS_BON 							+= $(SRCS_DIRB)/colormgr_bonus.c
-SRCS_BON 							+= $(SRCS_DIRB)/colormgr_utils_bonus.c
-SRCS_BON 							+= $(SRCS_DIRB)/viewmgr_bonus.c
+# SRCS_BON 							:= $(SRCS_DIRB)/main_bonus.c
+# SRCS_BON 							+= $(SRCS_DIRB)/scenemgr_bonus.c
+# SRCS_BON 							+= $(SRCS_DIRB)/hookmgr_bonus.c
+# SRCS_BON 							+= $(SRCS_DIRB)/imgmgr_bonus.c
+# SRCS_BON 							+= $(SRCS_DIRB)/plotter_bonus.c
+# SRCS_BON 							+= $(SRCS_DIRB)/clichecker_bonus.c
+# SRCS_BON 							+= $(SRCS_DIRB)/colormgr_bonus.c
+# SRCS_BON 							+= $(SRCS_DIRB)/colormgr_utils_bonus.c
+# SRCS_BON 							+= $(SRCS_DIRB)/viewmgr_bonus.c
 
 OBJS_MAN 							:= $(SRCS_MAN:.c=.o)
 OBJS_BON 							:= $(SRCS_BON:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/21 18:25:48 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/27 16:16:55 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_img
 
 typedef struct s_inp
 {
-	int32_t	fract;
+	int	fract;
 	double	zcons[2];
 	char	*zconsrw[2];
 }	t_inp;
@@ -71,7 +71,7 @@ typedef struct s_pal
 {
 	int		**palettes;
 	int		size;
-	uint8_t	current;
+	uchar	current;
 }	t_pal;
 
 typedef struct s_pln
@@ -88,35 +88,35 @@ typedef struct s_fra
 	t_inp	usr_inp;
 	t_pal	pal_con;
 	t_pln	com_pln;
-}	t_fra;
+}	t_core;
 
-int		cli_args_get(int argc, char **argv, t_fra *fra_data);
+int		cli_get_args(int argc, char **argv, t_core *core);
 
 int		color_interpolate(int color1, int color2, double coeff);
-int		color_palettes_load(int colors_per_gradient, t_fra *fra_data);
+int		color_palettes_load(int colors_per_gradient, t_core *core);
 void	color_palettes_free(int **palettes, int from);
-int		color_palettes_check(int **palettes, t_fra *fra_data);
+int		color_palettes_check(int **palettes, t_core *core);
 void	color_palettes_shift(int straight, t_pal *palette);
 
-int		hook_key_events_manage(int keycode, t_fra *fra_data);
-int		hook_mouse_events_manage(int button, int x, int y, t_fra *fra_data);
-int		hook_loop_events_manage(t_fra *fra_data);
+int		hook_key_events_manage(int keycode, t_core *core);
+int		hook_mouse_events_manage(int button, int x, int y, t_core *core);
+int		hook_loop_events_manage(t_core *core);
 
-int		image_init(t_fra *fra_data);
-int		image_draw(t_fra *fra_data);
+int		image_init(t_core *core);
+int		image_draw(t_core *core);
 
-int		plot_colorize_mlx_coords(double x, double y, t_fra *fra_data);
+int		plot_colorize_mlx_coords(double x, double y, t_core *core);
 
-int		scene_init(t_fra *fra_data);
-void	scene_events_register(t_fra *fra_data);
-void	scene_events_wait(t_fra *fra_data);
-void	scene_destroy(t_fra *fra_data);
+int		scene_init(t_core *core);
+void	scene_events_register(t_core *core);
+void	scene_events_wait(t_core *core);
+void	scene_destroy(t_core *core);
 
 void	view_translate_mlx_coords_to_comp_coords(double *x, double *y,
 		t_pln *com_pln);
 void	view_set_complex_plane_limits(double min, double max, t_pln *com_pln);
 void	view_change_comp_plane_zoom_level(int zoom_in, double x, double y,
 		t_pln *com_pln);
-void	view_shit_comp_plane(uint8_t shift_direction, t_pln *com_pln);
+void	view_shit_comp_plane(uchar shift_direction, t_pln *com_pln);
 
 #endif

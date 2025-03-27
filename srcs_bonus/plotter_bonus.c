@@ -6,14 +6,14 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:34:12 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/18 18:27:09 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/27 15:13:24 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_bonus.h"
 
 static double	plot_get_iter_max_for_comp_coords(double x, double y,
-int32_t fract_type, double *zconsts)
+int fract_type, double *zconsts)
 {
 	double			conjz2;
 	double complex	z;
@@ -42,19 +42,19 @@ int32_t fract_type, double *zconsts)
 	return (MAX_ITER);
 }
 
-int	plot_colorize_mlx_coords(double x, double y, t_fra *fra_data)
+int	plot_colorize_mlx_coords(double x, double y, t_core *core)
 {
 	int		basecolors[2];
 	int		pal_size;
 	double	iter_max;
 	int		*palette;
 
-	view_translate_mlx_coords_to_comp_coords(&x, &y, &fra_data->com_pln);
-	iter_max = plot_get_iter_max_for_comp_coords(x, y, fra_data->usr_inp.fract,
-			fra_data->usr_inp.zcons);
+	view_translate_mlx_coords_to_comp_coords(&x, &y, &core->com_pln);
+	iter_max = plot_get_iter_max_for_comp_coords(x, y, core->usr_inp.fract,
+			core->usr_inp.zcons);
 	if (iter_max < 0)
 		iter_max = 0.0;
-	palette = fra_data->pal_con.palettes[fra_data->pal_con.current];
+	palette = core->pal_con.palettes[core->pal_con.current];
 	pal_size = -1;
 	while (palette[++pal_size])
 		;

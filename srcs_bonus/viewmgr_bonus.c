@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:15:56 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/18 18:27:15 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/27 15:35:08 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	view_set_complex_plane_limits(double min, double max, t_pln *com_pln)
 	}
 }
 
-void	view_shit_comp_plane(uint8_t shift_direction, t_pln *com_pln)
+void	view_shit_comp_plane(uchar shift_direction, t_pln *com_pln)
 {
 	double	*x_lim;
 	double	*y_lim;

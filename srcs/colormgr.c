@@ -6,11 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:45:30 by jgermany          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/09/05 10:50:19 by jgermany         ###   ########.fr       */
-=======
-/*   Updated: 2025/03/18 18:03:52 by jegerman         ###   ########.fr       */
->>>>>>> a0bf469 (V1.5 or 2 development started. Simplified the project by removing extra source header, consolidated them into one.)
+/*   Updated: 2025/03/27 15:35:08 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +31,7 @@ static int	*color_palette_init(int *basecolors, int colors_per_gr)
 
 int	color_interpolate(int color1, int color2, double coeff)
 {
-	uint8_t	rgb[3];
+	uchar	rgb[3];
 
 	rgb[0] = (color1 >> 16 & 0xFF) + (int)(((color2 >> 16 & 0xFF)
 				- (color1 >> 16 & 0xFF)) * coeff);
@@ -93,7 +89,7 @@ void	color_palettes_free(int **palettes, int from)
 	free(palettes);
 }
 
-int	color_palettes_load(int colors_per_gradient, t_fra *fra_data)
+int	color_palettes_load(int colors_per_gradient, t_core *core)
 {
 	int	**palettes;
 
@@ -108,8 +104,8 @@ int	color_palettes_load(int colors_per_gradient, t_fra *fra_data)
 		return (-1);
 	}
 	palettes[1] = NULL;
-	fra_data->pal_con.palettes = palettes;
-	fra_data->pal_con.current = 0;
-	fra_data->pal_con.size = 1;
+	core->pal_con.palettes = palettes;
+	core->pal_con.current = 0;
+	core->pal_con.size = 1;
 	return (0);
 }

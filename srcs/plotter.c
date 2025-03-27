@@ -6,11 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:34:12 by jgermany          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/09/05 10:49:43 by jgermany         ###   ########.fr       */
-=======
-/*   Updated: 2025/03/18 18:03:39 by jegerman         ###   ########.fr       */
->>>>>>> a0bf469 (V1.5 or 2 development started. Simplified the project by removing extra source header, consolidated them into one.)
+/*   Updated: 2025/03/27 15:13:24 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +26,13 @@ t_pln *com_pln)
 }
 
 static double	plot_get_iter_max_for_comp_coords(double x, double y,
-t_fra *fra_data)
+t_core *core)
 {
 	double complex	z;
 	double			conjz2;
 	int				i;
 
-	if (fra_data->usr_inp.fract == MANDELBROT)
+	if (core->usr_inp.fract == MANDELBROT)
 		z = 0;
 	else
 		z = x + y * I;
@@ -47,10 +43,10 @@ t_fra *fra_data)
 		if (conjz2 > RADIUS * RADIUS)
 			return (i + 1 - log2((log10(conjz2) / 2) / log10(RADIUS)));
 		z = (z * z);
-		if (fra_data->usr_inp.fract == MANDELBROT)
+		if (core->usr_inp.fract == MANDELBROT)
 			z += (x + y * I);
 		else
-			z += fra_data->usr_inp.zcons[0] + fra_data->usr_inp.zcons[1] * I;
+			z += core->usr_inp.zcons[0] + core->usr_inp.zcons[1] * I;
 	}
 	return (MAX_ITER);
 }
@@ -93,18 +89,18 @@ void	plot_change_comp_plane_zoom_level(int zoom_in, t_pln *com_pln)
 	plot_set_complex_plane_limits(min, max, com_pln);
 }
 
-int	plot_colorize_mlx_coords(double x, double y, t_fra *fra_data)
+int	plot_colorize_mlx_coords(double x, double y, t_core *core)
 {
 	int		basecolors[2];
 	int		pal_size;
 	double	iter_max;
 	int		*palette;
 
-	plot_translate_mlx_coords_to_comp_coords(&x, &y, &fra_data->com_pln);
-	iter_max = plot_get_iter_max_for_comp_coords(x, y, fra_data);
+	plot_translate_mlx_coords_to_comp_coords(&x, &y, &core->com_pln);
+	iter_max = plot_get_iter_max_for_comp_coords(x, y, core);
 	if (iter_max < 0)
 		iter_max = 0.0;
-	palette = fra_data->pal_con.palettes[fra_data->pal_con.current];
+	palette = core->pal_con.palettes[core->pal_con.current];
 	pal_size = -1;
 	while (palette[++pal_size])
 		;

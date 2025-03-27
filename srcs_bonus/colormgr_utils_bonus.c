@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 15:15:22 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/18 18:26:59 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/27 15:35:08 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	color_palettes_free(int **palettes, int from)
 	free(palettes);
 }
 
-int	color_palettes_check(int **palettes, t_fra *fra_data)
+int	color_palettes_check(int **palettes, t_core *core)
 {
 	int	i;
 
@@ -39,15 +39,15 @@ int	color_palettes_check(int **palettes, t_fra *fra_data)
 			return (-1);
 		}
 	}
-	fra_data->pal_con.palettes = palettes;
-	fra_data->pal_con.current = 0;
-	fra_data->pal_con.size = PALETTE_SIZE;
+	core->pal_con.palettes = palettes;
+	core->pal_con.current = 0;
+	core->pal_con.size = PALETTE_SIZE;
 	return (0);
 }
 
 int	color_interpolate(int color1, int color2, double coeff)
 {
-	uint8_t	rgb[3];
+	uchar	rgb[3];
 
 	rgb[0] = (color1 >> 16 & 0xFF) + (int)(((color2 >> 16 & 0xFF)
 				- (color1 >> 16 & 0xFF)) * coeff);

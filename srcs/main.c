@@ -6,48 +6,31 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 12:29:38 by jegerman          #+#    #+#             */
-/*   Updated: 2025/03/19 12:32:07 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/27 18:17:41 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static int	fractol_init(int argc, char **argv, t_fra *fra_data)
-{
-	if (cli_args_get(argc, argv, fra_data) == -1)
-	{
-		perror("fractol");
-		ft_dprintf(2, "usage: fractol (0 | 1 "
-			"<const_real> <const_imag>)\n");
-		return (-1);
-	}
-	if (color_palettes_load(25, fra_data) == -1)
-	{
-		errno = ENOMEM;
-		perror("fractol");
-		return (-1);
-	}
-	if (scene_init(fra_data) == -1 || image_init(fra_data) == -1)
-	{
-		perror("fractol");
-		ft_dprintf(2, "Something went wrong when initializing"
-			" the MiniLibX Library.\n");
-		color_palettes_free(fra_data->pal_con.palettes, 0);
-		return (-1);
-	}
-	plot_set_complex_plane_limits(-2, 2, &fra_data->com_pln);
-	return (0);
-}
-
+// 27/03 - Ok, we've started refactoring...
+// perror("fractol");
 int	main(int argc, char **argv)
 {
-	t_fra	fra_data;
+	t_core	core;
 
-	if (fractol_init(argc, argv, &fra_data) == -1)
+	if ((cli_get_args(argc, argv, &core) == -1 && ft_dprintf(2, ERR_USAGE))) // Could be moved
 		return (1);
-	image_draw(&fra_data);
-	scene_events_register(&fra_data);
-	scene_events_wait(&fra_data);
-	scene_destroy(&fra_data);
+	// if (color_palettes_load(25, &core) == -1)
+	// 	return (2);
+
+	// if ((scene_init(core) == -1 || image_init(core) == -1)
+	// 	&& ft_dprintf(2, ERR_MLX_INIT)
+	// 	&& color_palettes_free(core->pal_con.palettes, 0))
+	// 	return (-1);
+	// plot_set_complex_plane_limits(-2, 2, &core->com_pln);
+	// image_draw(&core);
+	// scene_events_register(&core);
+	// scene_events_wait(&core);
+	// scene_destroy(&core);
 	return (0);
 }

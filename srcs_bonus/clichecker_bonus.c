@@ -6,15 +6,15 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 19:40:20 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/18 18:26:52 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/27 16:16:55 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_bonus.h"
 
-static int	cli_atod_pre_process(const char *nptr, int64_t *nb, int8_t *s)
+static int	cli_atod_pre_process(const char *nptr, double *nb, char *s)
 {
-	int32_t	i;
+	int	i;
 
 	i = 0;
 	*s = 1;
@@ -33,9 +33,9 @@ static int	cli_atod_pre_process(const char *nptr, int64_t *nb, int8_t *s)
 
 static double	cli_atod(const char *nptr)
 {
-	int64_t	nb[2];
-	int8_t	s;
-	int32_t	i;
+	double	nb[2];
+	char	s;
+	int	i;
 
 	i = cli_atod_pre_process(nptr, nb, &s);
 	while (ft_isdigit(nptr[i]) || ((nptr[i] == '.' || nptr[i] == ',')
@@ -99,16 +99,16 @@ static int	cli_args_check(int argc, char **argv)
 	return (0);
 }
 
-int	cli_args_get(int argc, char **argv, t_fra *fra_data)
+int	cli_get_args(int argc, char **argv, t_core *core)
 {
-	int32_t	fract_type;
+	int	fract_type;
 
 	if (cli_args_check(argc, argv) == -1)
 	{
 		errno = EINVAL;
 		return (-1);
 	}
-	ft_bzero(fra_data, sizeof(t_fra));
+	ft_bzero(core, sizeof(t_core));
 	fract_type = ft_atoi(argv[1]);
 	if ((fract_type < 0 || fract_type > 2) || (fract_type == 0 && argc != 2)
 		|| (fract_type == 2 && argc != 2) || (fract_type == 1 && argc != 4))
@@ -116,13 +116,13 @@ int	cli_args_get(int argc, char **argv, t_fra *fra_data)
 		errno = EINVAL;
 		return (-1);
 	}
-	fra_data->usr_inp.fract = fract_type;
+	core->usr_inp.fract = fract_type;
 	if (fract_type == 1)
 	{
-		fra_data->usr_inp.zcons[0] = cli_atod(argv[2]);
-		fra_data->usr_inp.zcons[1] = cli_atod(argv[3]);
-		fra_data->usr_inp.zconsrw[0] = argv[2];
-		fra_data->usr_inp.zconsrw[1] = argv[3];
+		core->usr_inp.zcons[0] = cli_atod(argv[2]);
+		core->usr_inp.zcons[1] = cli_atod(argv[3]);
+		core->usr_inp.zconsrw[0] = argv[2];
+		core->usr_inp.zconsrw[1] = argv[3];
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/28 14:06:54 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/28 16:54:32 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,13 @@ typedef struct s_fpnb
 	double	exp;
 }	t_fpn;
 
+typedef struct s_cnt
+{
+	long	i;
+	long	j;
+	long	k;
+}	t_cnt;
+
 typedef struct s_cli // s_inp
 {
 	// double	zcons[2];
@@ -89,8 +96,8 @@ typedef struct s_ui // s_img
 	int		img_bpp; // bpp
 	int		img_end; // end
 	int		img_szl; // szl
-	int		**pal_arr;
-	int		pal_total;
+	int		*pal_arr[2];
+	int		pal_size;
 	int		pal_curr;
 	// t_pal	pal_con;
 }	t_ui; //t_img;
@@ -99,7 +106,7 @@ typedef struct s_ui // s_img
 typedef struct s_core //s_fra
 {
 	t_ui	win;
-	t_pln	pla;
+	t_pln	plan;
 	t_cli	cli;
 	// void		*mlx_ptr;
 	// void		*win_ptr;
@@ -117,7 +124,7 @@ int		hook_loop_events_manage(t_core *core);
 int		cli_get_args(int argc, char **argv, t_core *core);
 
 int		color_interpolate(int color1, int color2, double coeff);
-int		color_palettes_load(int colors_per_gradient, t_core *core);
+int		color_palettes_build(int colors_per_gradient, t_core *core);
 void	color_palettes_free(int **palettes, int from);
 
 int		image_init(t_core *core);

@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 12:35:34 by jegerman          #+#    #+#             */
-/*   Updated: 2025/03/27 16:16:55 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/28 16:43:47 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	fractol_init(int argc, char **argv, t_core *core)
 			"<const_real> <const_imag> | 2)\n");
 		return (-1);
 	}
-	if (color_palettes_load(25, core) == -1)
+	if (color_palettes_build(25, core) == -1)
 	{
 		errno = ENOMEM;
 		perror("fractol");

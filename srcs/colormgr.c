@@ -6,71 +6,13 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:45:30 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/27 15:35:08 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/28 19:37:28 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static int	*color_palette_init(int *basecolors, int colors_per_gr)
-{
-	int	*palette;
-	int	size;
-
-	size = -1;
-	while (basecolors[++size])
-		;
-	if (size < 2 || colors_per_gr < 2)
-		return (NULL);
-	size = colors_per_gr + (size - 2) * (colors_per_gr - 1) + 1;
-	palette = ft_calloc(size, sizeof(int));
-	if (palette == NULL)
-		return (NULL);
-	return (palette);
-}
-
-int	color_interpolate(int color1, int color2, double coeff)
-{
-	uchar	rgb[3];
-
-	rgb[0] = (color1 >> 16 & 0xFF) + (int)(((color2 >> 16 & 0xFF)
-				- (color1 >> 16 & 0xFF)) * coeff);
-	rgb[1] = (color1 >> 8 & 0xFF) + (int)(((color2 >> 8 & 0xFF)
-				- (color1 >> 8 & 0xFF)) * coeff);
-	rgb[2] = (color1 & 0xFF) + (int)(((color2 & 0xFF)
-				- (color1 & 0xFF)) * coeff);
-	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
-}
-
-static int	*color_palette_create(int *basecolors, int colors_per_gr)
-{
-	int	*palette;
-	int	ijk[3];
-	int	new_color;
-
-	palette = color_palette_init(basecolors, colors_per_gr);
-	if (palette == NULL)
-		return (NULL);
-	ijk[0] = -1;
-	ijk[2] = 0;
-	while (basecolors[++ijk[0] + 1])
-	{
-		ijk[1] = -1;
-		while (++ijk[1] < colors_per_gr)
-		{
-			new_color = color_interpolate(basecolors[ijk[0]],
-					basecolors[ijk[0] + 1],
-					(double)ijk[1] / (colors_per_gr - 1));
-			if (ijk[2] == 0)
-				palette[ijk[2]++] = new_color;
-			else if (new_color != palette[ijk[2] - 1])
-				palette[ijk[2]++] = new_color;
-		}
-	}
-	palette[ijk[2]] = 0x000000;
-	return (palette);
-}
-
+// 28/03 - What should be freed now that some of those things are on the stack?
 void	color_palettes_free(int **palettes, int from)
 {
 	int	i;
@@ -82,30 +24,75 @@ void	color_palettes_free(int **palettes, int from)
 	i = from;
 	while (i < size)
 	{
-		if (palettes[i] != NULL)
+		if (palettes[i])
 			free(palettes[i]);
 		i++;
 	}
-	free(palettes);
+	// free(palettes);
 }
 
-int	color_palettes_load(int colors_per_gradient, t_core *core)
+// 28/03 - Make it clearer?
+int	color_interpolate(int color1, int color2, double coeff)
+{
+	char	rgb[3];
+
+	rgb[0] = (color1 >> 16 & 0xFF) + (int)(((color2 >> 16 & 0xFF)
+				- (color1 >> 16 & 0xFF)) * coeff);
+	rgb[1] = (color1 >> 8 & 0xFF) + (int)(((color2 >> 8 & 0xFF)
+				- (color1 >> 8 & 0xFF)) * coeff);
+	rgb[2] = (color1 & 0xFF) + (int)(((color2 & 0xFF)
+				- (color1 & 0xFF)) * coeff);
+	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
+}
+
+static int	*color_palette_build(int *basecolors, int size, int colors_per_gr)
+{
+	int		*palette;
+	t_cnt	count;
+	int		itp_color;
+
+	if (size < 2 || colors_per_gr < 2)
+		return (NULL);
+	size = colors_per_gr + (size - 2) * (colors_per_gr - 1) + 1;
+	// e.g - 2 Basecolors, 6 Colors_per_gradient
+	// BCC CCB N
+
+	// e.g - 3 Basecolors, 6 Colors_per_gradient
+	// BCC CCB
+	//  CC CCB N
+
+	palette = ft_calloc(size, sizeof(int));
+	if (palette == NULL)
+		return (NULL);
+	count = (t_cnt){.i = -1, .k = 0};
+	while (basecolors[++count.i + 1])
+	{
+		count.j = -1;
+		while (++count.j < colors_per_gr)
+		{
+			itp_color = color_interpolate(basecolors[count.i],
+					basecolors[count.i + 1],
+					(double)count.j / (colors_per_gr - 1));
+			if (count.k == 0 || itp_color != palette[count.k - 1])
+				palette[count.k++] = itp_color;
+		}
+	}
+
+	palette[count.k] = 0;
+	return (palette);
+}
+
+int	color_palettes_build(int colors_per_gradient, t_core *core)
 {
 	int	**palettes;
 
-	palettes = ft_calloc(2, sizeof(int *));
-	if (palettes == NULL)
-		return (-1);
-	palettes[0] = color_palette_create((int [6]){0x120272, 0x44bcfc, 0xffffff,
-			0xfaa502, 0xcb2600, 0x000000}, colors_per_gradient);
+	palettes = core->win.pal_arr;
+	palettes[0] = color_palette_build((int [6]){0x120272, 0x44bcfc, 0xffffff,
+		0xfaa502, 0xcb2600, 0}, 5, colors_per_gradient);
 	if (palettes[0] == NULL)
-	{
-		free(palettes);
 		return (-1);
-	}
 	palettes[1] = NULL;
-	core->pal_con.palettes = palettes;
-	core->pal_con.current = 0;
-	core->pal_con.size = 1;
+	core->win.pal_curr = 0;
+	core->win.pal_size = 1;
 	return (0);
 }

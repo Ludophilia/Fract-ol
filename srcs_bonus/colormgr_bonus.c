@@ -62,7 +62,7 @@ static int	*color_palette_build(int *basecolors, int colors_per_gr)
 	return (palette);
 }
 
-int	color_palettes_load(int colors_per_gradient, t_core *core)
+int	color_palettes_build(int colors_per_gradient, t_core *core)
 {
 	int	**palettes;
 

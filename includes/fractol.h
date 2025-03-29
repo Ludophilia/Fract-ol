@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/28 16:54:32 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/29 14:16:37 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,13 @@
 // 	int		size;
 // 	int		curr; //  current
 // }	t_pal;
+
+typedef struct s_rgb
+{
+	unsigned  r;
+	unsigned  g;
+	unsigned  b;
+}	t_rgb;
 
 typedef struct s_fpnb
 {
@@ -123,8 +130,8 @@ int		hook_loop_events_manage(t_core *core);
 
 int		cli_get_args(int argc, char **argv, t_core *core);
 
-int		color_interpolate(int color1, int color2, double coeff);
-int		color_palettes_build(int colors_per_gradient, t_core *core);
+int		color_interpolate(int base_c1, int base_c2, double coeff);
+int		color_palettes_build(int cols_per_gr, t_core *core);
 void	color_palettes_free(int **palettes, int from);
 
 int		image_init(t_core *core);

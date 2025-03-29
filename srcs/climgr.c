@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 19:40:20 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/28 14:22:22 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/29 13:32:35 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	cli_is_full_digit(char *str, int *j)
 	return (-1);
 }
 
-static int	cli_check_validity(int argc, char **argv)
+static int	cli_check_arg_validity(int argc, char **argv)
 {
 	int	i;
 	int	j;
@@ -79,7 +79,7 @@ int	cli_get_args(int argc, char **argv, t_core *core)
 {
 	int	fra_type;
 
-	if (cli_check_validity(argc, argv) == -1)
+	if (cli_check_arg_validity(argc, argv) == -1)
 		return (-1);
 	fra_type = ft_atoi(argv[1]);
 	if (!((fra_type == 0 && argc == 2) || (fra_type == 1 && argc == 4)))

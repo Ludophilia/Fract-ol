@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:15:56 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/27 15:35:08 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/29 18:41:01 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_pln *com_pln)
 
 	x_lim = com_pln->x_lim;
 	y_lim = com_pln->y_lim;
-	*x = x_lim[0] + ((x_lim[1] - x_lim[0]) / WINDOW_X) * *x;
-	*y = y_lim[1] - ((y_lim[1] - y_lim[0]) / WINDOW_Y) * *y;
+	*x = x_lim[0] + ((x_lim[1] - x_lim[0]) / WIN_X) * *x;
+	*y = y_lim[1] - ((y_lim[1] - y_lim[0]) / WIN_Y) * *y;
 }
 
 void	view_set_complex_plane_limits(double min, double max, t_pln *com_pln)
@@ -79,8 +79,8 @@ t_pln *com_pln)
 
 	x_lim = com_pln->x_lim;
 	y_lim = com_pln->y_lim;
-	ratios[0] = x / WINDOW_X;
-	ratios[1] = y / WINDOW_Y;
+	ratios[0] = x / WIN_X;
+	ratios[1] = y / WIN_Y;
 	view_translate_mlx_coords_to_comp_coords(&x, &y, com_pln);
 	if (zoom_in)
 	{

@@ -6,13 +6,13 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:45:30 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/29 14:20:51 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/29 17:09:55 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	color_palettes_free(int **palettes, int from)
+void	color_palettes_free(int from, int **palettes)
 {
 	int	i;
 	int	size;
@@ -45,17 +45,17 @@ int	color_interpolate(int base_c1, int base_c2, double coeff)
 	return (ci.r << 16 | ci.g << 8 | ci.b);
 }
 
-static int	*color_gradient_build(int *basecol, int size, int cols_per_gr)
+static int	*color_gradients_build(int *basecol, int size, int cols_per_gr)
 {
-	int		*gradient;
+	int		*gradients;
 	t_cnt	ct;
 	int		itp_color;
 
 	if (size < 2 || cols_per_gr < 2)
 		return (NULL);
 	size = cols_per_gr + (size - 2) * (cols_per_gr - 1) + 1;
-	gradient = ft_calloc(size, sizeof(int));
-	if (gradient == NULL)
+	gradients = ft_calloc(size, sizeof(int));
+	if (gradients == NULL)
 		return (NULL);
 	ct = (t_cnt){.i = -1, .k = 0};
 	while (basecol[++ct.i + 1])
@@ -65,24 +65,24 @@ static int	*color_gradient_build(int *basecol, int size, int cols_per_gr)
 		{
 			itp_color = color_interpolate(basecol[ct.i], basecol[ct.i + 1],
 					ct.j / (cols_per_gr - 1.0));
-			if (ct.k == 0 || itp_color != gradient[ct.k - 1])
-				gradient[ct.k++] = itp_color;
+			if (ct.k == 0 || itp_color != gradients[ct.k - 1])
+				gradients[ct.k++] = itp_color;
 		}
 	}
-	return (gradient);
+	return (gradients);
 }
 
 int	color_palettes_build(int cols_per_gr, t_core *core)
 {
 	int	**palettes;
 
-	palettes = core->win.pal_arr;
-	palettes[0] = color_gradient_build((int [6]){0x120272, 0x44bcfc, 0xffffff,
+	palettes = core->ui.pals;
+	palettes[0] = color_gradients_build((int [6]){0x120272, 0x44bcfc, 0xffffff,
 			0xfaa502, 0xcb2600, 0}, 5, cols_per_gr);
 	if (palettes[0] == NULL)
 		return (-1);
 	palettes[1] = NULL;
-	core->win.pal_curr = 0;
-	core->win.pal_size = 1;
+	core->ui.pals_curr = 0;
+	core->ui.pals_size = 1;
 	return (0);
 }

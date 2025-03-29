@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_common.h                                       :+:      :+:    :+:   */
+/*   hooks.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:26:36 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/20 13:32:55 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/29 18:41:24 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 # include <X11/X.h>
 # include <unistd.h>
 
-# define WINDOW_X 640
-# define WINDOW_Y 480
+# define WIN_X 640
+# define WIN_Y 480
 # define BACK_COLOR 0x000000 //0xf57f03
-# define SCENENAME "Not MacPaint"
+# define WIN_NAME "Not MacPaint"
 
 # define ESC_KEY 65307 
 # define FORE_COLOR 0xffffff

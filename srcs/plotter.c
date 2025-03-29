@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:34:12 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/27 15:13:24 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/29 18:41:01 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_pln *com_pln)
 
 	x_lim = com_pln->x_lim;
 	y_lim = com_pln->y_lim;
-	*x = x_lim[0] + ((x_lim[1] - x_lim[0]) / WINDOW_X) * *x;
-	*y = y_lim[1] - ((y_lim[1] - y_lim[0]) / WINDOW_Y) * *y;
+	*x = x_lim[0] + ((x_lim[1] - x_lim[0]) / WIN_X) * *x;
+	*y = y_lim[1] - ((y_lim[1] - y_lim[0]) / WIN_Y) * *y;
 	return ;
 }
 
@@ -69,7 +69,7 @@ void	plot_set_complex_plane_limits(double min, double max, t_pln *com_pln)
 	return ;
 }
 
-void	plot_change_comp_plane_zoom_level(int zoom_in, t_pln *com_pln)
+void	plot_change_zoom_level(int zoom_in, t_pln *com_pln)
 {
 	double	min;
 	double	max;

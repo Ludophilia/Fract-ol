@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 19:09:27 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/27 15:13:24 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/29 16:17:09 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	hook_mouse_events_manage(int button, int x, int y, t_core *core)
 	(void) y;
 	com_pln = &core->com_pln;
 	if (button == 4)
-		plot_change_comp_plane_zoom_level(1, com_pln);
+		plot_change_zoom_level(1, com_pln);
 	else if (button == 5)
-		plot_change_comp_plane_zoom_level(0, com_pln);
+		plot_change_zoom_level(0, com_pln);
 	return (0);
 }
 

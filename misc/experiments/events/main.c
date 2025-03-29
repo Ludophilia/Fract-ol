@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:04:50 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/20 13:40:31 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/29 18:41:24 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	draw_on_scene(t_mlx *mlx_data)
 	t_mtx	mtx;
 	
 	mtx.y = -1;
-	while (++mtx.y < WINDOW_Y)
+	while (++mtx.y < WIN_Y)
 	{
 		mtx.x = -1;
-		while (++mtx.x < WINDOW_X)
+		while (++mtx.x < WIN_X)
 			mlx_pixel_put(mlx_data->mlx_ptr, mlx_data->win_ptr,
 			mtx.x, mtx.y, BACK_COLOR);
 	}
@@ -63,7 +63,7 @@ int		init_scene(t_mlx *mlx_data)
 	if (mlx_data->mlx_ptr == NULL)
 		return (-1);
 	mlx_data->win_ptr = mlx_new_window(
-		mlx_data->mlx_ptr, WINDOW_X, WINDOW_Y, SCENENAME);
+		mlx_data->mlx_ptr, WIN_X, WIN_Y, WIN_NAME);
 	if (!mlx_data->win_ptr)
 		return (-1);
 	mlx_data->loopcount = 0;

@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/28 16:43:47 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/29 18:41:24 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@
 # include <math.h>
 # include <complex.h>
 
-# define SCENENAME "Fractol bonus"
+# define WIN_NAME "Fractol bonus"
 
-# define WINDOW_X 1150
-# define WINDOW_Y 1150
+# define WIN_X 1150
+# define WIN_Y 1150
 
 # define RADIUS 2
 # define MAX_ITER 150.00
@@ -107,10 +107,10 @@ int		image_draw(t_core *core);
 
 int		plot_colorize_mlx_coords(double x, double y, t_core *core);
 
-int		scene_init(t_core *core);
-void	scene_events_register(t_core *core);
-void	scene_events_wait(t_core *core);
-void	scene_destroy(t_core *core);
+int		ui_init(t_core *core);
+void	ui_events_register(t_core *core);
+void	ui_loop(t_core *core);
+void	ui_destroy(t_core *core);
 
 void	view_translate_mlx_coords_to_comp_coords(double *x, double *y,
 		t_pln *com_pln);

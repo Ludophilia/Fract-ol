@@ -6,25 +6,25 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 13:08:03 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/27 15:13:24 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/29 18:41:24 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_bonus.h"
 
-int	scene_init(t_core *core)
+int	ui_init(t_core *core)
 {
 	core->mlx_ptr = mlx_init();
 	if (core->mlx_ptr == NULL)
 		return (-1);
 	core->win_ptr = mlx_new_window(
-			core->mlx_ptr, WINDOW_X, WINDOW_Y, SCENENAME);
+			core->mlx_ptr, WIN_X, WIN_Y, WIN_NAME);
 	if (!core->win_ptr)
 		return (-1);
 	return (0);
 }
 
-void	scene_events_register(t_core *core)
+void	ui_events_register(t_core *core)
 {
 	mlx_key_hook(
 		core->win_ptr, hook_key_events_manage, core);
@@ -37,12 +37,12 @@ void	scene_events_register(t_core *core)
 		mlx_loop_end, core->mlx_ptr);
 }
 
-void	scene_events_wait(t_core *core)
+void	ui_loop(t_core *core)
 {
 	mlx_loop(core->mlx_ptr);
 }
 
-void	scene_destroy(t_core *core)
+void	ui_destroy(t_core *core)
 {
 	mlx_destroy_image(core->mlx_ptr, core->img_con.img_ptr);
 	mlx_destroy_window(core->mlx_ptr, core->win_ptr);

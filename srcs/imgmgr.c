@@ -6,27 +6,11 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:54:38 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/27 15:13:24 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/29 19:27:18 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-int	image_init(t_core *core)
-{
-	t_img	*img_con;
-
-	img_con = &core->img_con;
-	ft_bzero(img_con, sizeof(t_img));
-	img_con->img_ptr = mlx_new_image(core->mlx_ptr, WINDOW_X, WINDOW_Y);
-	if (img_con->img_ptr == NULL)
-		return (-1);
-	img_con->addr = mlx_get_data_addr(img_con->img_ptr, &img_con->bpp,
-			&img_con->szl, &img_con->end);
-	if (img_con->addr == NULL)
-		return (-1);
-	return (0);
-}
 
 static void	image_pixel_colorize(int x, int y, t_img *img_con, uint color)
 {
@@ -51,16 +35,19 @@ static void	image_pixel_colorize(int x, int y, t_img *img_con, uint color)
 	return ;
 }
 
+// 30/03 - NEXT
 int	image_draw(t_core *core)
 {
 	int	cord[2];
 	int	color;
 
+	// plot_set_complex_plane_limits
+
 	cord[1] = -1;
-	while (++cord[1] < WINDOW_Y)
+	while (++cord[1] < WIN_Y)
 	{
 		cord[0] = -1;
-		while (++cord[0] < WINDOW_X)
+		while (++cord[0] < WIN_X)
 		{
 			color = plot_colorize_mlx_coords(cord[0], cord[1], core);
 			image_pixel_colorize(cord[0], cord[1], &core->img_con, color);
@@ -68,5 +55,21 @@ int	image_draw(t_core *core)
 	}
 	mlx_put_image_to_window(core->mlx_ptr, core->win_ptr,
 		core->img_con.img_ptr, 0, 0);
+	return (0);
+}
+
+int	image_init(t_core *core)
+{
+	t_ui	ui;
+
+	ui = core->ui;
+	ui.img = mlx_new_image(ui.mlx, WIN_X, WIN_Y);
+	if (ui.img == NULL)
+		return (-1);
+	ui.img_adr = mlx_get_data_addr(ui.img, &ui.img_bpp, &ui.img_szl,
+		&ui.img_end);
+	if ((ui.img_adr == NULL || color_palettes_build(25, &core) == -1)
+		&& ui_destroy(TG_IMG, core))
+		return (-1);
 	return (0);
 }

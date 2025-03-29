@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:54:38 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/27 15:13:24 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/29 18:41:01 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	image_init(t_core *core)
 
 	img_con = &core->img_con;
 	ft_bzero(img_con, sizeof(t_img));
-	img_con->img_ptr = mlx_new_image(core->mlx_ptr, WINDOW_X, WINDOW_Y);
+	img_con->img_ptr = mlx_new_image(core->mlx_ptr, WIN_X, WIN_Y);
 	if (img_con->img_ptr == NULL)
 		return (-1);
 	img_con->addr = mlx_get_data_addr(img_con->img_ptr, &img_con->bpp,
@@ -57,10 +57,10 @@ int	image_draw(t_core *core)
 	int	color;
 
 	cord[1] = -1;
-	while (++cord[1] < WINDOW_Y)
+	while (++cord[1] < WIN_Y)
 	{
 		cord[0] = -1;
-		while (++cord[0] < WINDOW_X)
+		while (++cord[0] < WIN_X)
 		{
 			color = plot_colorize_mlx_coords(cord[0], cord[1], core);
 			image_pixel_colorize(cord[0], cord[1], &core->img_con, color);

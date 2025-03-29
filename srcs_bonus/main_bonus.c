@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 12:35:34 by jegerman          #+#    #+#             */
-/*   Updated: 2025/03/28 16:43:47 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/29 14:53:03 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	fractol_init(int argc, char **argv, t_core *core)
 		perror("fractol");
 		return (-1);
 	}
-	if (scene_init(core) == -1 || image_init(core) == -1)
+	if (ui_init(core) == -1 || image_init(core) == -1)
 	{
 		perror("fractol");
 		ft_dprintf(2, "Something went wrong when initializing"
@@ -46,8 +46,8 @@ int	main(int argc, char **argv)
 	if (fractol_init(argc, argv, &core) == -1)
 		return (1);
 	image_draw(&core);
-	scene_events_register(&core);
-	scene_events_wait(&core);
-	scene_destroy(&core);
+	ui_events_register(&core);
+	ui_loop(&core);
+	ui_destroy(&core);
 	return (0);
 }

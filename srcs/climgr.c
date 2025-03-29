@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 19:40:20 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/29 13:32:35 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/29 19:17:32 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,8 @@ static double	cli_atod(char *str)
 	i = 0;
 	while ((str[i] >= '\t' && str[i] <= '\r') || str[i] == ' ')
 		i++;
-	if (str[i] == '+' || str[i] == '-')
-	{
-		if (str[i++] == '-')
-			nbr.sign *= -1;
-	}
+	if ((str[i] == '+' || str[i] == '-') && str[i++] == '-')
+		nbr.sign *= -1;
 	while (ft_isdigit(str[i]) || (i && str[i] && ft_isdigit(str[i + 1])))
 	{
 		if ((str[i] == '.' || str[i] == ',') && (i++, ++is_fpn))

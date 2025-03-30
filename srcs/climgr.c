@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 19:40:20 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/29 19:17:32 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/30 16:43:26 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static double	cli_atod(char *str)
 	return (nbr.sign * nbr.mant * pow(10, nbr.exp));
 }
 
-int	cli_get_args(int argc, char **argv, t_core *core)
+int	cli_get_args(int argc, char **argv, t_cli *cli)
 {
 	int	fra_type;
 
@@ -81,11 +81,10 @@ int	cli_get_args(int argc, char **argv, t_core *core)
 	fra_type = ft_atoi(argv[1]);
 	if (!((fra_type == 0 && argc == 2) || (fra_type == 1 && argc == 4)))
 		return (-1);
-	ft_bzero(core, sizeof(t_core));
-	core->cli.ftype = fra_type;
+	cli->ftype = fra_type;
 	if (fra_type == 0)
 		return (0);
-	core->cli.creal = cli_atod(argv[2]);
-	core->cli.cimag = cli_atod(argv[3]);
+	cli->creal = cli_atod(argv[2]);
+	cli->cimag = cli_atod(argv[3]);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 19:09:27 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/29 16:17:09 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/30 14:20:42 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ int	hook_mouse_events_manage(int button, int x, int y, t_core *core)
 
 int	hook_loop_events_manage(t_core *core)
 {
-	image_draw(core);
+	image_ui_draw(core);
 	return (0);
 }

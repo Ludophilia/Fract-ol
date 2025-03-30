@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:45:30 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/29 17:09:55 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/30 18:31:02 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,26 @@ void	color_palettes_free(int from, int **palettes)
 	}
 }
 
-int	color_interpolate(int base_c1, int base_c2, double coeff)
+int	color_interpolate(int basec1, int basec2, double coeff)
 {
-	t_rgb	c1;
-	t_rgb	c2;
-	t_rgb	ci;
+	t_rgb	color1;
+	t_rgb	color2;
+	t_rgb	inter;
 
-	c1 = (t_rgb){.r = (base_c1 >> 16 & 0xFF), .g = (base_c1 >> 8 & 0xFF),
-		.b = (base_c1 & 0xFF)};
-	c2 = (t_rgb){.r = (base_c2 >> 16 & 0xFF), .g = (base_c2 >> 8 & 0xFF),
-		.b = (base_c2 & 0xFF)};
-	ci.r = c1.r + (c2.r - c1.r) * coeff;
-	ci.g = c1.g + (c2.g - c1.g) * coeff;
-	ci.b = c1.b + (c2.b - c1.b) * coeff;
-	return (ci.r << 16 | ci.g << 8 | ci.b);
+	color1 = (t_rgb){.r = (basec1 >> 16 & 0xFF), .g = (basec1 >> 8 & 0xFF),
+		.b = (basec1 & 0xFF)};
+	color2 = (t_rgb){.r = (basec2 >> 16 & 0xFF), .g = (basec2 >> 8 & 0xFF),
+		.b = (basec2 & 0xFF)};
+	inter.r = color1.r + (color2.r - color1.r) * coeff;
+	inter.g = color1.g + (color2.g - color1.g) * coeff;
+	inter.b = color1.b + (color2.b - color1.b) * coeff;
+	return (inter.r << 16 | inter.g << 8 | inter.b);
 }
 
 static int	*color_gradients_build(int *basecol, int size, int cols_per_gr)
 {
 	int		*gradients;
-	t_cnt	ct;
+	t_ijk	ct;
 	int		itp_color;
 
 	if (size < 2 || cols_per_gr < 2)
@@ -57,7 +57,7 @@ static int	*color_gradients_build(int *basecol, int size, int cols_per_gr)
 	gradients = ft_calloc(size, sizeof(int));
 	if (gradients == NULL)
 		return (NULL);
-	ct = (t_cnt){.i = -1, .k = 0};
+	ct = (t_ijk){.i = -1, .k = 0};
 	while (basecol[++ct.i + 1])
 	{
 		ct.j = -1;
@@ -72,17 +72,17 @@ static int	*color_gradients_build(int *basecol, int size, int cols_per_gr)
 	return (gradients);
 }
 
-int	color_palettes_build(int cols_per_gr, t_core *core)
+int	color_palettes_build(int cols_per_gr, t_ui *ui)
 {
 	int	**palettes;
 
-	palettes = core->ui.pals;
+	palettes = ui->pals;
 	palettes[0] = color_gradients_build((int [6]){0x120272, 0x44bcfc, 0xffffff,
 			0xfaa502, 0xcb2600, 0}, 5, cols_per_gr);
 	if (palettes[0] == NULL)
 		return (-1);
 	palettes[1] = NULL;
-	core->ui.pals_curr = 0;
-	core->ui.pals_size = 1;
+	ui->pals_curr = 0;
+	ui->pals_size = 1;
 	return (0);
 }

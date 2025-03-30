@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/29 18:41:24 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/30 14:20:42 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int		hook_mouse_events_manage(int button, int x, int y, t_core *core);
 int		hook_loop_events_manage(t_core *core);
 
 int		image_init(t_core *core);
-int		image_draw(t_core *core);
+int		image_ui_draw(t_core *core);
 
 int		plot_colorize_mlx_coords(double x, double y, t_core *core);
 

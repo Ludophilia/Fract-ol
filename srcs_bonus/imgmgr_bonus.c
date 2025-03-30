@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:54:38 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/29 18:41:01 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/30 14:20:42 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	image_pixel_colorize(int x, int y, t_img *img_con, uint color)
 	return ;
 }
 
-int	image_draw(t_core *core)
+int	image_ui_draw(t_core *core)
 {
 	int	cord[2];
 	int	color;

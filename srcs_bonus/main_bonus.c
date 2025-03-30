@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 12:35:34 by jegerman          #+#    #+#             */
-/*   Updated: 2025/03/29 14:53:03 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/30 14:20:42 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(int argc, char **argv)
 
 	if (fractol_init(argc, argv, &core) == -1)
 		return (1);
-	image_draw(&core);
+	image_ui_draw(&core);
 	ui_events_register(&core);
 	ui_loop(&core);
 	ui_destroy(&core);

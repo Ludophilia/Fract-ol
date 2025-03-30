@@ -6,70 +6,65 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:54:38 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/29 19:27:18 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/30 18:44:24 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	image_pixel_colorize(int x, int y, t_img *img_con, uint color)
+static void	image_pixel_colorize(int x, int y, int color, t_ui *ui)
 {
-	int	i;
-	int	start_addr;
-
-	start_addr = x * (img_con->bpp / 8) + y * img_con->szl;
-	i = -1;
-	while (++i < (img_con->bpp / 8))
+	int	px_size;
+	int	px_pos;
+	int	spx_pos;
+	
+	px_size = ui->img_bpp / BYTE_FROM_BIT;
+	px_pos = x * px_size + y * ui->img_szl;
+	spx_pos = -1;
+	while (++spx_pos < px_size)
 	{
-		if (img_con->end == 0)
+		if (ui->img_end == LIL_ENDIAN)
 		{
-			img_con->addr[i + start_addr] = color & 0xFF;
+			ui->img_adr[px_pos + spx_pos] = color & 0xFF;
 			color >>= 8;
 		}
-		else
+		else if (ui->img_end == BIG_ENDIAN)
 		{
-			img_con->addr[i + start_addr] = (color >> 24) & 0xFF;
+			ui->img_adr[px_pos + spx_pos] = (color >> (ui->img_bpp - 8)) & 0xFF;
 			color <<= 8;
 		}
 	}
-	return ;
 }
 
-// 30/03 - NEXT
-int	image_draw(t_core *core)
+int	image_ui_draw(t_ui *ui, t_core *core)
 {
-	int	cord[2];
+	int	x;
+	int	y;
 	int	color;
 
-	// plot_set_complex_plane_limits
-
-	cord[1] = -1;
-	while (++cord[1] < WIN_Y)
+	y = -1;
+	while (++y < WIN_Y)
 	{
-		cord[0] = -1;
-		while (++cord[0] < WIN_X)
+		x = -1;
+		while (++x < WIN_X)
 		{
-			color = plot_colorize_mlx_coords(cord[0], cord[1], core);
-			image_pixel_colorize(cord[0], cord[1], &core->img_con, color);
+			color = plot_colorize_mlx_coords(x, y, core);
+			image_pixel_colorize(x, y, color, ui);
 		}
 	}
-	mlx_put_image_to_window(core->mlx_ptr, core->win_ptr,
-		core->img_con.img_ptr, 0, 0);
+	mlx_put_image_to_window(ui->mlx, ui->win, ui->img, 0, 0);
 	return (0);
 }
 
-int	image_init(t_core *core)
+int	image_init(t_ui *ui)
 {
-	t_ui	ui;
-
-	ui = core->ui;
-	ui.img = mlx_new_image(ui.mlx, WIN_X, WIN_Y);
-	if (ui.img == NULL)
+	ui->img = mlx_new_image(ui->mlx, WIN_X, WIN_Y);
+	if (ui->img == NULL)
 		return (-1);
-	ui.img_adr = mlx_get_data_addr(ui.img, &ui.img_bpp, &ui.img_szl,
-		&ui.img_end);
-	if ((ui.img_adr == NULL || color_palettes_build(25, &core) == -1)
-		&& ui_destroy(TG_IMG, core))
+	ui->img_adr = mlx_get_data_addr(ui->img, &ui->img_bpp, &ui->img_szl,
+		&ui->img_end);
+	if ((ui->img_adr == NULL || color_palettes_build(25, ui) == -1)
+		&& ui_destroy(TG_IMG, ui))
 		return (-1);
 	return (0);
 }

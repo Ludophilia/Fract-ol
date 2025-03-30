@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/29 19:24:54 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/30 18:24:14 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <X11/keysymdef.h>
-
 # include <stdlib.h>
 # include <math.h>
 # include <complex.h>
@@ -36,6 +35,10 @@
 # define RADIUS 2
 # define MAX_ITER 200.00
 # define ZOOM_LEVEL 1.05
+
+# define BYTE_FROM_BIT 8
+# define BIG_ENDIAN 1
+# define LIL_ENDIAN 0
 
 typedef enum e_tgt
 {
@@ -61,12 +64,12 @@ typedef struct s_fpn
 	double	exp;
 }	t_fpn;
 
-typedef struct s_cnt
+typedef struct s_ijk
 {
 	long	i;
 	long	j;
 	long	k;
-}	t_cnt;
+}	t_ijk;
 
 typedef struct s_cli
 {
@@ -77,7 +80,7 @@ typedef struct s_cli
 
 typedef struct s_pln
 {
-	double	x_min; //double	x_lim[2];
+	double	x_min;
 	double	x_max;
 	double	y_min;
 	double	y_max;
@@ -104,26 +107,27 @@ typedef struct s_core
 	t_cli	cli;
 }	t_core;
 
-int		hook_key_events_manage(int keycode, t_core *core);
-int		hook_mouse_events_manage(int button, int x, int y, t_core *core);
-int		hook_loop_events_manage(t_core *core);
-
-int		cli_get_args(int argc, char **argv, t_core *core);
+int		cli_get_args(int argc, char **argv, t_cli *cli);
 
 int		color_interpolate(int base_c1, int base_c2, double coeff);
-int		color_palettes_build(int cols_per_gr, t_core *core);
+int		color_palettes_build(int cols_per_gr, t_ui *ui);
 void	color_palettes_free(int from, int **palettes);
 
-int		image_init(t_core *core);
-int		image_draw(t_core *core);
+void	ui_events_register(t_ui *ui, t_core *core);
+void	ui_loop(t_ui *ui);
+int		ui_init(t_ui *ui, t_core *core);
+int		ui_destroy(int target, t_ui *ui);
+
+int		image_ui_draw(t_ui *ui, t_core *core);
+int		image_init(t_ui *ui);
+
 
 int		plot_colorize_mlx_coords(double x, double y, t_core *core);
 void	plot_set_complex_plane_limits(double min, double max, t_pln *com_pln);
 void	plot_change_zoom_level(int zoom_in, t_pln *com_pln);
 
-void	ui_events_register(t_core *core);
-void	ui_loop(t_core *core);
-int		ui_init(t_core *core);
-int		ui_destroy(int target, t_core *core);
+int		hook_key_events_manage(int keycode, t_core *core);
+int		hook_mouse_events_manage(int button, int x, int y, t_core *core);
+int		hook_loop_events_manage(t_core *core);
 
 #endif

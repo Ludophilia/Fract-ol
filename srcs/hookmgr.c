@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 19:09:27 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/31 16:06:37 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/31 17:13:07 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@ int	hook_mouse_event_manage(int button, int x, int y, t_pln *pln)
 {
 	(void)x;
 	(void)y;
-	if (button == 4)
-		plot_change_zoom_level(ZOOM_IN, pln);
-	else if (button == 5)
-		plot_change_zoom_level(ZOOM_OUT, pln);
+	if ((button == 4 && plot_set_zoom_lvl(ZOOM_IN, pln) == -1)
+		|| (button == 5 && plot_set_zoom_lvl(ZOOM_OUT, pln) == -1))
+		return (-1);
 	return (0);
 }
 

@@ -6,20 +6,28 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:45:30 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/30 18:31:02 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/31 17:37:34 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+int		color_palettes_len(int **palettes)
+{
+	int	size;
+
+	size = 0;
+	while (palettes[size])
+		++size;
+	return (size);
+}
 
 void	color_palettes_free(int from, int **palettes)
 {
 	int	i;
 	int	size;
 
-	size = 0;
-	while (palettes[size])
-		++size;
+	size = color_palettes_len(palettes);
 	i = from;
 	while (i < size)
 	{

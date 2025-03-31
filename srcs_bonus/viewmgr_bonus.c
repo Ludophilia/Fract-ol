@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:15:56 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/29 18:41:01 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/31 17:00:51 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,16 +84,16 @@ t_pln *com_pln)
 	view_translate_mlx_coords_to_comp_coords(&x, &y, com_pln);
 	if (zoom_in)
 	{
-		x_lim[0] = x - ratios[0] * ((x_lim[1] - x_lim[0]) / ZOOM_LEVEL);
-		x_lim[1] = x + (1. - ratios[0]) * ((x_lim[1] - x_lim[0]) / ZOOM_LEVEL);
-		y_lim[0] = y - (1. - ratios[1]) * ((x_lim[1] - x_lim[0]) / ZOOM_LEVEL);
-		y_lim[1] = y + ratios[1] * ((x_lim[1] - x_lim[0]) / ZOOM_LEVEL);
+		x_lim[0] = x - ratios[0] * ((x_lim[1] - x_lim[0]) / ZOOM_LVL);
+		x_lim[1] = x + (1. - ratios[0]) * ((x_lim[1] - x_lim[0]) / ZOOM_LVL);
+		y_lim[0] = y - (1. - ratios[1]) * ((x_lim[1] - x_lim[0]) / ZOOM_LVL);
+		y_lim[1] = y + ratios[1] * ((x_lim[1] - x_lim[0]) / ZOOM_LVL);
 	}
 	else
 	{
-		x_lim[0] = x - ratios[0] * ((x_lim[1] - x_lim[0]) * ZOOM_LEVEL);
-		x_lim[1] = x + (1. - ratios[0]) * ((x_lim[1] - x_lim[0]) * ZOOM_LEVEL);
-		y_lim[0] = y - (1. - ratios[1]) * ((x_lim[1] - x_lim[0]) * ZOOM_LEVEL);
-		y_lim[1] = y + ratios[1] * ((x_lim[1] - x_lim[0]) * ZOOM_LEVEL);
+		x_lim[0] = x - ratios[0] * ((x_lim[1] - x_lim[0]) * ZOOM_LVL);
+		x_lim[1] = x + (1. - ratios[0]) * ((x_lim[1] - x_lim[0]) * ZOOM_LVL);
+		y_lim[0] = y - (1. - ratios[1]) * ((x_lim[1] - x_lim[0]) * ZOOM_LVL);
+		y_lim[1] = y + ratios[1] * ((x_lim[1] - x_lim[0]) * ZOOM_LVL);
 	}
 }

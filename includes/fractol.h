@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/31 16:18:03 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/31 17:37:03 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define RADIUS 2
 # define MAX_ITER 200.00
 
-# define ZOOM_LEVEL 1.05
+# define ZOOM_LVL 1.05
 # define ZOOM_IN 1
 # define ZOOM_OUT 0
 
@@ -107,6 +107,7 @@ typedef struct s_ui
 
 int		cli_get_args(int argc, char **argv, t_cli *cli);
 
+int		color_palettes_len(int **palettes);
 int		color_interpolate(int base_c1, int base_c2, double coeff);
 int		color_palettes_build(int cols_per_gr, t_ui *ui);
 void	color_palettes_free(int from, int **palettes);
@@ -119,9 +120,9 @@ int		ui_destroy(int target, t_ui *ui);
 int		image_ui_draw(t_ui *ui);
 int		image_init(t_ui *ui);
 
-int		plot_colorize_mlx_coords(double x, double y, t_pln *core);
-void	plot_set_limits(double min, double max, t_pln *com_pln);
-void	plot_change_zoom_level(int zoom_in, t_pln *com_pln);
+int		plot_colorize_mlx_coords(double x, double y, t_ui *ui);
+void	plot_set_limits(double min, double max, t_pln *pln);
+int		plot_set_zoom_lvl(int zoom_in, t_pln *pln);
 
 int		hook_key_event_manage(int keycode, t_ui *ui);
 int		hook_mouse_event_manage(int button, int x, int y, t_pln *pln);

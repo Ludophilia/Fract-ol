@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:54:38 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/31 15:27:20 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/31 16:44:25 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	image_ui_draw(t_ui *ui)
 		x = -1;
 		while (++x < WIN_X)
 		{
+			// 31/03 - Here 2
 			color = plot_colorize_mlx_coords(x, y, ui);
 			image_pixel_colorize(x, y, color, ui);
 		}

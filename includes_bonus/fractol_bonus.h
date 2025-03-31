@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/30 19:49:42 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/31 17:00:51 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 # define JULIA 1
 # define SHIP 2
 
-# define ZOOM_LEVEL 1.05
+# define ZOOM_LVL 1.05
 
 typedef struct s_img
 {

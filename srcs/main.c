@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 12:29:38 by jegerman          #+#    #+#             */
-/*   Updated: 2025/03/30 17:55:58 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/31 15:50:45 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	main(int argc, char **argv)
 {
-	t_core	core;
+	t_ui	ui;
 
-	if (cli_get_args(argc, argv, &core.cli) == -1 && ft_dprintf(2, ERR_USAGE))
+	if (cli_get_args(argc, argv, &ui.cli) == -1 && ft_dprintf(2, ERR_USAGE))
 		return (1);
-	if (ui_init(&core.ui, &core) == -1)
+	if (ui_init(&ui) == -1)
 		return (2);
-	ui_loop(&core.ui);
-	ui_destroy(TG_ALL, &core.ui);
+	ui_loop(&ui);
+	ui_destroy(TG_ALL, &ui);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/30 14:20:42 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/30 19:49:42 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ void	color_palettes_free(int **palettes, int from);
 int		color_palettes_check(int **palettes, t_core *core);
 void	color_palettes_shift(int straight, t_pal *palette);
 
-int		hook_key_events_manage(int keycode, t_core *core);
-int		hook_mouse_events_manage(int button, int x, int y, t_core *core);
-int		hook_loop_events_manage(t_core *core);
+int		hook_key_event_manage(int keycode, t_core *core);
+int		hook_mouse_event_manage(int button, int x, int y, t_core *core);
+int		hook_loop_event_manage(t_core *core);
 
 int		image_init(t_core *core);
 int		image_ui_draw(t_core *core);

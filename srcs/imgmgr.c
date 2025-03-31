@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:54:38 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/30 18:44:24 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/31 15:27:20 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,20 @@ static void	image_pixel_colorize(int x, int y, int color, t_ui *ui)
 	}
 }
 
-int	image_ui_draw(t_ui *ui, t_core *core)
+int	image_ui_draw(t_ui *ui)
 {
 	int	x;
 	int	y;
 	int	color;
 
+	plot_set_limits(-2, 2, &ui->pln);
 	y = -1;
 	while (++y < WIN_Y)
 	{
 		x = -1;
 		while (++x < WIN_X)
 		{
-			color = plot_colorize_mlx_coords(x, y, core);
+			color = plot_colorize_mlx_coords(x, y, ui);
 			image_pixel_colorize(x, y, color, ui);
 		}
 	}

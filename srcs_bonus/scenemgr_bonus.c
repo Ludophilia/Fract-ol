@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 13:08:03 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/29 18:41:24 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/30 19:49:42 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int	ui_init(t_core *core)
 void	ui_events_register(t_core *core)
 {
 	mlx_key_hook(
-		core->win_ptr, hook_key_events_manage, core);
+		core->win_ptr, hook_key_event_manage, core);
 	mlx_mouse_hook(
-		core->win_ptr, hook_mouse_events_manage, core);
+		core->win_ptr, hook_mouse_event_manage, core);
 	mlx_loop_hook(
-		core->mlx_ptr, hook_loop_events_manage, core);
+		core->mlx_ptr, hook_loop_event_manage, core);
 	mlx_hook(
 		core->win_ptr, DestroyNotify, NoEventMask,
 		mlx_loop_end, core->mlx_ptr);

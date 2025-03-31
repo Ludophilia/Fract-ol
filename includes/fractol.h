@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/30 18:24:14 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/03/31 16:18:03 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@
 # define JULIA 1
 # define RADIUS 2
 # define MAX_ITER 200.00
+
 # define ZOOM_LEVEL 1.05
+# define ZOOM_IN 1
+# define ZOOM_OUT 0
 
 # define BYTE_FROM_BIT 8
 # define BIG_ENDIAN 1
@@ -88,6 +91,7 @@ typedef struct s_pln
 
 typedef struct s_ui
 {
+	t_cli	cli;
 	void	*mlx;
 	void	*win;
 	void	*img;
@@ -95,17 +99,11 @@ typedef struct s_ui
 	int		img_bpp;
 	int		img_end;
 	int		img_szl;
+	t_pln	pln;
 	int		*pals[2];
 	int		pals_size;
 	int		pals_curr;
 }	t_ui;
-
-typedef struct s_core
-{
-	t_ui	ui;
-	t_pln	pln;
-	t_cli	cli;
-}	t_core;
 
 int		cli_get_args(int argc, char **argv, t_cli *cli);
 
@@ -113,21 +111,20 @@ int		color_interpolate(int base_c1, int base_c2, double coeff);
 int		color_palettes_build(int cols_per_gr, t_ui *ui);
 void	color_palettes_free(int from, int **palettes);
 
-void	ui_events_register(t_ui *ui, t_core *core);
+void	ui_events_register(t_ui *ui);
 void	ui_loop(t_ui *ui);
-int		ui_init(t_ui *ui, t_core *core);
+int		ui_init(t_ui *ui);
 int		ui_destroy(int target, t_ui *ui);
 
-int		image_ui_draw(t_ui *ui, t_core *core);
+int		image_ui_draw(t_ui *ui);
 int		image_init(t_ui *ui);
 
-
-int		plot_colorize_mlx_coords(double x, double y, t_core *core);
-void	plot_set_complex_plane_limits(double min, double max, t_pln *com_pln);
+int		plot_colorize_mlx_coords(double x, double y, t_pln *core);
+void	plot_set_limits(double min, double max, t_pln *com_pln);
 void	plot_change_zoom_level(int zoom_in, t_pln *com_pln);
 
-int		hook_key_events_manage(int keycode, t_core *core);
-int		hook_mouse_events_manage(int button, int x, int y, t_core *core);
-int		hook_loop_events_manage(t_core *core);
+int		hook_key_event_manage(int keycode, t_ui *ui);
+int		hook_mouse_event_manage(int button, int x, int y, t_pln *pln);
+int		hook_loop_event_manage(t_ui *ui);
 
 #endif

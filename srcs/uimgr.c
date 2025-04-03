@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 13:08:03 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/31 16:00:18 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/03 18:20:48 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	ui_init(t_ui *ui)
 		return (-1);
 	if (image_init(ui) == -1 && ui_destroy(TG_MLX | TG_DIS | TG_WIN, ui))
 		return (-1);
+	// 31/03 - Here 2
 	image_ui_draw(ui);
 	ui_events_register(ui);
 	return (0);

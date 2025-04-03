@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:54:38 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/30 14:20:42 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/03 18:44:30 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	image_ui_draw(t_core *core)
 		cord[0] = -1;
 		while (++cord[0] < WIN_X)
 		{
-			color = plot_colorize_mlx_coords(cord[0], cord[1], core);
+			color = plot_colorize_coords(cord[0], cord[1], core);
 			image_pixel_colorize(cord[0], cord[1], &core->img_con, color);
 		}
 	}

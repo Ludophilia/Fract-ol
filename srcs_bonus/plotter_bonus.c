@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:34:12 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/27 15:13:24 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/03 18:44:30 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int fract_type, double *zconsts)
 	return (MAX_ITER);
 }
 
-int	plot_colorize_mlx_coords(double x, double y, t_core *core)
+int	plot_colorize_coords(double x, double y, t_core *core)
 {
 	int		basecolors[2];
 	int		pal_size;

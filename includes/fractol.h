@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/31 17:37:03 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/03 18:44:30 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,12 @@ typedef struct s_cli
 	double	cimag;
 }	t_cli;
 
+typedef struct s_pnt
+{
+	double	x;
+	double	y;
+}	t_pnt;
+
 typedef struct s_pln
 {
 	double	x_min;
@@ -101,13 +107,12 @@ typedef struct s_ui
 	int		img_szl;
 	t_pln	pln;
 	int		*pals[2];
-	int		pals_size;
-	int		pals_curr;
+	int		pal_nb;
+	int		pal_i;
 }	t_ui;
 
 int		cli_get_args(int argc, char **argv, t_cli *cli);
 
-int		color_palettes_len(int **palettes);
 int		color_interpolate(int base_c1, int base_c2, double coeff);
 int		color_palettes_build(int cols_per_gr, t_ui *ui);
 void	color_palettes_free(int from, int **palettes);
@@ -120,9 +125,8 @@ int		ui_destroy(int target, t_ui *ui);
 int		image_ui_draw(t_ui *ui);
 int		image_init(t_ui *ui);
 
-int		plot_colorize_mlx_coords(double x, double y, t_ui *ui);
-void	plot_set_limits(double min, double max, t_pln *pln);
-int		plot_set_zoom_lvl(int zoom_in, t_pln *pln);
+int		plot_chg_zoom_lvl(int zoom_in, t_pln *pln);
+int		plot_colorize_coords(t_pnt *pt, t_ui *ui);
 
 int		hook_key_event_manage(int keycode, t_ui *ui);
 int		hook_mouse_event_manage(int button, int x, int y, t_pln *pln);

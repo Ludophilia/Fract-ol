@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/31 17:00:51 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/03 18:44:30 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int		hook_loop_event_manage(t_core *core);
 int		image_init(t_core *core);
 int		image_ui_draw(t_core *core);
 
-int		plot_colorize_mlx_coords(double x, double y, t_core *core);
+int		plot_colorize_coords(double x, double y, t_core *core);
 
 int		ui_init(t_core *core);
 void	ui_events_register(t_core *core);

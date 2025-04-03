@@ -57,12 +57,12 @@ flipped the sign...
 
 # Event management
 
-- [x] Manage the zoom (zoom + <-> scrll_up / zoom - <-> scrll_down) with the
+- [x] Manage the ZOOM_LVL (ZOOM_LVL + <-> scrll_up / ZOOM_LVL - <-> scrll_down) with the
 mouse scrollwheel
 
 # Bonus: Event management
 
-- [x] Bonus: Improve the zoom, now it should follow the pointer.
+- [x] Bonus: Improve the ZOOM_LVL, now it should follow the pointer.
 
 - [x] Bonus: Manage the view with the arrow key?
 

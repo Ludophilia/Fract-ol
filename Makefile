@@ -6,7 +6,7 @@
 #    By: jegerman <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/01 20:24:27 by jgermany          #+#    #+#              #
-#    Updated: 2025/03/27 18:19:55 by jegerman         ###   ########.fr        #
+#    Updated: 2025/04/04 16:22:28 by jegerman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,11 +29,11 @@ LIBFLAGS 							+= -lX11 -lXext
 
 SRCS_MAN 							:= $(SRCS_DIRM)/main.c
 SRCS_MAN 							+= $(SRCS_DIRM)/climgr.c
-# SRCS_MAN 							+= $(SRCS_DIRM)/scenemgr.c
-# SRCS_MAN 							+= $(SRCS_DIRM)/hookmgr.c
-# SRCS_MAN 							+= $(SRCS_DIRM)/imgmgr.c
-# SRCS_MAN 							+= $(SRCS_DIRM)/plotter.c
-# SRCS_MAN 							+= $(SRCS_DIRM)/colormgr.c
+SRCS_MAN 							+= $(SRCS_DIRM)/colormgr.c
+SRCS_MAN 							+= $(SRCS_DIRM)/uimgr.c
+SRCS_MAN 							+= $(SRCS_DIRM)/imgmgr.c
+SRCS_MAN 							+= $(SRCS_DIRM)/plotter.c
+SRCS_MAN 							+= $(SRCS_DIRM)/hookmgr.c
 
 # SRCS_BON 							:= $(SRCS_DIRB)/main_bonus.c
 # SRCS_BON 							+= $(SRCS_DIRB)/scenemgr_bonus.c

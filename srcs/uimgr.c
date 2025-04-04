@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 13:08:03 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/03 18:20:48 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/04 17:44:37 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int	ui_destroy(int target, t_ui *ui)
 {
-	if (target & TG_MLX)
-		free(ui->mlx);
-	if (target & TG_DIS)
-		mlx_destroy_display(ui->mlx);
-	if (target & TG_WIN)
-		mlx_destroy_window(ui->mlx, ui->win);
 	if (target & TG_IMG)
 		mlx_destroy_image(ui->mlx, ui->img);
+	if (target & TG_WIN)
+		mlx_destroy_window(ui->mlx, ui->win);
+	if (target & TG_DIS)
+		mlx_destroy_display(ui->mlx);
+	if (target & TG_MLX)
+		free(ui->mlx);
 	if (target & TG_PALS)
 		color_palettes_free(0, ui->pals);
 	return (1);
@@ -46,11 +46,10 @@ int	ui_init(t_ui *ui)
 	if (ui->mlx == NULL)
 		return (-1);
 	ui->win = mlx_new_window(ui->mlx, WIN_X, WIN_Y, WIN_NAME);
-	if (ui->win == NULL && ui_destroy(TG_MLX | TG_DIS, ui))
+	if (ui->win == NULL && ui_destroy(TG_MLX | TG_DIS, ui) )
 		return (-1);
 	if (image_init(ui) == -1 && ui_destroy(TG_MLX | TG_DIS | TG_WIN, ui))
 		return (-1);
-	// 31/03 - Here 2
 	image_ui_draw(ui);
 	ui_events_register(ui);
 	return (0);

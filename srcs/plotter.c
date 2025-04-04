@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:34:12 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/03 18:58:34 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/04 17:09:10 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	plot_chg_zoom_lvl(int zoom_in, t_pln *pln)
 	if (zoom_in)
 		zoom = 1.0 / ZOOM_LVL;
 	*pln = (t_pln){.x_min = pln->x_min * zoom, .x_max = pln->x_max * zoom,
-			.y_min = pln->y_min * zoom, .y_min = pln->y_max * zoom};
+		.y_min = pln->y_min * zoom, .y_max = pln->y_max * zoom};
 	return (1);
 }
 
@@ -33,55 +33,65 @@ static t_pnt	plot_get_cmplx_coords(t_pnt *pt, t_pln *pln)
 	return (cpt);
 }
 
+// 04/01 - IMPROVE that smoothing shi.
+static double	plot_is_seq_unstable(double complex z, double *iter)
+{
+	double	zcj_sq;
+
+	zcj_sq = creal(z) * creal(z) + cimag(z) * cimag(z);
+	if (zcj_sq > RADIUS * RADIUS)
+	{
+		*iter += 1 - log2((log10(zcj_sq) / 2) / log10(RADIUS));
+		if (*iter < 0)
+			*iter = 0.0;
+		return (1);
+	}
+	return (0);
+}
+
 static double	plot_get_max_iter(t_pnt *pt, t_ui *ui)
 {
 	t_pnt			cpt;
 	double complex	z;
-	double			zcj_sq;
-	int				i;
+	double			iter;
 
 	cpt = plot_get_cmplx_coords(pt, &ui->pln);
 	z = 0;
 	if (ui->cli.ftype == JULIA)
 		z = cpt.x + cpt.y * I;
-	i = -1;
-	while (++i < MAX_ITER)
+	iter = -1;
+	while (++iter < MAX_ITER)
 	{
-		zcj_sq = creal(z) * creal(z) + cimag(z) * cimag(z);
-		if (zcj_sq > RADIUS * RADIUS)
-			return (i + 1 - log2((log10(zcj_sq) / 2) / log10(RADIUS))); // if (iter_max < 0) iter_max = 0.0;
+		if (plot_is_seq_unstable(z, &iter) == true)
+			return (iter);
 		z *= z;
 		if (ui->cli.ftype == MANDELBROT)
-			z += (cpt.x + cpt.y * I);
+			z += cpt.x + cpt.y * I;
 		else if (ui->cli.ftype == JULIA)
 			z += ui->cli.creal + ui->cli.cimag * I;
 	}
 	return (MAX_ITER);
 }
 
-// 31/03 - Here 2
+// 04/04 - Is that a new interpolation necessary? 
+//		1 / Yeah, it helps add things more, but maybe I can remove it to test...
+//		2 / Or maybe I should remove the first interpolation used to create the
+//		enriched palette in the first place
 int	plot_colorize_coords(t_pnt *pt, t_ui *ui)
 {
+	int		*palette;
+	int		pal_len;
+	int		icolor;
 	double	iter;
-	int		basecolors[2];
-	int		*pal;
-	int		pal_size;
 
+	palette = ui->pals[ui->pal_i];
+	pal_len = 0;
+	while (palette[pal_len])
+		++pal_len;
 	iter = plot_get_max_iter(pt, ui);
-
-	pal = ui->pals[ui->pal_i];
-
-	pal_size = 0;
-	while (pal[pal_size])
-		++pal_size;
-
 	if (iter == MAX_ITER)
-		return (pal[pal_size]); //
-
-	// 4/04 - Almost done.
-	// 31/03 - Is that a new interpolation necessary?
-	basecolors[0] = pal[(int)iter % pal_size];
-	basecolors[1] = pal[((int)iter + 1) % pal_size];
-	return (color_interpolate(basecolors[0], basecolors[1],
-			iter_max - (int)iter_max));
+		return (0x0);
+	icolor = color_interpolate(palette[(int)iter % pal_len],
+			palette[((int)iter + 1) % pal_len], iter - (int)iter);
+	return (icolor);
 }

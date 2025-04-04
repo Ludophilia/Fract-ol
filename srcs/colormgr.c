@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:45:30 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/03 18:38:35 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/04 16:14:25 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,18 @@ void	color_palettes_free(int from, int **palettes)
 	}
 }
 
-int	color_interpolate(int basec1, int basec2, double coeff)
+int	color_interpolate(int bc1, int bc2, double coeff)
 {
-	t_rgb	color1;
-	t_rgb	color2;
-	t_rgb	inter;
+	t_rgb	icl;
+	t_rgb	c1;
+	t_rgb	c2;
 
-	color1 = (t_rgb){.r = (basec1 >> 16 & 0xFF), .g = (basec1 >> 8 & 0xFF),
-		.b = (basec1 & 0xFF)};
-	color2 = (t_rgb){.r = (basec2 >> 16 & 0xFF), .g = (basec2 >> 8 & 0xFF),
-		.b = (basec2 & 0xFF)};
-	inter.r = color1.r + (color2.r - color1.r) * coeff;
-	inter.g = color1.g + (color2.g - color1.g) * coeff;
-	inter.b = color1.b + (color2.b - color1.b) * coeff;
-	return (inter.r << 16 | inter.g << 8 | inter.b);
+	c1 = (t_rgb){(bc1 >> 16) & 0xFF, (bc1 >> 8) & 0xFF, bc1 & 0xFF};
+	c2 = (t_rgb){(bc2 >> 16) & 0xFF, (bc2 >> 8) & 0xFF, bc2 & 0xFF};
+	icl.r = c1.r + (c2.r - c1.r) * coeff;
+	icl.g = c1.g + (c2.g - c1.g) * coeff;
+	icl.b = c1.b + (c2.b - c1.b) * coeff;
+	return (icl.r << 16 | icl.g << 8 | icl.b);
 }
 
 static int	*color_gradients_build(int *basecol, int size, int cols_per_gr)

@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/03 18:44:30 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/04 17:37:11 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include <complex.h>
 
 # define WIN_NAME "Fractol"
-# define WIN_X 1150
-# define WIN_Y 1150
+# define WIN_X 720
+# define WIN_Y 720
 
 # define ERR_USAGE "usage: fractol (0 | 1 <const_real> <const_imag>)\n"
 
@@ -40,16 +40,16 @@
 # define ZOOM_OUT 0
 
 # define BYTE_FROM_BIT 8
-# define BIG_ENDIAN 1
-# define LIL_ENDIAN 0
+# define ENDIAN_BIG 1
+# define ENDIAN_LIT 0
 
 typedef enum e_tgt
 {
 	TG_MLX = (1 << 0),
-	TG_DIS = (1 << 4),
 	TG_PALS = (1 << 1),
 	TG_IMG = (1 << 2),
 	TG_WIN = (1 << 3),
+	TG_DIS = (1 << 4),
 	TG_ALL = TG_MLX | TG_PALS | TG_IMG | TG_WIN | TG_DIS,
 }	t_tgt;
 

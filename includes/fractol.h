@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/04 17:37:11 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/05 19:28:52 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define MANDELBROT 0
 # define JULIA 1
 # define RADIUS 2
-# define MAX_ITER 200.00
+# define MAX_ITER 75.00
 
 # define ZOOM_LVL 1.05
 # define ZOOM_IN 1
@@ -114,7 +114,7 @@ typedef struct s_ui
 int		cli_get_args(int argc, char **argv, t_cli *cli);
 
 int		color_interpolate(int base_c1, int base_c2, double coeff);
-int		color_palettes_build(int cols_per_gr, t_ui *ui);
+int		color_palettes_build(t_ui *ui);
 void	color_palettes_free(int from, int **palettes);
 
 void	ui_events_register(t_ui *ui);

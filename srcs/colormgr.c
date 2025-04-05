@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:45:30 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/04 16:14:25 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/05 19:28:45 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,18 @@ static int	*color_gradients_build(int *basecol, int size, int cols_per_gr)
 	return (gradients);
 }
 
-int	color_palettes_build(int cols_per_gr, t_ui *ui)
+// (int [6]){0x120272, 0x44bcfc, 0xffffff, 0xfaa502, 0xcb2600, 0}
+int	color_palettes_build(t_ui *ui)
 {
-	int	**palettes;
-
-	palettes = ui->pals;
-	palettes[0] = color_gradients_build((int [6]){0x120272, 0x44bcfc, 0xffffff,
-			0xfaa502, 0xcb2600, 0}, 5, cols_per_gr);
-	if (palettes[0] == NULL)
+	int	*basecolr;
+	
+	basecolr = (int [11]){0x120272, 0x2B5FB7, 0x44BCFC, 0xFFFFFF, 0xFAA502,
+				0xE36601, 0xCB2600, 0x70182F, 0x1D1266, 0x10074C, 0};
+	// basecolr = (int [7]){0x120272, 0x44bcfc, 0xffffff, 0xfaa502, 0xcb2600, 0x1A0744, 0};
+	ui->pals[0] = color_gradients_build(basecolr, 10, 30);
+	if (ui->pals[0] == NULL)
 		return (-1);
-	palettes[1] = NULL;
+	ui->pals[1] = NULL;
 	ui->pal_i = 0;
 	ui->pal_nb = 1;
 	return (0);

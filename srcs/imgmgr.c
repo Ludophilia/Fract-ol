@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:54:38 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/04 17:45:45 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/05 19:28:35 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	image_init(t_ui *ui)
 		return (-1);
 	ui->img_adr = mlx_get_data_addr(ui->img, &ui->img_bpp, &ui->img_szl,
 			&ui->img_end);
-	if ((ui->img_adr == NULL || color_palettes_build(25, ui) == -1)
+	if ((ui->img_adr == NULL || color_palettes_build(ui) == -1)
 		&& ui_destroy(TG_IMG, ui))
 		return (-1);
 	ui->pln = (t_pln){.x_min = -2, .y_min = -2, .x_max = 2, .y_max = 2};

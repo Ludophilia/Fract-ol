@@ -59,7 +59,7 @@ deeper
 are larger, multiple small ones (*)
 - `z² - 0.835 - 0.2321 * I`, still 2 big tornardos but with less large wings
 
-- `z² - 0.608 + 0.510 * I`, galaxy of dotted tornados
+- `z² - 0.608 + 0.510 * I`, galaxy of dotted tornados (***)
 
 - `z² + I`, fissure
 - `z² -0.15 0.95`, fissure

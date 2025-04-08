@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/05 19:28:52 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/08 20:36:36 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,18 @@
 # include <math.h>
 # include <complex.h>
 
+#define PI 3.1415
+
 # define WIN_NAME "Fractol"
-# define WIN_X 720
-# define WIN_Y 720
+# define WIN_X 1150
+# define WIN_Y 1150
 
 # define ERR_USAGE "usage: fractol (0 | 1 <const_real> <const_imag>)\n"
 
 # define MANDELBROT 0
 # define JULIA 1
 # define RADIUS 2
-# define MAX_ITER 75.00
+# define MAX_ITER 100.00
 
 # define ZOOM_LVL 1.05
 # define ZOOM_IN 1

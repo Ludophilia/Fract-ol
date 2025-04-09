@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/08 20:36:36 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/09 19:29:30 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@
 # define MANDELBROT 0
 # define JULIA 1
 # define RADIUS 2
-# define MAX_ITER 100.00
+# define MMAX_ITER 60.00
+# define JMAX_ITER 200.00
 
 # define ZOOM_LVL 1.05
 # define ZOOM_IN 1
@@ -81,6 +82,7 @@ typedef struct s_cli
 	int		ftype;
 	double 	creal;
 	double	cimag;
+	double	max_iter;
 }	t_cli;
 
 typedef struct s_pnt

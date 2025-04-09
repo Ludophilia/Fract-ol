@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 19:40:20 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/30 16:43:26 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/09 17:48:14 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,12 @@ int	cli_get_args(int argc, char **argv, t_cli *cli)
 		return (-1);
 	cli->ftype = fra_type;
 	if (fra_type == 0)
+	{
+		cli->max_iter = MMAX_ITER;
 		return (0);
+	}
 	cli->creal = cli_atod(argv[2]);
 	cli->cimag = cli_atod(argv[3]);
+	cli->max_iter = JMAX_ITER;
 	return (0);
 }

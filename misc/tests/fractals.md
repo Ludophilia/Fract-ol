@@ -72,7 +72,7 @@ are larger, multiple small ones (*)
 
 - `z² + 0`, circle
 
-- `z² -0.78 - 0.15 * I`, curly cloud with curly holes
+- `z² -0.78 - 0.15 * I`, curly cloud with curly holes (***)
 - `z² -0.78 - 0.14 * I`, curly cloud with curly holes
 
 - `z² -0.10 + 0.75 * I`, 2 fans

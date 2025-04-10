@@ -1,0 +1,23 @@
+// https://magoosh.com/hs/ap/ap-calculus-review-trigonometric-identities/
+// https://magoosh.com/hs/files/2017/03/1024px-Unit_Circle_Angles_Color_Clock_Face.svg_.png
+
+// 0 deg -> 0 rad
+// 30 deg -> π/6 or 0.5235 rad
+// 45 deg -> π/4 or 0.7853 rad
+// 60 deg -> π/3 or 1.0471 rad
+// 90 deg -> π/2 or 1.5707 rad
+
+// 120 deg -> 2π/3 or 2.0944 rad
+// 135 deg -> 3π/4 or 2.3561 rad 
+// 150 deg -> 5π/6 or 2.6179 rad
+// 180 deg -> π or 3.1415 rad
+
+// 210 deg -> 5π/6 or 2.6179 rad
+// 225 deg -> 3π/4 or 2.3561 rad
+// 240 deg -> 4π/3 or 4.1888 rad
+// 270 deg -> 3π/2 or 4.7123 rad
+
+// 300 deg -> 5π/3 or 5.2359 rad
+// 315 deg -> 7π/4 or 5.4977 rad
+// 330 deg -> 11π/6 or 5.7595 rad
+// 360 deg -> 2π or 6.2831 rad

@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 13:08:03 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/05 17:48:05 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/10 18:46:04 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ int	ui_destroy(int target, t_ui *ui)
 		mlx_destroy_display(ui->mlx);
 	if (target & TG_MLX)
 		free(ui->mlx);
-	if (target & TG_PALS)
-		color_palettes_free(0, ui->pals);
 	return (1);
 }
 
@@ -46,7 +44,7 @@ int	ui_init(t_ui *ui)
 	if (ui->mlx == NULL)
 		return (-1);
 	ui->win = mlx_new_window(ui->mlx, WIN_X, WIN_Y, WIN_NAME);
-	if (ui->win == NULL && ui_destroy(TG_MLX | TG_DIS, ui) )
+	if (ui->win == NULL && ui_destroy(TG_MLX | TG_DIS, ui))
 		return (-1);
 	if (image_init(ui) == -1 && ui_destroy(TG_MLX | TG_DIS | TG_WIN, ui))
 		return (-1);

@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:54:38 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/05 19:28:35 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/10 18:33:17 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	image_pixel_colorize(t_pnt *pt, t_ui *ui)
 	int	px_pos;
 	int	spx_pos;
 
-	color = plot_colorize_coords(pt, ui);
+	color = view_colorize_coords(pt, ui);
 	px_size = ui->img_bpp / BYTE_FROM_BIT;
 	px_pos = pt->x * px_size + pt->y * ui->img_szl;
 	spx_pos = -1;
@@ -60,8 +60,7 @@ int	image_init(t_ui *ui)
 		return (-1);
 	ui->img_adr = mlx_get_data_addr(ui->img, &ui->img_bpp, &ui->img_szl,
 			&ui->img_end);
-	if ((ui->img_adr == NULL || color_palettes_build(ui) == -1)
-		&& ui_destroy(TG_IMG, ui))
+	if (ui->img_adr == NULL && ui_destroy(TG_IMG, ui))
 		return (-1);
 	ui->pln = (t_pln){.x_min = -2, .y_min = -2, .x_max = 2, .y_max = 2};
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/09 19:29:30 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/10 18:37:08 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define MANDELBROT 0
 # define JULIA 1
 # define RADIUS 2
-# define MMAX_ITER 60.00
+# define MMAX_ITER 150.00
 # define JMAX_ITER 200.00
 
 # define ZOOM_LVL 1.05
@@ -49,11 +49,10 @@
 typedef enum e_tgt
 {
 	TG_MLX = (1 << 0),
-	TG_PALS = (1 << 1),
-	TG_IMG = (1 << 2),
-	TG_WIN = (1 << 3),
-	TG_DIS = (1 << 4),
-	TG_ALL = TG_MLX | TG_PALS | TG_IMG | TG_WIN | TG_DIS,
+	TG_IMG = (1 << 1),
+	TG_WIN = (1 << 2),
+	TG_DIS = (1 << 3),
+	TG_ALL = TG_MLX | TG_IMG | TG_WIN | TG_DIS,
 }	t_tgt;
 
 typedef struct s_rgb
@@ -77,13 +76,13 @@ typedef struct s_ijk
 	long	k;
 }	t_ijk;
 
-typedef struct s_cli
+typedef struct s_fra
 {
 	int		ftype;
 	double 	creal;
 	double	cimag;
 	double	max_iter;
-}	t_cli;
+}	t_fra;
 
 typedef struct s_pnt
 {
@@ -101,7 +100,7 @@ typedef struct s_pln
 
 typedef struct s_ui
 {
-	t_cli	cli;
+	t_fra	fra;
 	void	*mlx;
 	void	*win;
 	void	*img;
@@ -110,16 +109,9 @@ typedef struct s_ui
 	int		img_end;
 	int		img_szl;
 	t_pln	pln;
-	int		*pals[2];
-	int		pal_nb;
-	int		pal_i;
 }	t_ui;
 
-int		cli_get_args(int argc, char **argv, t_cli *cli);
-
-int		color_interpolate(int base_c1, int base_c2, double coeff);
-int		color_palettes_build(t_ui *ui);
-void	color_palettes_free(int from, int **palettes);
+int		cli_get_args(int argc, char **argv, t_fra *fra);
 
 void	ui_events_register(t_ui *ui);
 void	ui_loop(t_ui *ui);
@@ -129,8 +121,11 @@ int		ui_destroy(int target, t_ui *ui);
 int		image_ui_draw(t_ui *ui);
 int		image_init(t_ui *ui);
 
-int		plot_chg_zoom_lvl(int zoom_in, t_pln *pln);
-int		plot_colorize_coords(t_pnt *pt, t_ui *ui);
+t_pnt	plot_get_cmplx_coords(t_pnt *pt, t_pln *pln);
+double	plot_get_max_iter(t_pnt *cpt, t_fra *fra);
+
+int		view_chg_zoom_lvl(int zoom_in, t_pln *pln);
+int		view_colorize_coords(t_pnt *pt, t_ui *ui);
 
 int		hook_key_event_manage(int keycode, t_ui *ui);
 int		hook_mouse_event_manage(int button, int x, int y, t_pln *pln);

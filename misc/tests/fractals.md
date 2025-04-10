@@ -52,11 +52,10 @@ available online. Use `zn+1 = (|Re(zn)| - i * |Im(zn)|)² + c` instead.
 - `z² - 1.49`, 5 small segments and more on real axis
 
 - `z² - 0.4 + 0.6 * I`, 2 big tornados and multiple small ones (***)
-- `z² -0.25 + 0.646 * I`, still 2 big tornardos (***) but
-deeper
+- `z² -0.25 + 0.646 * I`, still 2 big tornardos but deeper
 
-- `z² - 0.2 + 0.7 * I`, 2 big tornardos but the wings
-are larger, multiple small ones (*)
+- `z² - 0.2 + 0.7 * I`, 2 big tornardos but the wings are larger, multiple
+small ones (***)
 - `z² - 0.835 - 0.2321 * I`, still 2 big tornardos but with less large wings
 
 - `z² - 0.608 + 0.510 * I`, galaxy of dotted tornados (***)
@@ -66,20 +65,23 @@ are larger, multiple small ones (*)
 
 - `z² + 0.285`, big curly cloud? A snail? (***)
 - `z² + 0.285 + 0.01i` (***)
-- `z² + 0.4 + 0.1 * I`, 4 clouds
+- `z² + 0.4 + 0.1 * I`, 4 clouds (***)
 
 - `z² + 0.34 + 0.31 * I`, big hole with angles
 
 - `z² + 0`, circle
 
 - `z² -0.78 - 0.15 * I`, curly cloud with curly holes (***)
-- `z² -0.78 - 0.14 * I`, curly cloud with curly holes
+- `z² -0.78 - 0.14 * I`, curly cloud with curly holes (***)
+- `z² -0.8 - 0.156 * I`, curly cloud with deeper holes (***)
 
 - `z² -0.10 + 0.75 * I`, 2 fans
-- `z² +0.13 + 0.6 * I`, 2 fans turns into a whirlpool
+- `z² +0.13 + 0.6 * I`, 2 fans turns into a whirlpool (***)
 - `z² +0.132 + 0.62 * I`, 2 fans turns into leaves
 
-- `z² +0.285 + 0.02 * I`, hole with a lot of waves
+- `z² +0.285 + 0.02 * I`, hole with a lot of waves (***)
+
+- `z² +0.4 + 0.4 * I`, stars (***)
 
 ## Palettes
 

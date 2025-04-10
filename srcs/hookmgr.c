@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 19:09:27 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/03 15:14:57 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/10 18:29:42 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	hook_mouse_event_manage(int button, int x, int y, t_pln *pln)
 {
 	(void)x;
 	(void)y;
-	if ((button == 4 && plot_chg_zoom_lvl(ZOOM_IN, pln) == -1)
-		|| (button == 5 && plot_chg_zoom_lvl(ZOOM_OUT, pln) == -1))
+	if ((button == 4 && view_chg_zoom_lvl(ZOOM_IN, pln) == -1)
+		|| (button == 5 && view_chg_zoom_lvl(ZOOM_OUT, pln) == -1))
 		return (-1);
 	return (0);
 }

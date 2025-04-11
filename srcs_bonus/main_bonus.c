@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 12:35:34 by jegerman          #+#    #+#             */
-/*   Updated: 2025/03/30 14:20:42 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/11 18:34:05 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,26 @@ static int	fractol_init(int argc, char **argv, t_core *core)
 			"<const_real> <const_imag> | 2)\n");
 		return (-1);
 	}
-	if (color_palettes_build(25, core) == -1)
-	{
-		errno = ENOMEM;
-		perror("fractol");
-		return (-1);
-	}
-	if (ui_init(core) == -1 || image_init(core) == -1)
-	{
-		perror("fractol");
-		ft_dprintf(2, "Something went wrong when initializing"
-			" the MiniLibX Library.\n");
-		color_palettes_free(core->pal_con.palettes, 0);
-		return (-1);
-	}
-	view_set_complex_plane_limits(-2, 2, &core->com_pln);
+	// if (color_palettes_build(25, core) == -1)
+	// {
+	// 	errno = ENOMEM;
+	// 	perror("fractol");
+	// 	return (-1);
+	// }
+	// if (ui_init(core) == -1 || image_init(core) == -1)
+	// {
+	// 	perror("fractol");
+	// 	ft_dprintf(2, "Something went wrong when initializing"
+	// 		" the MiniLibX Library.\n");
+	// 	color_palettes_free(core->pal_con.palettes, 0);
+	// 	return (-1);
+	// }
+	// view_set_complex_plane_limits(-2, 2, &core->com_pln);
 	return (0);
 }
 
+
+// 11/04 - Here we go again...
 int	main(int argc, char **argv)
 {
 	t_core	core;
@@ -47,7 +49,7 @@ int	main(int argc, char **argv)
 		return (1);
 	image_ui_draw(&core);
 	ui_events_register(&core);
-	ui_loop(&core);
-	ui_destroy(&core);
+	// ui_loop(&core);
+	// ui_destroy(&core);
 	return (0);
 }

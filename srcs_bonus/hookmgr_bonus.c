@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 19:09:27 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/30 19:49:42 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/11 18:46:41 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,20 @@ int	hook_key_event_manage(int keycode, t_core *core)
 	return (0);
 }
 
-int	hook_mouse_event_manage(int button, int x, int y, t_core *core)
-{
-	t_pln	*com_pln;
+// int	hook_mouse_event_manage(int button, int x, int y, t_core *core)
+// {
+// 	t_pln	*com_pln;
 
-	com_pln = &core->com_pln;
-	if (button == 4)
-		view_change_comp_plane_zoom_level(1, x, y, com_pln);
-	else if (button == 5)
-		view_change_comp_plane_zoom_level(0, x, y, com_pln);
-	return (0);
-}
+// 	com_pln = &core->com_pln;
+// 	if (button == 4)
+// 		view_change_comp_plane_zoom_level(1, x, y, com_pln);
+// 	else if (button == 5)
+// 		view_change_comp_plane_zoom_level(0, x, y, com_pln);
+// 	return (0);
+// }
 
-int	hook_loop_event_manage(t_core *core)
-{
-	image_ui_draw(core);
-	return (0);
-}
+// int	hook_loop_event_manage(t_core *core)
+// {
+// 	image_ui_draw(core);
+// 	return (0);
+// }

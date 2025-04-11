@@ -6,13 +6,14 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:34:12 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/03 18:44:30 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/11 18:57:22 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_bonus.h"
 
-static double	plot_get_iter_max_for_comp_coords(double x, double y,
+// 11/04 - Changed...
+double	plot_get_iter_max_for_comp_coords(double x, double y,
 int fract_type, double *zconsts)
 {
 	double			conjz2;
@@ -42,26 +43,26 @@ int fract_type, double *zconsts)
 	return (MAX_ITER);
 }
 
-int	plot_colorize_coords(double x, double y, t_core *core)
-{
-	int		basecolors[2];
-	int		pal_size;
-	double	iter_max;
-	int		*palette;
+// int	plot_colorize_coords(double x, double y, t_core *core)
+// {
+// 	int		basecolors[2];
+// 	int		pal_size;
+// 	double	iter_max;
+// 	int		*palette;
 
-	view_translate_mlx_coords_to_comp_coords(&x, &y, &core->com_pln);
-	iter_max = plot_get_iter_max_for_comp_coords(x, y, core->usr_inp.fract,
-			core->usr_inp.zcons);
-	if (iter_max < 0)
-		iter_max = 0.0;
-	palette = core->pal_con.palettes[core->pal_con.current];
-	pal_size = -1;
-	while (palette[++pal_size])
-		;
-	if (iter_max == MAX_ITER)
-		return (palette[pal_size]);
-	basecolors[0] = palette[(int)iter_max % pal_size];
-	basecolors[1] = palette[((int)iter_max + 1) % pal_size];
-	return (color_interpolate(basecolors[0], basecolors[1],
-			iter_max - (int)iter_max));
-}
+// 	view_translate_mlx_coords_to_comp_coords(&x, &y, &core->com_pln);
+// 	iter_max = plot_get_iter_max_for_comp_coords(x, y, core->usr_inp.fract,
+// 			core->usr_inp.zcons);
+// 	if (iter_max < 0)
+// 		iter_max = 0.0;
+// 	palette = core->pal_con.palettes[core->pal_con.current];
+// 	pal_size = -1;
+// 	while (palette[++pal_size])
+// 		;
+// 	if (iter_max == MAX_ITER)
+// 		return (palette[pal_size]);
+// 	basecolors[0] = palette[(int)iter_max % pal_size];
+// 	basecolors[1] = palette[((int)iter_max + 1) % pal_size];
+// 	return (color_interpolate(basecolors[0], basecolors[1],
+// 			iter_max - (int)iter_max));
+// }

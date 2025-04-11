@@ -6,40 +6,40 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:15:56 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/03 15:04:57 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/11 18:48:18 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_bonus.h"
 
-void	view_translate_mlx_coords_to_comp_coords(double *x, double *y,
-t_pln *com_pln)
-{
-	double	*x_lim;
-	double	*y_lim;
+// void	view_translate_mlx_coords_to_comp_coords(double *x, double *y,
+// t_pln *com_pln)
+// {
+// 	double	*x_lim;
+// 	double	*y_lim;
 
-	x_lim = com_pln->x_lim;
-	y_lim = com_pln->y_lim;
-	*x = x_lim[0] + ((x_lim[1] - x_lim[0]) / WIN_X) * *x;
-	*y = y_lim[1] - ((y_lim[1] - y_lim[0]) / WIN_Y) * *y;
-}
+// 	x_lim = com_pln->x_lim;
+// 	y_lim = com_pln->y_lim;
+// 	*x = x_lim[0] + ((x_lim[1] - x_lim[0]) / WIN_X) * *x;
+// 	*y = y_lim[1] - ((y_lim[1] - y_lim[0]) / WIN_Y) * *y;
+// }
 
-void	view_set_complex_plane_limits(double min, double max, t_pln *com_pln)
-{
-	double	nb;
-	int		i;
+// void	view_set_complex_plane_limits(double min, double max, t_pln *com_pln)
+// {
+// 	double	nb;
+// 	int		i;
 
-	i = -1;
-	while (++i < 2)
-	{
-		if (i == 0)
-			nb = min;
-		else
-			nb = max;
-		com_pln->x_lim[i] = nb;
-		com_pln->y_lim[i] = nb;
-	}
-}
+// 	i = -1;
+// 	while (++i < 2)
+// 	{
+// 		if (i == 0)
+// 			nb = min;
+// 		else
+// 			nb = max;
+// 		com_pln->x_lim[i] = nb;
+// 		com_pln->y_lim[i] = nb;
+// 	}
+// }
 
 void	view_shit_comp_plane(uchar shift_direction, t_pln *com_pln)
 {

@@ -6,50 +6,21 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 12:35:34 by jegerman          #+#    #+#             */
-/*   Updated: 2025/04/11 18:34:05 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:07:54 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_bonus.h"
 
-static int	fractol_init(int argc, char **argv, t_core *core)
-{
-	if (cli_get_args(argc, argv, core) == -1)
-	{
-		perror("fractol");
-		ft_dprintf(2, "usage: fractol (0 | 1 "
-			"<const_real> <const_imag> | 2)\n");
-		return (-1);
-	}
-	// if (color_palettes_build(25, core) == -1)
-	// {
-	// 	errno = ENOMEM;
-	// 	perror("fractol");
-	// 	return (-1);
-	// }
-	// if (ui_init(core) == -1 || image_init(core) == -1)
-	// {
-	// 	perror("fractol");
-	// 	ft_dprintf(2, "Something went wrong when initializing"
-	// 		" the MiniLibX Library.\n");
-	// 	color_palettes_free(core->pal_con.palettes, 0);
-	// 	return (-1);
-	// }
-	// view_set_complex_plane_limits(-2, 2, &core->com_pln);
-	return (0);
-}
-
-
-// 11/04 - Here we go again...
 int	main(int argc, char **argv)
 {
-	t_core	core;
+	t_ui	ui;
 
-	if (fractol_init(argc, argv, &core) == -1)
+	if (clib_get_args(argc, argv, &ui.fra) == -1 && ft_dprintf(2, ERR_USAGE))
 		return (1);
-	image_ui_draw(&core);
-	ui_events_register(&core);
-	// ui_loop(&core);
-	// ui_destroy(&core);
+	if (uib_init(&ui) == -1)
+		return (2);
+	ui_loop(&ui);
+	ui_destroy(TG_ALL, &ui);
 	return (0);
 }

@@ -6,57 +6,11 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:45:30 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/11 18:46:12 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/12 17:03:00 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_bonus.h"
-
-// static int	*color_palette_init(int *basecolors, int colors_per_gr)
-// {
-// 	int	*palette;
-// 	int	size;
-
-// 	size = -1;
-// 	while (basecolors[++size])
-// 		;
-// 	if (size < 2 || colors_per_gr < 2)
-// 		return (NULL);
-// 	size = colors_per_gr + (size - 2) * (colors_per_gr - 1) + 1;
-// 	palette = ft_calloc(size, sizeof(int));
-// 	if (palette == NULL)
-// 		return (NULL);
-// 	return (palette);
-// }
-
-// static int	*color_palette_build(int *basecolors, int colors_per_gr)
-// {
-// 	int	*palette;
-// 	int	ijk[3];
-// 	int	new_color;
-
-// 	palette = color_palette_init(basecolors, colors_per_gr);
-// 	if (palette == NULL)
-// 		return (NULL);
-// 	ijk[0] = -1;
-// 	ijk[2] = 0;
-// 	while (basecolors[++ijk[0] + 1])
-// 	{
-// 		ijk[1] = -1;
-// 		while (++ijk[1] < colors_per_gr)
-// 		{
-// 			new_color = color_interpolate(basecolors[ijk[0]],
-// 					basecolors[ijk[0] + 1],
-// 					(double)ijk[1] / (colors_per_gr - 1));
-// 			if (ijk[2] == 0)
-// 				palette[ijk[2]++] = new_color;
-// 			else if (new_color != palette[ijk[2] - 1])
-// 				palette[ijk[2]++] = new_color;
-// 		}
-// 	}
-// 	palette[ijk[2]] = 0x000000;
-// 	return (palette);
-// }
 
 int	color_palettes_build(int colors_per_gradient, t_core *core)
 {

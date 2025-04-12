@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/11 18:59:47 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/12 17:04:52 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,7 @@
 
 # define PALETTE_SIZE 4
 
-// # define MANDELBROT 0
-// # define JULIA 1
 # define SHIP 2
-
-// # define ZOOM_LVL 1.05
-
-// typedef struct s_img
-// {
-// 	void	*img_ptr;
-// 	char	*addr;
-// 	int		bpp;
-// 	int		szl;
-// 	int		end;
-// }	t_img;
 
 typedef struct s_inp
 {
@@ -46,54 +33,20 @@ typedef struct s_inp
 	char	*zconsrw[2];
 }	t_inp;
 
-// typedef struct s_pal
-// {
-// 	int		**palettes;
-// 	int		size;
-// 	uchar	current;
-// }	t_pal;
+int		clib_get_args(int argc, char **argv, t_fra *fra);
 
-// typedef struct s_pln
-// {
-// 	double	x_lim[2];
-// 	double	y_lim[2];
-// }	t_pln;
+int		hookb_key_event_manage(int keycode, t_ui *ui);
+int		hookb_mouse_event_manage(int button, int x, int y, t_pln *pln);
 
-typedef struct s_fra
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	img_con;
-	t_inp	usr_inp;
-	t_pal	pal_con;
-	t_pln	com_pln;
-}	t_core;
+void	uib_events_register(t_ui *ui);
+int		uib_init(t_ui *ui);
 
-int		cli_get_args(int argc, char **argv, t_core *core);
-
-// int		color_interpolate(int color1, int color2, double coeff);
+// 12/04
 int		color_palettes_build(int colors_per_gradient, t_core *core);
-// void	color_palettes_free(int **palettes, int from);
-// int		color_palettes_check(int **palettes, t_core *core);
 void	color_palettes_shift(int straight, t_pal *palette);
-
-int		hook_key_event_manage(int keycode, t_core *core);
-// int		hook_mouse_event_manage(int button, int x, int y, t_core *core);
-// int		hook_loop_event_manage(t_core *core);
-
-// int		image_init(t_core *core);
-// int		image_ui_draw(t_core *core);
 
 int		plot_colorize_coords(double x, double y, t_core *core);
 
-// int		ui_init(t_core *core);
-// void	ui_events_register(t_core *core);
-// void	ui_loop(t_core *core);
-// void	ui_destroy(t_core *core);
-
-// void	view_translate_mlx_coords_to_comp_coords(double *x, double *y,
-// 		t_pln *com_pln);
-// void	view_set_complex_plane_limits(double min, double max, t_pln *com_pln);
 void	view_change_comp_plane_zoom_level(int zoom_in, double x, double y,
 		t_pln *com_pln);
 void	view_shit_comp_plane(uchar shift_direction, t_pln *com_pln);

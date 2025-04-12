@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/10 18:37:08 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:08:52 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,9 +111,10 @@ typedef struct s_ui
 	t_pln	pln;
 }	t_ui;
 
+int		cli_is_full_digit(char *str, int *j);
+double	cli_atod(char *str);
 int		cli_get_args(int argc, char **argv, t_fra *fra);
 
-void	ui_events_register(t_ui *ui);
 void	ui_loop(t_ui *ui);
 int		ui_init(t_ui *ui);
 int		ui_destroy(int target, t_ui *ui);

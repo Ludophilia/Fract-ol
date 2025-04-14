@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 19:09:27 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/12 16:56:16 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/14 17:22:38 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,11 @@ int	hookb_mouse_event_manage(int button, int x, int y, t_pln *pln)
 		view_change_comp_plane_zoom_level(1, x, y, com_pln);
 	else if (button == 5)
 		view_change_comp_plane_zoom_level(0, x, y, com_pln);
+	return (0);
+}
+
+int	hookb_loop_event_manage(t_ui *ui)
+{
+	imageb_ui_draw(ui);
 	return (0);
 }

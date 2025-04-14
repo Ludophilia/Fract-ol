@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/12 17:04:52 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/14 18:36:09 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,18 @@ int		clib_get_args(int argc, char **argv, t_fra *fra);
 
 int		hookb_key_event_manage(int keycode, t_ui *ui);
 int		hookb_mouse_event_manage(int button, int x, int y, t_pln *pln);
+int		hookb_loop_event_manage(t_ui *ui);
 
 void	uib_events_register(t_ui *ui);
 int		uib_init(t_ui *ui);
 
-// 12/04
-int		color_palettes_build(int colors_per_gradient, t_core *core);
-void	color_palettes_shift(int straight, t_pal *palette);
+int		imageb_ui_draw(t_ui *ui);
 
-int		plot_colorize_coords(double x, double y, t_core *core);
+double	plotb_get_max_iter(t_pnt *cpt, t_fra *fra);
 
 void	view_change_comp_plane_zoom_level(int zoom_in, double x, double y,
 		t_pln *com_pln);
 void	view_shit_comp_plane(uchar shift_direction, t_pln *com_pln);
+int		viewb_colorize_coords(t_pnt *pt, t_ui *ui);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:34:12 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/10 18:19:37 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/14 17:04:23 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_pnt	plot_get_cmplx_coords(t_pnt *pt, t_pln *pln)
 	return (cpt);
 }
 
-static double	plot_is_seq_unstable(double complex z, double *iter)
+double	plot_is_seq_unstable(double complex z, double *iter)
 {
 	double	zcj_sq;
 

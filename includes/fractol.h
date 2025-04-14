@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/12 16:08:52 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/14 17:04:37 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,11 @@ int		ui_destroy(int target, t_ui *ui);
 int		image_ui_draw(t_ui *ui);
 int		image_init(t_ui *ui);
 
+double	plot_is_seq_unstable(double complex z, double *iter);
 t_pnt	plot_get_cmplx_coords(t_pnt *pt, t_pln *pln);
 double	plot_get_max_iter(t_pnt *cpt, t_fra *fra);
 
+int		view_map_iter_to_color(double iter, t_fra *fra).
 int		view_chg_zoom_lvl(int zoom_in, t_pln *pln);
 int		view_colorize_coords(t_pnt *pt, t_ui *ui);
 

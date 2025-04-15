@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 19:09:27 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/14 17:22:38 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/15 21:31:08 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,25 @@
 
 int	hookb_key_event_manage(int keycode, t_ui *ui)
 {
+
 	if (keycode == XK_Escape)
-		mlx_loop_end(core->mlx_ptr);
+		mlx_loop_end(ui->mlx);
 	else if (keycode == XK_space)
-		view_set_complex_plane_limits(-2, 2, &core->com_pln);
+		ui->pln = (t_pln){.x_min = -2, .y_min = -2, .x_max = 2, .y_max = 2};
+
 	else if (keycode == XK_Left)
-		view_shit_comp_plane(SHIFT_LEFT, &core->com_pln);
+		viewb_shift_plane(SHIFT_LEFT, -SHIFT_FACTOR, &ui->pln);
 	else if (keycode == XK_Right)
-		view_shit_comp_plane(SHIFT_RIGHT, &core->com_pln);
+		viewb_shift_plane(SHIFT_RIGHT, SHIFT_FACTOR, &ui->pln);
 	else if (keycode == XK_Up)
-		view_shit_comp_plane(SHIFT_UP, &core->com_pln);
+		viewb_shift_plane(SHIFT_UP, SHIFT_FACTOR, &ui->pln);
 	else if (keycode == XK_Down)
-		view_shit_comp_plane(SHIFT_DOWN, &core->com_pln);
-	else if (keycode == XK_d)
-		color_palettes_shift(1, &core->pal_con);
-	else if (keycode == XK_s)
-		color_palettes_shift(0, &core->pal_con);
+		viewb_shift_plane(SHIFT_DOWN, -SHIFT_FACTOR, &ui->pln);
+
+	// else if (keycode == XK_d)
+	// 	color_palettes_shift(1, &core->pal_con);
+	// else if (keycode == XK_s)
+	// 	color_palettes_shift(0, &core->pal_con);
 	return (0);
 }
 

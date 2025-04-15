@@ -6,16 +6,26 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:34:12 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/14 18:38:49 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/15 17:52:44 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_bonus.h"
 
-static double complex	plotb_get_next_bship(double complex z,
-	t_pnt *cpt)
+static double complex	plotb_get_next_bship(double complex z, t_pnt *cpt)
 {
-	z = (cabs(creal(z)) - I * cabs(cimag(z))) * (cabs(creal(z)) - I * cabs(cimag(z))); // 15/04
+	// z = fabs(creal(z)) - I * fabs(cimag(z));
+	// z *= z; // fabs(creal(z)) - I * fabs(cimag(z));
+	// double	re_abs;
+	// double	im_abs;
+
+	// re_abs = fabs(creal(z));
+	// im_abs = fabs(cimag(z));
+	// z = re_abs * re_abs - im_abs * im_abs;
+	// z += 2 * I * re_abs * im_abs;
+	z = fabs(creal(z)) * fabs(creal(z));
+	z += 2 * I * fabs(creal(z)) * fabs(cimag(z));
+	z -= fabs(cimag(z)) * fabs(cimag(z));
 	z += cpt->x + cpt->y * I;
 	return (z);
 }
@@ -44,7 +54,7 @@ double	plotb_get_max_iter(t_pnt *cpt, t_fra *fra)
 	iter = -1;
 	while (++iter < max_iter)
 	{
-		if (plot_is_seq_unstable(z, &iter) == true)
+		if (plot_does_seq_escape(z, &iter) == true)
 			return (iter);
 		if (fra->ftype == SHIP)
 			z = plotb_get_next_bship(z, cpt);

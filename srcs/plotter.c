@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:34:12 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/14 17:04:23 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/15 17:50:41 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ t_pnt	plot_get_cmplx_coords(t_pnt *pt, t_pln *pln)
 	return (cpt);
 }
 
-double	plot_is_seq_unstable(double complex z, double *iter)
+double	plot_does_seq_escape(double complex z, double *iter)
 {
-	double	zcj_sq;
+	double	zabs_sq;
 
-	zcj_sq = creal(z) * creal(z) + cimag(z) * cimag(z);
-	if (zcj_sq > RADIUS * RADIUS)
+	zabs_sq = creal(z) * creal(z) + cimag(z) * cimag(z);
+	if (zabs_sq > RADIUS * RADIUS)
 	{
 		*iter += 1 - log(log2(cabs(z)));
 		return (1);
@@ -47,7 +47,7 @@ double	plot_get_max_iter(t_pnt *cpt, t_fra *fra)
 	iter = -1;
 	while (++iter < max_iter)
 	{
-		if (plot_is_seq_unstable(z, &iter) == true)
+		if (plot_does_seq_escape(z, &iter) == true)
 			return (iter);
 		z *= z;
 		if (fra->ftype == MANDELBROT)

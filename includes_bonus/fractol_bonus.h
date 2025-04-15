@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/14 18:36:09 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/15 21:25:00 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 
 # include "../includes/fractol.h"
 
+// # define PALETTE_SIZE 4
+
+# define SHIP 2
+
 # define SHIFT_FACTOR 0.05
 # define SHIFT_LEFT 0x10
 # define SHIFT_RIGHT 0x20
 # define SHIFT_UP 0x30
 # define SHIFT_DOWN 0x40
-
-# define PALETTE_SIZE 4
-
-# define SHIP 2
 
 typedef struct s_inp
 {
@@ -48,7 +48,7 @@ double	plotb_get_max_iter(t_pnt *cpt, t_fra *fra);
 
 void	view_change_comp_plane_zoom_level(int zoom_in, double x, double y,
 		t_pln *com_pln);
-void	view_shit_comp_plane(uchar shift_direction, t_pln *com_pln);
+void	viewb_shift_plane(int direct, double factor, t_pln *pln);
 int		viewb_colorize_coords(t_pnt *pt, t_ui *ui);
 
 #endif

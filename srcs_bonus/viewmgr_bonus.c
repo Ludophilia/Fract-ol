@@ -6,38 +6,23 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:15:56 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/14 17:52:26 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/15 21:31:54 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_bonus.h"
 
-void	viewb_shit_comp_plane(uchar shift_direction, t_pln *com_pln)
+void	viewb_shift_plane(int direct, double factor, t_pln *pln)
 {
-	double	*x_lim;
-	double	*y_lim;
-
-	x_lim = com_pln->x_lim;
-	y_lim = com_pln->y_lim;
-	if (shift_direction == SHIFT_LEFT)
+	if (direct == SHIFT_LEFT || direct == SHIFT_RIGHT)
 	{
-		com_pln->x_lim[0] -= SHIFT_FACTOR * (x_lim[1] - x_lim[0]);
-		com_pln->x_lim[1] -= SHIFT_FACTOR * (x_lim[1] - x_lim[0]);
+		pln->x_min += factor * (pln->x_max - pln->x_min);
+		pln->x_max += factor * (pln->x_max - pln->x_min);
 	}
-	else if (shift_direction == SHIFT_RIGHT)
+	if (direct == SHIFT_DOWN || direct == SHIFT_UP)
 	{
-		com_pln->x_lim[0] += SHIFT_FACTOR * (x_lim[1] - x_lim[0]);
-		com_pln->x_lim[1] += SHIFT_FACTOR * (x_lim[1] - x_lim[0]);
-	}
-	else if (shift_direction == SHIFT_UP)
-	{
-		com_pln->y_lim[0] += SHIFT_FACTOR * (y_lim[1] - y_lim[0]);
-		com_pln->y_lim[1] += SHIFT_FACTOR * (y_lim[1] - y_lim[0]);
-	}
-	else if (shift_direction == SHIFT_DOWN)
-	{
-		com_pln->y_lim[0] -= SHIFT_FACTOR * (y_lim[1] - y_lim[0]);
-		com_pln->y_lim[1] -= SHIFT_FACTOR * (y_lim[1] - y_lim[0]);
+		pln->y_min += factor * (pln->y_max - pln->y_min);
+		pln->y_max += factor * (pln->y_max - pln->y_min);
 	}
 }
 

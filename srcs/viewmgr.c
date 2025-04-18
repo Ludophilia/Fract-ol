@@ -6,13 +6,13 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:45:30 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/10 18:46:32 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/17 23:37:16 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	view_chg_zoom_lvl(int zoom_in, t_pln *pln)
+void	view_chg_zoom_lvl(int zoom_in, t_pln *pln)
 {
 	double	zoom;
 
@@ -21,18 +21,17 @@ int	view_chg_zoom_lvl(int zoom_in, t_pln *pln)
 		zoom = 1.0 / ZOOM_LVL;
 	*pln = (t_pln){.x_min = pln->x_min * zoom, .x_max = pln->x_max * zoom,
 		.y_min = pln->y_min * zoom, .y_max = pln->y_max * zoom};
-	return (1);
 }
 
 static int	view_map_iter_to_color(double iter, t_fra *fra)
 {
 	t_rgb	col;
-	double	ni;
+	double	nor_i;
 
-	ni = iter / fra->max_iter;
-	col.r = (255 / 2) * (1 + sin(2 * PI * ni + (3 * PI / 2)));
-	col.g = (255 / 2) * (1 + sin(2 * PI * ni + (11 * PI / 6)));
-	col.b = (255 / 2) * (1 + sin(2 * PI * ni + (1 * PI / 6)));
+	nor_i = iter / fra->max_iter;
+	col.r = (255 / 2) * (1 + sin((nor_i * 2 PI) + (3 PI / 2)));
+	col.g = (255 / 2) * (1 + sin((nor_i * 2 PI) + (11 PI / 6)));
+	col.b = (255 / 2) * (1 + sin((nor_i * 2 PI) + (1 PI / 6)));
 	return ((col.r << 16) | (col.g << 8) | col.b);
 }
 

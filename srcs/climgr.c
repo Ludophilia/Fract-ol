@@ -6,13 +6,13 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 19:40:20 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/12 14:59:27 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/18 22:11:42 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	cli_is_full_digit(char *str, int *j)
+static int	cli_is_full_digit(char *str, int *j)
 {
 	while (ft_isdigit(str[*j]))
 	{
@@ -30,7 +30,7 @@ static int	cli_check_args(int argc, char **argv)
 
 	if (argc < 2)
 		return (-1);
-	if ((argv[1][0] != (MANDELBROT + '0') && argv[1][0] != (JULIA + '0'))
+	if ((argv[1][0] != (MANDEL + '0') && argv[1][0] != (JULIA + '0'))
 		|| ft_strlen(argv[1]) != 1)
 		return (-1);
 	i = 1;
@@ -48,7 +48,7 @@ static int	cli_check_args(int argc, char **argv)
 	return (0);
 }
 
-double	cli_atod(char *str)
+static double	cli_atod(char *str)
 {
 	t_fpn	nbr;
 	int		i;
@@ -74,22 +74,21 @@ double	cli_atod(char *str)
 
 int	cli_get_args(int argc, char **argv, t_fra *fra)
 {
-	int	fra_type;
+	int	fra_typ;
 
 	if (cli_check_args(argc, argv) == -1)
 		return (-1);
-	fra_type = ft_atoi(argv[1]);
-	if (!((fra_type == MANDELBROT && argc == 2)
-		|| (fra_type == JULIA && argc == 4)))
+	fra_typ = ft_atoi(argv[1]);
+	if (!((fra_typ == MANDEL && argc == 2) || (fra_typ == JULIA && argc == 4)))
 		return (-1);
-	fra->ftype = fra_type;
-	if (fra_type == 0)
+	fra->ftype = fra_typ;
+	if (fra_typ == 0)
 	{
-		fra->max_iter = MMAX_ITER;
+		fra->max_iter = MAN_ITMX;
 		return (0);
 	}
 	fra->creal = cli_atod(argv[2]);
 	fra->cimag = cli_atod(argv[3]);
-	fra->max_iter = JMAX_ITER;
+	fra->max_iter = JUL_ITMX;
 	return (0);
 }

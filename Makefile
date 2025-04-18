@@ -6,11 +6,12 @@
 #    By: jegerman <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/01 20:24:27 by jgermany          #+#    #+#              #
-#    Updated: 2025/04/10 18:39:27 by jegerman         ###   ########.fr        #
+#    Updated: 2025/04/18 22:32:02 by jegerman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME								:= fractol
+NAME_BON							:= fractol_bonus
 
 FT									:= ./libs/libft
 MLX									:= ./libs/mlx
@@ -22,8 +23,9 @@ INCL_DIRB							:= ./includes_bonus
 
 CC 									:= cc
 CFLAGS 								:= -Wall -Wextra -Werror -I$(FT) -I$(MLX)
+
 all: CFLAGS 						+= -I$(INCL_DIRM)
-bonus: CFLAGS						+= -I$(INCL_DIRB)
+bonus: CFLAGS						+= -I$(INCL_DIRM) -I$(INCL_DIRB)
 LIBFLAGS 							:= -lm -lft -L$(FT) -lmlx -L$(MLX)
 LIBFLAGS 							+= -lX11 -lXext
 
@@ -35,15 +37,13 @@ SRCS_MAN 							+= $(SRCS_DIRM)/imgmgr.c
 SRCS_MAN 							+= $(SRCS_DIRM)/plotter.c
 SRCS_MAN 							+= $(SRCS_DIRM)/hookmgr.c
 
-# SRCS_BON 							:= $(SRCS_DIRB)/main_bonus.c
-# SRCS_BON 							+= $(SRCS_DIRB)/scenemgr_bonus.c
-# SRCS_BON 							+= $(SRCS_DIRB)/hookmgr_bonus.c
-# SRCS_BON 							+= $(SRCS_DIRB)/imgmgr_bonus.c
-# SRCS_BON 							+= $(SRCS_DIRB)/plotter_bonus.c
-# SRCS_BON 							+= $(SRCS_DIRB)/clichecker_bonus.c
-# SRCS_BON 							+= $(SRCS_DIRB)/colormgr_bonus.c
-# SRCS_BON 							+= $(SRCS_DIRB)/colormgr_utils_bonus.c
-# SRCS_BON 							+= $(SRCS_DIRB)/viewmgr_bonus.c
+SRCS_BON							:= $(SRCS_DIRB)/main_bonus.c
+SRCS_BON 							+= $(SRCS_DIRB)/climgr_bonus.c
+SRCS_BON 							+= $(SRCS_DIRB)/uimgr_bonus.c
+SRCS_BON 							+= $(SRCS_DIRB)/hookmgr_bonus.c
+SRCS_BON 							+= $(SRCS_DIRB)/imgmgr_bonus.c
+SRCS_BON 							+= $(SRCS_DIRB)/viewmgr_bonus.c
+SRCS_BON 							+= $(SRCS_DIRB)/plotter_bonus.c
 
 OBJS_MAN 							:= $(SRCS_MAN:.c=.o)
 OBJS_BON 							:= $(SRCS_BON:.c=.o)
@@ -53,7 +53,7 @@ all									:$(NAME)
 bonus								:$(OBJS_BON)
 									make -sC $(FT)
 									make -C $(MLX) >/dev/null 2>&1
-									$(CC) $(CFLAGS) -o $(NAME) $^ $(LIBFLAGS)
+									$(CC) $(CFLAGS) -o $(NAME_BON) $^ $(LIBFLAGS)
 
 $(NAME)								:$(OBJS_MAN)
 									make -sC $(FT)
@@ -65,7 +65,8 @@ $(NAME)								:$(OBJS_MAN)
 
 $(OBJS_MAN)							:$(INCL_DIRM)/fractol.h
 
-$(OBJS_BON)							:$(INCL_DIRB)/fractol_bonus.h
+$(OBJS_BON)							:$(INCL_DIRM)/fractol.h \
+									$(INCL_DIRB)/fractol_bonus.h
 
 clean:
 									make -sC $(FT) $@
@@ -76,6 +77,7 @@ clean:
 fclean:								clean
 									make -sC $(FT) $@
 									rm -f $(NAME)
+									rm -f $(NAME_BON)
 
 re:
 									make fclean

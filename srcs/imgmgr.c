@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:54:38 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/10 18:33:17 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/18 22:02:30 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,23 @@ static void	image_pixel_colorize(t_pnt *pt, t_ui *ui)
 {
 	int	color;
 	int	px_size;
-	int	px_pos;
-	int	spx_pos;
+	int	px;
+	int	spx;
 
 	color = view_colorize_coords(pt, ui);
-	px_size = ui->img_bpp / BYTE_FROM_BIT;
-	px_pos = pt->x * px_size + pt->y * ui->img_szl;
-	spx_pos = -1;
-	while (++spx_pos < px_size)
+	px_size = ui->img_bpp / BYTE;
+	px = pt->x * px_size + pt->y * ui->img_szl;
+	spx = -1;
+	while (++spx < px_size)
 	{
-		if (ui->img_end == ENDIAN_LIT)
+		if (ui->img_end == LIT_END)
 		{
-			ui->img_adr[px_pos + spx_pos] = color & 0xFF;
+			ui->img_adr[px + spx] = color & 0xFF;
 			color >>= 8;
 		}
-		else if (ui->img_end == ENDIAN_BIG)
+		else if (ui->img_end == BIG_END)
 		{
-			ui->img_adr[px_pos + spx_pos] = (color >> (ui->img_bpp - 8)) & 0xFF;
+			ui->img_adr[px + spx] = (color >> (ui->img_bpp - 8)) & 0xFF;
 			color <<= 8;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:34:12 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/15 17:50:41 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:57:58 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ double	plot_get_max_iter(t_pnt *cpt, t_fra *fra)
 		if (plot_does_seq_escape(z, &iter) == true)
 			return (iter);
 		z *= z;
-		if (fra->ftype == MANDELBROT)
+		if (fra->ftype == MANDEL)
 			z += cpt->x + cpt->y * I;
 		else if (fra->ftype == JULIA)
 			z += fra->creal + fra->cimag * I;

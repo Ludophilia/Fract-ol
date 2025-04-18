@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 12:35:34 by jegerman          #+#    #+#             */
-/*   Updated: 2025/04/14 17:32:19 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/18 21:12:13 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ int	main(int argc, char **argv)
 {
 	t_ui	ui;
 
-	if (clib_get_args(argc, argv, &ui.fra) == -1 && ft_dprintf(2, ERR_USAGE))
+	if (clib_get_args(argc, argv, &ui.fra) == -1 && ft_dprintf(2, ERRB_USAGE))
 		return (1);
 	if (uib_init(&ui) == -1)
 		return (2);
-	ui_loop(&ui);
-	ui_destroy(TG_ALL, &ui);
+	uib_loop(&ui);
+	uib_destroy(TG_ALL, &ui);
 	return (0);
 }

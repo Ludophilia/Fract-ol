@@ -6,64 +6,76 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:15:56 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/15 21:31:54 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/18 22:39:27 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_bonus.h"
 
-void	viewb_shift_plane(int direct, double factor, t_pln *pln)
+void	viewb_shift_plane(int keycode, double factor, t_pln *pln)
 {
-	if (direct == SHIFT_LEFT || direct == SHIFT_RIGHT)
+	if (keycode == XK_Left || keycode == XK_Down)
+	{
+		factor *= -1;
+	}
+	if (keycode == XK_Left || keycode == XK_Right)
 	{
 		pln->x_min += factor * (pln->x_max - pln->x_min);
 		pln->x_max += factor * (pln->x_max - pln->x_min);
 	}
-	if (direct == SHIFT_DOWN || direct == SHIFT_UP)
+	else if (keycode == XK_Up || keycode == XK_Down)
 	{
 		pln->y_min += factor * (pln->y_max - pln->y_min);
 		pln->y_max += factor * (pln->y_max - pln->y_min);
 	}
 }
 
-void	viewb_change_comp_plane_zoom_level(int zoom_in, double x, double y,
-t_pln *com_pln)
+int	viewb_shift_color(int dir, t_fra *fra)
 {
-	double	*x_lim;
-	double	*y_lim;
-	double	ratios[2];
-
-	x_lim = com_pln->x_lim;
-	y_lim = com_pln->y_lim;
-	ratios[0] = x / WIN_X;
-	ratios[1] = y / WIN_Y;
-	view_translate_mlx_coords_to_comp_coords(&x, &y, com_pln);
-	if (zoom_in)
-	{
-		x_lim[0] = x - ratios[0] * ((x_lim[1] - x_lim[0]) / ZOOM_LVL);
-		x_lim[1] = x + (1. - ratios[0]) * ((x_lim[1] - x_lim[0]) / ZOOM_LVL);
-		y_lim[0] = y - (1. - ratios[1]) * ((x_lim[1] - x_lim[0]) / ZOOM_LVL);
-		y_lim[1] = y + ratios[1] * ((x_lim[1] - x_lim[0]) / ZOOM_LVL);
-	}
-	else
-	{
-		x_lim[0] = x - ratios[0] * ((x_lim[1] - x_lim[0]) * ZOOM_LVL);
-		x_lim[1] = x + (1. - ratios[0]) * ((x_lim[1] - x_lim[0]) * ZOOM_LVL);
-		y_lim[0] = y - (1. - ratios[1]) * ((x_lim[1] - x_lim[0]) * ZOOM_LVL);
-		y_lim[1] = y + ratios[1] * ((x_lim[1] - x_lim[0]) * ZOOM_LVL);
-	}
+	if (dir == CLSH_RST)
+		fra->off_col = 0;
+	else if (dir == CLSH_FWD)
+		fra->off_col += 2 PI / 6;
+	else if (dir == CLSH_BCK)
+		fra->off_col -= 2 PI / 6;
+	return (0);
 }
 
 static int	viewb_map_iter_to_color(double iter, t_fra *fra)
 {
 	t_rgb	col;
-	double	ni;
+	double	angle;
+	t_rgb	off;
 
-	ni = iter / fra->max_iter;
-	col.r = (255 / 2) * (1 + sin(2 * PI * ni + (3 * PI / 2)));
-	col.g = (255 / 2) * (1 + sin(2 * PI * ni + (11 * PI / 6)));
-	col.b = (255 / 2) * (1 + sin(2 * PI * ni + (1 * PI / 6)));
+	angle = (iter / fra->max_iter) * 2 PI;
+	off.r = (3 PI / 2) + fra->off_col;
+	off.g = (11 PI / 6) + fra->off_col;
+	off.b = (1 PI / 6) + fra->off_col;
+	col.r = (255 / 2) * (1 + sin(angle + off.r));
+	col.g = (255 / 2) * (1 + sin(angle + off.g));
+	col.b = (255 / 2) * (1 + sin(angle + off.b));
 	return ((col.r << 16) | (col.g << 8) | col.b);
+}
+
+void	viewb_chg_zoom_lvl(int zoom_in, t_pnt *pt, t_pln *pln)
+{
+	double	zoom;
+	t_pnt	pos_ratio;
+	t_pnt	range;
+	t_pnt	cpt;
+
+	zoom = ZOOM_LVL;
+	if (zoom_in)
+		zoom = 1.0 / ZOOM_LVL;
+	cpt = plotb_get_cmplx_coords(pt, pln);
+	pos_ratio.x = pt->x / WIN_X;
+	pos_ratio.y = pt->y / WIN_Y;
+	range.x = (pln->x_max - pln->x_min);
+	range.y = (pln->y_max - pln->y_min);
+	pln->x_min = cpt.x - pos_ratio.x * range.x * zoom;
+	pln->x_max = cpt.x + (1.0 - pos_ratio.x) * range.x * zoom;
+	pln->y_min = cpt.y - (1.0 - pos_ratio.y) * range.y * zoom;
+	pln->y_max = cpt.y + pos_ratio.y * range.y * zoom;
 }
 
 int	viewb_colorize_coords(t_pnt *pt, t_ui *ui)
@@ -72,7 +84,7 @@ int	viewb_colorize_coords(t_pnt *pt, t_ui *ui)
 	double	iter;
 	t_pnt	cpt;
 
-	cpt = plot_get_cmplx_coords(pt, &ui->pln);
+	cpt = plotb_get_cmplx_coords(pt, &ui->pln);
 	iter = plotb_get_max_iter(&cpt, &ui->fra);
 	if (iter == ui->fra.max_iter)
 		return (0x0);

@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 15:47:35 by jegerman          #+#    #+#             */
-/*   Updated: 2025/04/14 16:56:10 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/18 22:02:50 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,23 @@ static void	imageb_pixel_colorize(t_pnt *pt, t_ui *ui)
 {
 	int	color;
 	int	px_size;
-	int	px_pos;
-	int	spx_pos;
+	int	px;
+	int	spx;
 
 	color = viewb_colorize_coords(pt, ui);
-	px_size = ui->img_bpp / BYTE_FROM_BIT;
-	px_pos = pt->x * px_size + pt->y * ui->img_szl;
-	spx_pos = -1;
-	while (++spx_pos < px_size)
+	px_size = ui->img_bpp / BYTE;
+	px = pt->x * px_size + pt->y * ui->img_szl;
+	spx = -1;
+	while (++spx < px_size)
 	{
-		if (ui->img_end == ENDIAN_LIT)
+		if (ui->img_end == LIT_END)
 		{
-			ui->img_adr[px_pos + spx_pos] = color & 0xFF;
+			ui->img_adr[px + spx] = color & 0xFF;
 			color >>= 8;
 		}
-		else if (ui->img_end == ENDIAN_BIG)
+		else if (ui->img_end == BIG_END)
 		{
-			ui->img_adr[px_pos + spx_pos] = (color >> (ui->img_bpp - 8)) & 0xFF;
+			ui->img_adr[px + spx] = (color >> (ui->img_bpp - 8)) & 0xFF;
 			color <<= 8;
 		}
 	}
@@ -50,5 +50,18 @@ int	imageb_ui_draw(t_ui *ui)
 			imageb_pixel_colorize(&pt, ui);
 	}
 	mlx_put_image_to_window(ui->mlx, ui->win, ui->img, 0, 0);
+	return (0);
+}
+
+int	imageb_init(t_ui *ui)
+{
+	ui->img = mlx_new_image(ui->mlx, WIN_X, WIN_Y);
+	if (ui->img == NULL)
+		return (-1);
+	ui->img_adr = mlx_get_data_addr(ui->img, &ui->img_bpp, &ui->img_szl,
+			&ui->img_end);
+	if (ui->img_adr == NULL && uib_destroy(TG_IMG, ui))
+		return (-1);
+	ui->pln = (t_pln){.x_min = -2, .y_min = -2, .x_max = 2, .y_max = 2};
 	return (0);
 }

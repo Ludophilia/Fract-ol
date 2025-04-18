@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
+/*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 13:04:50 by jgermany          #+#    #+#             */
-/*   Updated: 2023/06/23 13:14:20 by jgermany         ###   ########.fr       */
+/*   Created: 2025/03/19 12:35:34 by jegerman          #+#    #+#             */
+/*   Updated: 2025/04/18 21:12:13 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "fractol_bonus.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	t_mlx	mlx_data;
+	t_ui	ui;
 
-	if (init_scene(&mlx_data) == -1)
+	if (clib_get_args(argc, argv, &ui.fra) == -1 && ft_dprintf(2, ERRB_USAGE))
 		return (1);
-	register_events(&mlx_data);
-	draw_on_scene(&mlx_data);
-	wait_for_events(&mlx_data);
-	destroy_scene(&mlx_data);
+	if (uib_init(&ui) == -1)
+		return (2);
+	uib_loop(&ui);
+	uib_destroy(TG_ALL, &ui);
 	return (0);
 }

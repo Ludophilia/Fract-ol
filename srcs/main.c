@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_common.h                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgermany <nyaritakunai@outlook.com>        +#+  +:+       +#+        */
+/*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 12:26:36 by jgermany          #+#    #+#             */
-/*   Updated: 2023/06/23 14:14:43 by jgermany         ###   ########.fr       */
+/*   Created: 2025/03/19 12:29:38 by jegerman          #+#    #+#             */
+/*   Updated: 2025/04/11 18:27:39 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_COMMONS_H
+#include "fractol.h"
 
-# define MLX_COMMONS_H
-
-# include "mlx.h"
-
-# include <stdio.h>
-# include <stdlib.h>
-# include <X11/X.h>
-
-typedef struct s_mlx
+int	main(int argc, char **argv)
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	int		loopcount;
-}	t_mlx;
+	t_ui	ui;
 
-#endif
+	if (cli_get_args(argc, argv, &ui.fra) == -1 && ft_dprintf(2, ERR_USAGE))
+		return (1);
+	if (ui_init(&ui) == -1)
+		return (2);
+	ui_loop(&ui);
+	ui_destroy(TG_ALL, &ui);
+	return (0);
+}

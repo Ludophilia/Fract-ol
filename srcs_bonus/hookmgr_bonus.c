@@ -6,47 +6,43 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 19:09:27 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/18 18:27:02 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/18 20:59:55 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_bonus.h"
 
-int	hook_key_events_manage(int keycode, t_fra *fra_data)
+int	hookb_key_event_manage(int keycode, t_ui *ui)
 {
 	if (keycode == XK_Escape)
-		mlx_loop_end(fra_data->mlx_ptr);
+		mlx_loop_end(ui->mlx);
 	else if (keycode == XK_space)
-		view_set_complex_plane_limits(-2, 2, &fra_data->com_pln);
-	else if (keycode == XK_Left)
-		view_shit_comp_plane(SHIFT_LEFT, &fra_data->com_pln);
-	else if (keycode == XK_Right)
-		view_shit_comp_plane(SHIFT_RIGHT, &fra_data->com_pln);
-	else if (keycode == XK_Up)
-		view_shit_comp_plane(SHIFT_UP, &fra_data->com_pln);
-	else if (keycode == XK_Down)
-		view_shit_comp_plane(SHIFT_DOWN, &fra_data->com_pln);
+		ui->pln = (t_pln){.x_min = -2, .y_min = -2, .x_max = 2, .y_max = 2};
+	else if (keycode >= XK_Left && keycode <= XK_Down)
+		viewb_shift_plane(keycode, SHIFT_FACTOR, &ui->pln);
 	else if (keycode == XK_d)
-		color_palettes_shift(1, &fra_data->pal_con);
+		viewb_shift_color(CLSH_FWD, &ui->fra);
 	else if (keycode == XK_s)
-		color_palettes_shift(0, &fra_data->pal_con);
+		viewb_shift_color(CLSH_BCK, &ui->fra);
+	else if (keycode == XK_a)
+		viewb_shift_color(CLSH_RST, &ui->fra);
 	return (0);
 }
 
-int	hook_mouse_events_manage(int button, int x, int y, t_fra *fra_data)
+int	hookb_mouse_event_manage(int button, int x, int y, t_pln *pln)
 {
-	t_pln	*com_pln;
+	t_pnt	pt;
 
-	com_pln = &fra_data->com_pln;
+	pt = (t_pnt){x, y};
 	if (button == 4)
-		view_change_comp_plane_zoom_level(1, x, y, com_pln);
+		viewb_chg_zoom_lvl(ZOOM_IN, &pt, pln);
 	else if (button == 5)
-		view_change_comp_plane_zoom_level(0, x, y, com_pln);
+		viewb_chg_zoom_lvl(ZOOM_OUT, &pt, pln);
 	return (0);
 }
 
-int	hook_loop_events_manage(t_fra *fra_data)
+int	hookb_loop_event_manage(t_ui *ui)
 {
-	image_draw(fra_data);
+	imageb_ui_draw(ui);
 	return (0);
 }

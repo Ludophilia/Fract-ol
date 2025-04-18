@@ -6,35 +6,32 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 19:09:27 by jgermany          #+#    #+#             */
-/*   Updated: 2025/03/18 18:03:50 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/16 15:10:15 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	hook_key_events_manage(int keycode, t_fra *fra_data)
+int	hook_key_event_manage(int keycode, t_ui *ui)
 {
 	if (keycode == XK_Escape)
-		mlx_loop_end(fra_data->mlx_ptr);
+		mlx_loop_end(ui->mlx);
 	return (0);
 }
 
-int	hook_mouse_events_manage(int button, int x, int y, t_fra *fra_data)
+int	hook_mouse_event_manage(int button, int x, int y, t_pln *pln)
 {
-	t_pln	*com_pln;
-
-	(void) x;
-	(void) y;
-	com_pln = &fra_data->com_pln;
+	(void)x;
+	(void)y;
 	if (button == 4)
-		plot_change_comp_plane_zoom_level(1, com_pln);
+		view_chg_zoom_lvl(ZOOM_IN, pln);
 	else if (button == 5)
-		plot_change_comp_plane_zoom_level(0, com_pln);
+		view_chg_zoom_lvl(ZOOM_OUT, pln);
 	return (0);
 }
 
-int	hook_loop_events_manage(t_fra *fra_data)
+int	hook_loop_event_manage(t_ui *ui)
 {
-	image_draw(fra_data);
+	image_ui_draw(ui);
 	return (0);
 }

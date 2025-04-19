@@ -6,7 +6,7 @@
 #    By: jegerman <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/01 20:24:27 by jgermany          #+#    #+#              #
-#    Updated: 2025/04/18 22:32:02 by jegerman         ###   ########.fr        #
+#    Updated: 2025/04/19 13:33:16 by jegerman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,9 @@ OBJS_BON 							:= $(SRCS_BON:.c=.o)
 
 all									:$(NAME)
 
-bonus								:$(OBJS_BON)
+bonus								:$(NAME_BON)
+
+$(NAME_BON)							:$(OBJS_BON)
 									make -sC $(FT)
 									make -C $(MLX) >/dev/null 2>&1
 									$(CC) $(CFLAGS) -o $(NAME_BON) $^ $(LIBFLAGS)

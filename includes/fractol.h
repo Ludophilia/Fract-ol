@@ -6,7 +6,7 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 20:38:52 by jgermany          #+#    #+#             */
-/*   Updated: 2025/04/18 22:09:36 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/19 13:51:14 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # define PI * 3.14159
 
 # define WIN_NAME "fractol"
-# define WIN_X 1000
-# define WIN_Y 1000
+# define WIN_X 800
+# define WIN_Y 800
 
 # define ERR_USAGE "usage: fractol (0 | 1 <const_real> <const_imag>)\n"
 
@@ -36,8 +36,8 @@
 # define JULIA 1
 # define RADIUS 2
 
-# define MAN_ITMX 125.00
-# define JUL_ITMX 150.00
+# define MAN_ITMX 75.00
+# define JUL_ITMX 100.00
 
 # define ZOOM_LVL 1.05
 # define ZOOM_IN 1

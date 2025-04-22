@@ -6,12 +6,17 @@
 /*   By: jegerman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 12:29:38 by jegerman          #+#    #+#             */
-/*   Updated: 2025/04/11 18:27:39 by jegerman         ###   ########.fr       */
+/*   Updated: 2025/04/22 15:24:22 by jegerman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+// 22/04/25
+// - Please think again about how a frame is generated. Calling image_ui_draw(ui)
+//  at every frame seem to be a Yandere-Dev tier mistake.
+// - While worthing 125, the project still need improvements, especially
+// regarding its performance.
 int	main(int argc, char **argv)
 {
 	t_ui	ui;
